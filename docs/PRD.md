@@ -184,9 +184,9 @@ A **faithful JavaScript port of the 1966 algorithm** running the **original DOCT
 - **Model:** OpenAI's original GPT (117M parameters, `openai-gpt` on Hugging Face, MIT license).
 - **Runtime:**
   - Transformers.js (`@huggingface/transformers`) in a Web Worker. WebGPU where available, WASM fallback.
-  - An estimated ~120MB quantized (int8). Cached by the browser after the first load.
+  - 117MB (weight-only 8-bit, 96% next-word agreement with full precision). Cached by the browser after the first load.
   - **It starts downloading quietly during Level 1**, so it's usually ready by the time the player arrives.
-- **Conversion (verified in M0):** no browser-ready GPT-1 exists, and Transformers.js has no GPT-1 architecture. M3 opens with a spike: a custom ONNX export with a KV cache that mimics GPT-2's interface, with hand-written inference as the fallback. See `docs/VERIFICATION.md`.
+- **Conversion (done in M3):** `tools/models/convert_gpt1.py` exports GPT-1 with a KV cache and GPT-2's interface; it matches Hugging Face's reference implementation exactly. It runs at 18–51 tok/s on WebGPU and 6 tok/s on the CPU. See `docs/VERIFICATION.md`.
 - **Training-data fact we exploit:** GPT-1 was trained on **BookCorpus**, about 7,000 unpublished books heavy in romance and fantasy. It drifts into paperback-novel prose, which sets up Level 3.
 
 ### 7.4 Objectives (clear 4 of 5 to advance)
@@ -239,7 +239,7 @@ It's Valentine's Day. The model is "too dangerous to release." The danger, it tu
 
 ### 8.4 The engine: real GPT-2
 
-- **Default:** GPT-2 small (124M), `Xenova/gpt2`, 128MB int8, prefetched during Level 2.
+- **Default:** GPT-2 small (124M), 128MB weight-only 8-bit (95% next-word agreement; the standard `Xenova/gpt2` 8-bit file manages 74%), prefetched during Level 2.
 - **Optional "Full Release" toggle** on capable desktops (WebGPU, ≥8GB RAM detected): GPT-2 medium (355M), a 562MB download, shown with a clear size warning and never prefetched.
   - This is a nod to the real **staged release**: 124M in Feb 2019, 355M in May, 774M in August, 1.5B in November.
   - 774M and 1.5B appear as **locked vault doors marked "TOO DANGEROUS"**. That's a joke and an education point; they can't be played.
@@ -301,7 +301,7 @@ It's Valentine's Day. The model is "too dangerous to release." The danger, it tu
 | Save | `localStorage`, wrapped in try/catch | Progress, settings, unlocked placards. The game works fine without it. |
 | Tests | Vitest | ELIZA fidelity tests, objective detectors, filters. |
 | Hosting | **GitHub Pages via GitHub Actions** | $0, public URL, deploys on push to `main`. |
-| Model files | Loaded from the **Hugging Face Hub CDN** | Gets around GitHub's 100MB file limit. Free, CORS-enabled, cached by the browser. |
+| Model files | **GitHub Release assets** (`models-v1`), copied into the Pages site at deploy | Same origin, free, nothing large in git. ⚠️ Pages has a ~100 GB/month soft bandwidth limit (~400 full plays). Move to a Hugging Face repo if traffic grows. |
 
 ### 9.2 Model loading strategy
 
@@ -434,7 +434,14 @@ mad-models/
 - **Suno's free tier** is personal, non-commercial use, and Suno owns the output. Publishing tracks in a public game likely goes beyond that. **Paid plans** grant rights to songs downloaded while subscribed.
 - **Plan:** generate all cues during one month of Suno Pro, or use CC0/CC-BY music instead (open item). ⚠️ Confirm against Suno's own terms before M5.
 
-### 11.3 Mixing
+### 11.3 Voice (requested 2026-11-20)
+
+- **Dorothy is voiced.** Every Dorothy line in the Level 1 finale gets a voice clip: a warm early-1960s Boston/mid-Atlantic secretary, slightly hushed when she asks for privacy. Lines stay on screen as captions.
+- **Other voiced moments to consider:** the 1966 → 2018 newsreel narrator, and the 2019 "safety team" (optional).
+- **Source:** decided during M5. Options are an AI voice tool, or a recording by a real person. Check the tool's terms for public use, as with music.
+- Voice clips live in `public/audio/voice/` and play through the same audio system as the sound effects, with the same mute control.
+
+### 11.4 Mixing
 
 - A master volume control, plus separate music and SFX sliders.
 - Mute is remembered.
@@ -475,7 +482,7 @@ mad-models/
 |---|---|
 | Time to title screen (desktop, cable) | < 3s |
 | Initial download before play | ≤ 15MB |
-| GPT-1 / GPT-2 124M downloads | ~120MB (estimated) / 128MB, background-prefetched, cached for return visits |
+| GPT-1 / GPT-2 124M downloads | 117MB / 128MB, background-prefetched, cached for return visits |
 | Token streaming (WebGPU desktop) | ≥ 15 tokens/s |
 | Token streaming (WASM desktop) | ≥ 4 tokens/s |
 | Frame rate in scenes | 60fps desktop, 30fps mobile (effects scale down) |
@@ -491,7 +498,7 @@ mad-models/
 | Item | Cost |
 |---|---|
 | Hosting (GitHub Pages) | $0 |
-| Model hosting (Hugging Face Hub) | $0 |
+| Model hosting (GitHub Release + Pages) | $0 |
 | Model inference (player's own device) | $0 |
 | Images (ChatGPT / Meta AI, existing access) | $0 incremental |
 | Music (Suno) | $0 if already on a paid plan; otherwise about one month of Suno Pro, or $0 with CC0/CC-BY music |
@@ -505,9 +512,9 @@ mad-models/
 | **M0** | **Foundations and verification** | Public repo created; Pages deploys a "hello" build. Every ⚠️ item checked (model conversions, sizes, licenses, 2741 details, Suno terms). |
 | **M1** | **ELIZA engine** ✅ 2026-11-20 | Port complete. Reproduces the 1966 sample conversation exactly in CI. |
 | **M2** | **Level 1 playable (grey-box)** ✅ 2026-11-20 | Paper terminal with typing, printing and SFX. Objectives, placards, save. Placeholder art. |
-| **M3** | **Model runtime** | Worker loads GPT-1 and GPT-2. Streaming, capability check, filters, Archive Mode with recorded outputs. |
+| **M3** | **Model runtime** ✅ 2026-11-20 | Worker loads GPT-1 and GPT-2. Streaming, capability check, filters, Archive Mode with recorded outputs. |
 | **M4** | **Levels 2 and 3 playable (grey-box)** | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
-| **M5** | **Art and audio pass** | All images generated and layered. Music generated. SFX sourced. Era Jumps built. |
+| **M5** | **Art and audio pass** | All images generated and layered. Music files generated (Suno) and wired in. Dorothy's voice lines recorded and wired in. SFX sourced. Era Jumps built. |
 | **M6** | **Finale, polish, accessibility, performance** | Side-by-side finale, certificate, accessibility features, perf budgets met, mobile pass. |
 | **M7** | **Launch** | README, credits, sources, OG image. Public link shared by the user. |
 

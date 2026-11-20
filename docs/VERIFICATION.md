@@ -67,3 +67,47 @@ Checked 2026-11-20. Each item resolves a ⚠️ from the PRD.
 - [Suno vs Udio 2026 (musicwave.ai)](https://www.musicwave.ai/blog/suno-vs-udio)
 - Hugging Face model API: `Xenova/gpt2`, `onnx-community/gpt2-medium-ONNX`, `openai-community/openai-gpt`
 - `@huggingface/transformers` 4.3.2 package contents
+
+---
+
+# Milestone 3: Model runtime (2026-11-20)
+
+## GPT-1 test result: success
+
+- `tools/models/convert_gpt1.py` rebuilds GPT-1 in PyTorch and exports ONNX with a key/value cache and GPT-2's interface. Compared with Hugging Face's reference `OpenAIGPTLMHeadModel`: max logit difference **9e-5**, and identical greedy text over 21 tokens, including the cached step-by-step path.
+- A bug found on the way: GPT-1 uses the **tanh approximation of GELU**. The exact GELU gave logit differences of about 0.09.
+- It runs in Transformers.js 4.3.2 as `GPT2LMHeadModel`. GPT-1's own tokenizer (BERT normalizer and pre-tokenizer, BPE with `</w>`) works unchanged.
+
+## Quantization: weight-only 8-bit for both models
+
+| File | Size | Top-1 agreement vs full precision | Mean KL |
+|---|---|---|---|
+| GPT-1, dynamic 8-bit (standard) | 117 MB | 70% (per-tensor) / 76% (per-channel) | 0.41 / 0.19 |
+| **GPT-1, weight-only 8-bit (shipped)** | **117 MB** | **96%** | **0.008** |
+| GPT-2, `Xenova/gpt2` dynamic 8-bit (standard) | 128 MB | 74% | 0.19 |
+| GPT-2, weight-only 8-bit, per-word embedding scales | 128 MB | 77% | 0.056 |
+| **GPT-2, weight-only 8-bit, per-dimension embedding scales (shipped)** | **128 MB** | **95%** | **0.004** |
+
+Measured over 97–98 tokens of mixed text (`tools/models/compare_gpt*.py`). GPT-2's embedding table has a few "rogue" dimensions with huge values, so it needs one scale per dimension.
+
+## Browser performance (Claude's built-in browser, Apple Silicon Mac)
+
+| Model | WebGPU | CPU (WASM, single-threaded) |
+|---|---|---|
+| GPT-1 | 17.7 tok/s cold run, 51 tok/s warm | 6.0 tok/s |
+| GPT-2 | 24.4 tok/s cold run | 6.8–6.9 tok/s |
+
+First streamed token in about 0.2 s. Loading from the browser cache takes 0.7–0.9 s. PRD targets: 15 and 4 tok/s. ✅
+
+## Hosting
+
+- Model files are GitHub Release assets (`models-v1`), copied into the Pages site by the deploy workflow with SHA-256 checks. Same origin, no extra accounts, nothing large in git history.
+- ⚠️ GitHub Pages has a soft bandwidth limit of 100 GB/month. A full play downloads about 245 MB of models, so that is roughly 400 full plays a month. If the game takes off, move the two files to a Hugging Face repo (free, CDN-backed) by changing the client's base URL.
+
+## Runtime findings
+
+- **Transformers.js 4.3 local paths:** `env.localModelPath` must be site-relative (`/mad-models/models/`), not a full URL. With a full URL it skips its existence check, caches "not found", and fails with `reading 'tokenizer_class'`.
+- **Stopping on the CPU:** single-threaded WASM never yields to the worker's message queue mid-generation, so a stop message waits until the end. `ModelClient.abort` restarts the worker after 300 ms and keeps the partial text. Measured: stop in 304 ms, next generation works after a ~0.9 s reload.
+- **GPT-1 spacing:** its decoder drops the space before the first generated word ("spray" + "stung"). The worker and recorder add it back.
+- **13+ filter:** with `bad_words_ids` on, a prompt that forces a blocked word never produces it, in either model. Without the filter, both do.
+- **Archive Mode:** 60 real outputs per model recorded with the same files and filter (`tools/archive/record.ts`). Replay streams at 14 tok/s.

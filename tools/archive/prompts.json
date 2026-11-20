@@ -1,0 +1,17 @@
+{
+  "_note": "Prompt cards for Archive Mode. Milestone 4 finalizes these per objective and beat; this is the starter set.",
+  "gpt1": [
+    { "id": "hello", "prompt": "Hello, how are you?", "temperature": 0.8, "maxNewTokens": 40 },
+    { "id": "chapter-one", "prompt": "Chapter one", "temperature": 0.8, "maxNewTokens": 50 },
+    { "id": "ocean", "prompt": "The ship rolled on the grey ocean waves, and the salt spray", "temperature": 0.8, "maxNewTokens": 50 },
+    { "id": "list", "prompt": "1. apples\n2. bananas\n3. oranges\n4.", "temperature": 0.7, "maxNewTokens": 30 },
+    { "id": "loop", "prompt": "The night was cold and dark and", "temperature": 0.2, "maxNewTokens": 50 },
+    { "id": "babble", "prompt": "The night was cold and dark and", "temperature": 1.8, "maxNewTokens": 50 }
+  ],
+  "gpt2": [
+    { "id": "biology", "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her", "temperature": 0.9, "maxNewTokens": 60 },
+    { "id": "gradients", "prompt": "\"You smell like... gradients,\" Edward whispered.\n\"What?\" Bella asked.\n\"", "temperature": 0.9, "maxNewTokens": 60 },
+    { "id": "meadow", "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle, like", "temperature": 0.8, "maxNewTokens": 60 },
+    { "id": "tldr", "prompt": "A vampire falls in love with a girl in a rainy town. A werewolf also loves her. Everyone broods.\nTL;DR:", "temperature": 0.7, "maxNewTokens": 40 }
+  ]
+}

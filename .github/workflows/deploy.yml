@@ -18,15 +18,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - name: Add model files from the models-v1 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download models-v1 --repo "$GITHUB_REPOSITORY" --dir release
+          mkdir -p dist/models/openai-gpt/onnx dist/models/gpt2/onnx
+          mv release/openai-gpt.model_quantized.onnx dist/models/openai-gpt/onnx/model_quantized.onnx
+          mv release/gpt2.model_quantized.onnx dist/models/gpt2/onnx/model_quantized.onnx
+          echo "f26269d2ccf16e3a5581cb859e7ab2cd6c3c2e44c35b456abfb82a801854e1f2  dist/models/openai-gpt/onnx/model_quantized.onnx" | sha256sum -c
+          echo "29540a2d09b2bd562ca263745716bec4dccdf7a000012d236ed43d01577d7771  dist/models/gpt2/onnx/model_quantized.onnx" | sha256sum -c
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 

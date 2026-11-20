@@ -1,0 +1,91 @@
+{
+ "model": "gpt1",
+ "recorded": "2026-11-20",
+ "note": "Real outputs from GPT-1 (117 million parameters), recorded with the game's own model files and filter.",
+ "entries": [
+  {
+   "id": "hello",
+   "prompt": "Hello, how are you?",
+   "temperature": 0.8,
+   "maxNewTokens": 40,
+   "outputs": [
+    " \" \n \" you 're late ! \" his wife cried . \n \" sorry . i got waylaid by a couple of men . they were looking for a woman and i did n't know what to do",
+    " \" \n \" i 'm fine , thank you . \" \n \" well , then ... how are you feeling ? \" \n \" that depends . \" \n \" on ? \" \n \" on how you are",
+    " \" \n \" i 'm good . \" \n \" you look like hell . \" \n \" thanks . \" he nodded and walked into the kitchen to look for her . \n \" what 's wrong ? \"",
+    " \" \n \" fine . \" \n \" and ? \" \n \" and what ? \" \n \" do you want to talk about it ? \" \n \" it 's nothing . i just wanted to talk .",
+    " \" he says as he comes into the room ; he sits heavily in his chair . \n \" i 'm fine , but thank you for asking , \" i say . \n \" you 're welcome . are",
+    " \" \n \" hi , \" she replied , her tone slightly shy . \" i 'm sorry . i 'm just tired of lying . \" \n \" tell me . \" \n \" i know i said i"
+   ]
+  },
+  {
+   "id": "chapter-one",
+   "prompt": "Chapter one",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " the room was black , the only light coming from the flickering flame of the candles on the table . \n \" it 's going to be okay , \" i said . \" i do n't think i can let them hurt you . \" \n \" they",
+    " \" we are being followed . \" \n i turned from my desk to find a young man with long hair standing behind me . i did n't even notice or care who he was . \n \" why ? \" i asked in a monotone . \n \"",
+    " \" it 's a terrible thing to have your own life threatened but it 's your fault . \" \n the priest 's words burned like acid and the cold iron in his hand was shaking , but he held on . \" i 'll make it right ,",
+    " \" are you okay , baby ? \" \n \" yeah . \" i did n't think i could talk . i was still trying to catch my breath , and my heart was pounding wildly . the man that was holding me was a stranger . he was",
+    " i stood in the doorway of my apartment watching my family . my mom and dad were playing chess . my dad had his eyes locked on mine and i could see he was trying to figure out if i had a problem or not . i was n't",
+    " four months later \n \" what do you say to the end of this week , babe ? i know we 're going to have to get over it . \" \n oh , how i wanted to . i was going to do my best to forget about"
+   ]
+  },
+  {
+   "id": "ocean",
+   "prompt": "The ship rolled on the grey ocean waves, and the salt spray",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " stung my nose . on the horizon was a white smudge where the sun had almost set . \n i was so engrossed in the dream that i barely noticed the noise that was making its way from the kitchen . \n the door to the salon was open .",
+    " of the sea washed over the faces of the people on the shore , who stood huddled in their beds . \n the king 's army had returned , of course , and by mid - day , the people had found that a great many of them were missing",
+    " stung their faces . a strong wind blew in from the east , and a sea fog lifted from the waters on the horizon , billowing to the east . the wind picked up speed , carrying with it the pungent scent of salt and sea , and a cold",
+    " stung my eyes and stung my nose . i cried and cried as the waves lapped over my feet , and i felt the salty water stinging my nostrils . i felt the wind on my cheeks and the breeze in my hair as we sailed through the sky together",
+    " washed over them , stinging their eyes . \n they had been sailing for about a week now . the crew had been preparing for battle in preparation for their first battle . the men in the helmsman 's seat had been discussing strategy and the plan for a",
+    " seemed to pour into the air . \" i thought we 'd be ready in a couple of days , \" he said , \" but we 're not . there is no way we can make it . \" \n \" what do you mean , we 're not"
+   ]
+  },
+  {
+   "id": "list",
+   "prompt": "1. apples\n2. bananas\n3. oranges\n4.",
+   "temperature": 0.7,
+   "maxNewTokens": 30,
+   "outputs": [
+    " \" so what do you think ? \" he asked . \n \" i think it 's an incredible story , \" i said . \" so far ,",
+    " bananas 3 . apples 2 . bananas 4 . oranges 4 . bananas 4 . bananas 4 . apples 4 . apples 5 . bananas 5 . apples 5 .",
+    " i guess that 's it . \" \n \" i 'm sorry . \" i bit my lip nervously . \" i 'm sure you did n't mean ... \"",
+    " bananas 5 . apples 5 . bananas 5 . \n \" this is a very new world . \" \n \" yes . \" \n \" i know . \"",
+    " \" it 's the most important thing , \" he said , and handed it to me . \" the most important thing i 've ever had . \"",
+    " fruit 3 . bananas 4 . oranges 5 . bananas 5 . apples 5 . apples 6 . oranges 7 . oranges 6 . apples 6 . oranges 7 ."
+   ]
+  },
+  {
+   "id": "loop",
+   "prompt": "The night was cold and dark and",
+   "temperature": 0.2,
+   "maxNewTokens": 50,
+   "outputs": [
+    " the moon was full . the only light came from the stars . \n \" i 'm sorry , \" i said . \" i 'm sorry i did n't tell you . \" \n \" it 's okay , \" he said . \" i know . \"",
+    " the wind was howling . \n \" i 'm sorry , \" he said . \" i should n't have said that . \" \n \" it 's all right , \" she said . \" i 'm glad you did . \" \n \" i 'm sorry i did",
+    " i was n't sure if i was going to be able to sleep . i was n't sure if i was going to be able to sleep at all . \n i was n't sure if i was going to be able to sleep at all . \n chapter twenty",
+    " the moon was high . \n \" i 'm not sure what to do , \" i said , my voice shaking . \" i do n't know what to do . \" \n \" you 're a vampire , \" he said . \" you can do anything you",
+    " the wind was howling . \n \" i 'm sorry , \" i said . \" i did n't mean to make you feel bad . \" \n \" it 's okay , \" he said . \" i 'm just glad you 're here . \" \n \" me",
+    " the air was thick with the scent of pine . the wind was blowing in from the north , and the trees were swaying in the wind . \n \" i 'm not sure i like this , \" i said , looking around . \n \" i know ."
+   ]
+  },
+  {
+   "id": "babble",
+   "prompt": "The night was cold and dark and",
+   "temperature": 1.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " silent ; that night it was full dark on one hill overlooking an empty river but it was far past that i 'd ever known . but at any other hour the sea and sky would lie silent as glass as a rock in silence and now i would be",
+    " dark was in him a strange place . but all is well as long as the boy remains chaste . \n \" so i ask from those above him the child his soul , what would you say to another soul he would be in love with this time ?",
+    " dark clouds covered the sun . \n with a pang , i reminded him , you do n't know i exist anymore , that i was back here instead of back at him . the hurt still stabbed at me with their icy fingers ; but in spite of what",
+    " i stood on frozen ground , shivering , wondering why anyone would invite me in , the last of our night left in the morning . then i glanced over over my shoulder the way we passed . we were about eight stories up . i should have taken the",
+    " quiet in spite of themselves as they crept up and looked inside . after a few moments a pair came walking up with a little girl in bed a short way above . \n \" hey girls ? wake up please . come . they brought you something . you",
+    " there looked to be just the two of them : she with her short blonde hair tied back at her head making her skin look more luminescent than normal but it looked like her hair had changed back when i had looked at pictures of her . and my eyes"
+   ]
+  }
+ ]
+}

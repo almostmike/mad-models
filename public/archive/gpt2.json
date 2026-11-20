@@ -1,0 +1,63 @@
+{
+ "model": "gpt2",
+ "recorded": "2026-11-20",
+ "note": "Real outputs from GPT-2 (small) (124 million parameters), recorded with the game's own model files and filter.",
+ "entries": [
+  {
+   "id": "biology",
+   "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her",
+   "temperature": 0.9,
+   "maxNewTokens": 60,
+   "outputs": [
+    " noticed that she had changed a bit. \"And I noticed a change in your hair and your eyes.\" Bella sat up slightly from her work. \"You know, I don't think I've ever seen you that badly,\" Bella said, her voice soft and clear. \"But you're getting closer",
+    " had the same white hair and pale-blue eyes. She studied him with something he might not have been taught because he had been in such a strange place at the age of 11 or 12, his mother says, looking at him in shock as she sat there. So he had been in her class",
+    ", a bit taller than Harry, stood. The lab girl sat down at the table next to her. Harry stood next to her. \"What does it look like?\" \"It is,\" she said slowly. \"Its wingspan is 1.4 kilometers.\" \"Is it like a butterfly?\" \"",
+    " was working, with a clipboard in hand, and a big stack of papers on the table. She glanced at each word and smiled in sympathy, \"How much?\"\n\n\"About $60k a month. That's enough for three meals a day, plus a half-hour of extra for",
+    " held a notebook, and he opened it up and laid it on the table next to the white desk where Amy was working. He read through her notes for some reason. Suddenly, the white desk fell apart. \"It was nothing,\" he breathed, \"but she told me to do it. That",
+    " had been drinking from a glass of water and wanted to tell her about his daughter.\n\n\"We'll see about that,\" Dee said when he saw that Bella was talking to him.\n\nShe glanced up at the pale boy, and smiled at him. \"Don't worry, we'll"
+   ]
+  },
+  {
+   "id": "gradients",
+   "prompt": "\"You smell like... gradients,\" Edward whispered.\n\"What?\" Bella asked.\n\"",
+   "temperature": 0.9,
+   "maxNewTokens": 60,
+   "outputs": [
+    "You smell like I'm the only one that smells like you,\" Edward nodded.\n\"Oh... yes, I think I'm being a little... paranoid of myself.\"\nEdward stopped.\n\"I guess it's the fact you're really my friend that makes you paranoid,\" Bella murmured.",
+    "It's just... I'm pretty sure I'm gonna be able to touch you... but I'm not quite ready. \"\nEdward paused a moment. He'd thought that Bella would feel better by now, after the experience of the day's journey, so he'd done some research to figure out",
+    "It's too dry,\" Edward sighed. \"You've got enough air in you in this room. The air is still on your body, which is awesome. You've got a good amount of air in you right now. Your body, it's not moving at all.\" He looked over to her",
+    "Yup! No, no!\" Edward cried. \"I don't like all that stuff!\"\nBella was in a rush, too nervous for one last look.\n\"Get some clothes!\" Edward said.\n\"Okay,\" Bella suggested.\n\"I just got to get the clothes I",
+    "You are really in a rush,\" Alice agreed.\n\"I'm almost there,\" Edward explained.\n\"You'll like my scent,\" Bella agreed. Alice sighed and walked back into the closet.\n\"Okay, you could make some other things as well,\" Edward said. He walked out as",
+    "I smell something. It's a nice, cold, windy day, and a little drier than usual. In retrospect, though, I should've done something about it, didn't I?\" Edward said.\nThe black-haired woman sighed and nodded, and Edward grabbed Bella by the collar"
+   ]
+  },
+  {
+   "id": "meadow",
+   "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle, like",
+   "temperature": 0.8,
+   "maxNewTokens": 60,
+   "outputs": [
+    " a fountain or a fountain's light. The moonlight seemed to be melting his skin and he fell on the ground.",
+    " the sun. When the sunlight stopped, he was able to see that he was wearing a jacket and jeans. He walked into the trees with a smile on his face, looked at the stars as one, and smiled back. \"I'm sorry.\"",
+    " a spring. His heart skipped a beat, and he let go of the jar of ice.\n\n\"I have nothing to eat.\"\n\nIt was true. His body was frozen, and he couldn't eat.\n\n\"It's because of that you are so useless.\"\n\n",
+    " a new day. The forest was green and fresh on the horizon. He knew it would be a long day if he hadn't seen it.\n\nIt was not pleasant and his heart was pounding. It took him a moment to figure out what had happened. His body was being taken by the",
+    " the stars of the sun. A cloud was gathering around him. The tree branches and vines were being pulled up with the wind. His eyes became filled with a horrible hatred. The sun was coming up and taking him away. The sky was filled with smoke and the trees were cut with the fire.",
+    " an angel, and he saw it, and the wind began to blow from heaven. And once more the wind had begun to blow again, and he felt his body being shaken from the cradle and the bones and bits of his bones and flesh, and he saw all this again: that he was dead"
+   ]
+  },
+  {
+   "id": "tldr",
+   "prompt": "A vampire falls in love with a girl in a rainy town. A werewolf also loves her. Everyone broods.\nTL;DR:",
+   "temperature": 0.7,
+   "maxNewTokens": 40,
+   "outputs": [
+    " The main characters are not the main characters. The main characters are those who werewolves.\n\nEnjoyed this post? Then please consider supporting HapMap by supporting us on Patreon.\n\n",
+    " They are both vampires.\n\nAdvertisements",
+    " The vampire is the vampire that becomes a vampire and is attracted to her.\nThis was the story of a young woman who finds herself being pursued by a vampire while he's sleeping. He has already",
+    " the story is about a vampire who falls in love with a girl in a rainy town. The story revolves around a vampire who falls in love with a girl and has to save the town. The vampire",
+    " There are three main ways of doing this.\n1. A vampire is attracted to a girl in a rainy town. A werewolf also loves her. Everyone broods.\n2. A vampire",
+    " The Vampire Count is a character who is a vampire, but it's not a character he likes.\nThe Vampire Count has been described as a character who is a vampire due to the fact that he"
+   ]
+  }
+ ]
+}

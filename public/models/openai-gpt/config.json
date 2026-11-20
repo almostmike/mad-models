@@ -1,0 +1,18 @@
+{
+  "model_type": "gpt2",
+  "architectures": [
+    "GPT2LMHeadModel"
+  ],
+  "n_layer": 12,
+  "n_head": 12,
+  "n_embd": 768,
+  "n_positions": 512,
+  "n_ctx": 512,
+  "vocab_size": 40478,
+  "bos_token_id": null,
+  "eos_token_id": null,
+  "_note": "OpenAI GPT-1 (openai-gpt), post-LN, exported with a GPT-2-compatible ONNX interface. MIT License.",
+  "transformers.js_config": {
+    "dtype": "q8"
+  }
+}

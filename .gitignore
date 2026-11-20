@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# model weights: published as GitHub Release assets, copied into the site at deploy
+public/models/*/onnx/
