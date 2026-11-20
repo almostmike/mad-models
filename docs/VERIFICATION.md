@@ -102,7 +102,7 @@ First streamed token in about 0.2 s. Loading from the browser cache takes 0.7–
 ## Hosting
 
 - Model files are GitHub Release assets (`models-v1`), copied into the Pages site by the deploy workflow with SHA-256 checks. Same origin, no extra accounts, nothing large in git history.
-- ⚠️ GitHub Pages has a soft bandwidth limit of 100 GB/month. A full play downloads about 245 MB of models, so that is roughly 400 full plays a month. If the game takes off, move the two files to a Hugging Face repo (free, CDN-backed) by changing the client's base URL.
+- **Update 2026-11-20:** the primary host is now the Hugging Face repo `almostmike/mad-models` (public, free; per HF's storage-limits page, public storage on free accounts is "best-effort" with no listed download fees), pinned to commit `94fd3b2`. GitHub Pages remains the automatic fallback, so its soft 100 GB/month bandwidth limit only matters if Hugging Face is down. Measured download of the 117 MB GPT-1 file: Hugging Face 4.6–7.5 s, GitHub Pages 3.7–4.6 s.
 
 ## Runtime findings
 

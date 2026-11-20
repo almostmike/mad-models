@@ -10,7 +10,7 @@ Third-party assets, models and sources, with licenses. Filled in as assets are a
 
 ## Models and runtime
 
-- **GPT-1** (Radford et al., 2018) and **GPT-2** (Radford et al., 2019) weights by OpenAI, MIT License, via the Hugging Face Hub (`openai-community/openai-gpt`; `Xenova/gpt2` ONNX export of `openai-community/gpt2`). Converted and quantized for the browser by `tools/models/`.
+- **GPT-1** (Radford et al., 2018) and **GPT-2** (Radford et al., 2019) weights by OpenAI, MIT License, via the Hugging Face Hub (`openai-community/openai-gpt`; `Xenova/gpt2` ONNX export of `openai-community/gpt2`). Converted and quantized for the browser by `tools/models/`, and hosted at [huggingface.co/almostmike/mad-models](https://huggingface.co/almostmike/mad-models).
 - **Transformers.js** by Hugging Face, Apache-2.0.
 - **ONNX Runtime Web** by Microsoft, MIT License.
 

@@ -26,7 +26,9 @@ $<HTMLInputElement>('temp').oninput = (e) => ($('tempv').textContent = (e.target
 
 const mode = () => modeSel.value as PlayMode;
 const model = () => modelSel.value as ModelId;
-const client = () => (clients[mode() as 'webgpu' | 'wasm'] ??= new ModelClient(mode() as 'webgpu' | 'wasm'));
+// ?source=site skips Hugging Face, to test the fallback copy on this site.
+const siteOnly = new URLSearchParams(location.search).get('source') === 'site';
+const client = () => (clients[mode() as 'webgpu' | 'wasm'] ??= new ModelClient(mode() as 'webgpu' | 'wasm', { siteOnly }));
 
 async function refreshCards() {
   card.hidden = mode() !== 'archive';
@@ -55,7 +57,7 @@ $('load').onclick = async () => {
       prog.max = p.total;
       prog.value = p.loaded;
     });
-    status.textContent = `${model()} ready on ${device} in ${((performance.now() - t0) / 1000).toFixed(1)}s`;
+    status.textContent = `${model()} ready on ${device} from ${client().sources.get(model()) === 'hub' ? 'Hugging Face' : 'this site'} in ${((performance.now() - t0) / 1000).toFixed(1)}s`;
     (window as unknown as { __lab: unknown }).__lab = { ready: true, device };
   } catch (e) {
     status.textContent = `Load failed: ${(e as Error).message}`;

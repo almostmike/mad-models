@@ -2,10 +2,16 @@
 
 The game runs OpenAI's real GPT-1 (2018) and GPT-2 (2019) in the browser with
 [Transformers.js](https://github.com/huggingface/transformers.js). These
-scripts produce the two browser-ready files published as the
-[`models-v1` release](https://github.com/almostmike/mad-models/releases/tag/models-v1).
-The deploy workflow copies them into the site at `models/<name>/onnx/model_quantized.onnx`.
-Configs and tokenizers live in `public/models/` in git.
+scripts produce the two browser-ready files. They are hosted in two places:
+
+- **Primary:** the Hugging Face repo [`almostmike/mad-models`](https://huggingface.co/almostmike/mad-models)
+  (free CDN, no bandwidth limit), pinned in `src/engine/models/worker.ts` to commit
+  `94fd3b252f6ed0ef8ceac67b7321fa7f32a4e1aa`.
+- **Fallback:** the [`models-v1` release](https://github.com/almostmike/mad-models/releases/tag/models-v1),
+  copied into the site at `models/<name>/onnx/model_quantized.onnx` by the deploy workflow.
+  The worker uses it automatically if Hugging Face fails. Test it with `lab.html?source=site`.
+
+Configs and tokenizers live in `public/models/` in git, and in the Hugging Face repo.
 
 | Model | Source weights | Download | Next-token agreement with full precision |
 |---|---|---|---|

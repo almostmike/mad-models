@@ -1,5 +1,7 @@
 // Runs the real models off the main thread with Transformers.js.
-// Weights come from this site's own /models/ folder (see tools/models/).
+// Weights come from the Hugging Face repo almostmike/mad-models (free CDN),
+// pinned to one commit, with this site's own /models/ folder as a fallback.
+// Both hold the same files (see tools/models/).
 
 import {
   AutoModelForCausalLM,
@@ -15,15 +17,34 @@ import {
 import { MODELS, type GenerateOptions, type ModelId, type WorkerRequest, type WorkerResponse } from './models';
 import { blockedVariants } from './safety';
 
-env.allowRemoteModels = false;
-env.allowLocalModels = true;
 env.useBrowserCache = true;
+
+const HF_REPO = 'almostmike/mad-models';
+/** Pinned upload commit: the files can never change under the game. */
+const HF_REVISION = '94fd3b252f6ed0ef8ceac67b7321fa7f32a4e1aa';
+
+type Source = 'hub' | 'site';
+
+function useSource(source: Source, base: string): string | undefined {
+  if (source === 'hub') {
+    env.allowRemoteModels = true;
+    env.allowLocalModels = false;
+    env.remoteHost = 'https://huggingface.co/';
+    env.remotePathTemplate = `${HF_REPO}/resolve/{revision}/{model}/`;
+    return HF_REVISION;
+  }
+  env.allowRemoteModels = false;
+  env.allowLocalModels = true;
+  env.localModelPath = base;
+  return undefined;
+}
 
 interface Loaded {
   tokenizer: PreTrainedTokenizer;
   model: PreTrainedModel;
   badWordsIds: number[][];
   device: 'webgpu' | 'wasm';
+  source: Source;
 }
 
 const loaded = new Map<ModelId, Promise<Loaded>>();
@@ -31,8 +52,26 @@ const stoppers = new Map<number, InterruptableStoppingCriteria>();
 
 const post = (msg: WorkerResponse) => self.postMessage(msg);
 
-async function load(id: ModelId, device: 'webgpu' | 'wasm', base: string): Promise<Loaded> {
-  env.localModelPath = base;
+/** `env` is global, so loads run one at a time. */
+let queue: Promise<unknown> = Promise.resolve();
+
+function load(id: ModelId, device: 'webgpu' | 'wasm', base: string, siteOnly = false): Promise<Loaded> {
+  const run = async () => {
+    if (siteOnly) return loadFrom('site', id, device, base);
+    try {
+      return await loadFrom('hub', id, device, base);
+    } catch (e) {
+      console.warn(`Hugging Face load failed for ${id}, using this site's copy`, e);
+      return await loadFrom('site', id, device, base);
+    }
+  };
+  const p = queue.then(run, run);
+  queue = p.catch(() => undefined);
+  return p;
+}
+
+async function loadFrom(source: Source, id: ModelId, device: 'webgpu' | 'wasm', base: string): Promise<Loaded> {
+  const revision = useSource(source, base);
   const info = MODELS[id];
   const files = new Map<string, { loaded: number; total: number }>();
   const progress_callback = (p: { status: string; file?: string; loaded?: number; total?: number }) => {
@@ -46,19 +85,19 @@ async function load(id: ModelId, device: 'webgpu' | 'wasm', base: string): Promi
     }
     post({ type: 'progress', model: id, loaded: l, total: Math.max(t, info.bytes) });
   };
-  const tokenizer = await AutoTokenizer.from_pretrained(info.path, { progress_callback });
+  const tokenizer = await AutoTokenizer.from_pretrained(info.path, { progress_callback, revision });
   let model: PreTrainedModel;
   try {
-    model = await AutoModelForCausalLM.from_pretrained(info.path, { dtype: 'q8', device, progress_callback });
+    model = await AutoModelForCausalLM.from_pretrained(info.path, { dtype: 'q8', device, progress_callback, revision });
   } catch (e) {
     if (device !== 'webgpu') throw e;
     device = 'wasm'; // WebGPU can fail on some machines; the CPU path always works
-    model = await AutoModelForCausalLM.from_pretrained(info.path, { dtype: 'q8', device: 'wasm', progress_callback });
+    model = await AutoModelForCausalLM.from_pretrained(info.path, { dtype: 'q8', device: 'wasm', progress_callback, revision });
   }
   const badWordsIds = blockedVariants(info.lowercase)
     .map((w) => tokenizer.encode(w, { add_special_tokens: false }) as number[])
     .filter((ids) => ids.length > 0);
-  return { tokenizer, model, badWordsIds, device };
+  return { tokenizer, model, badWordsIds, device, source };
 }
 
 async function generate(id: number, modelId: ModelId, prompt: string, o: GenerateOptions) {
@@ -116,10 +155,10 @@ self.onmessage = async (e: MessageEvent<WorkerRequest>) => {
   switch (msg.type) {
     case 'load': {
       const started = performance.now();
-      if (!loaded.has(msg.model)) loaded.set(msg.model, load(msg.model, msg.device, msg.base));
+      if (!loaded.has(msg.model)) loaded.set(msg.model, load(msg.model, msg.device, msg.base, msg.siteOnly));
       try {
         const m = await loaded.get(msg.model)!;
-        post({ type: 'ready', model: msg.model, device: m.device, ms: performance.now() - started });
+        post({ type: 'ready', model: msg.model, device: m.device, source: m.source, ms: performance.now() - started });
       } catch (err) {
         loaded.delete(msg.model);
         post({ type: 'load-error', model: msg.model, message: String((err as Error)?.message ?? err) });

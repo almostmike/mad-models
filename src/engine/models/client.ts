@@ -35,9 +35,15 @@ export class ModelClient {
   private readonly progress = new Map<ModelId, Set<(p: LoadProgress) => void>>();
   private readonly loadWaiters = new Map<ModelId, { resolve: (d: 'webgpu' | 'wasm') => void; reject: (e: Error) => void }>();
   readonly device: 'webgpu' | 'wasm';
+  /** Where each loaded model came from: Hugging Face, or this site's fallback copy. */
+  readonly sources = new Map<ModelId, 'hub' | 'site'>();
 
-  constructor(device: 'webgpu' | 'wasm') {
+  /** Skip Hugging Face and use this site's copy (testing the fallback). */
+  private readonly siteOnly: boolean;
+
+  constructor(device: 'webgpu' | 'wasm', opts: { siteOnly?: boolean } = {}) {
     this.device = device;
+    this.siteOnly = !!opts.siteOnly;
   }
 
   private getWorker(): Worker {
@@ -58,6 +64,7 @@ export class ModelClient {
         this.progress.get(msg.model)?.forEach((cb) => cb({ loaded: msg.loaded, total: msg.total }));
         break;
       case 'ready':
+        this.sources.set(msg.model, msg.source);
         this.loadWaiters.get(msg.model)?.resolve(msg.device);
         this.loadWaiters.delete(msg.model);
         break;
@@ -107,7 +114,7 @@ export class ModelClient {
       // A site-relative path, not a full URL: Transformers.js 4.3 skips its
       // local "does this file exist" check for full URLs and then fails.
       const base = new URL(`${import.meta.env.BASE_URL}models/`, location.href).pathname;
-      this.send({ type: 'load', model, device: this.device, base });
+      this.send({ type: 'load', model, device: this.device, base, siteOnly: this.siteOnly });
     }
     return p;
   }

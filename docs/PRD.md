@@ -301,7 +301,7 @@ It's Valentine's Day. The model is "too dangerous to release." The danger, it tu
 | Save | `localStorage`, wrapped in try/catch | Progress, settings, unlocked placards. The game works fine without it. |
 | Tests | Vitest | ELIZA fidelity tests, objective detectors, filters. |
 | Hosting | **GitHub Pages via GitHub Actions** | $0, public URL, deploys on push to `main`. |
-| Model files | **GitHub Release assets** (`models-v1`), copied into the Pages site at deploy | Same origin, free, nothing large in git. ⚠️ Pages has a ~100 GB/month soft bandwidth limit (~400 full plays). Move to a Hugging Face repo if traffic grows. |
+| Model files | **Hugging Face repo** `almostmike/mad-models` (pinned commit), with **GitHub Release** `models-v1` copied into the Pages site as an automatic fallback | Free CDN with no bandwidth cap; the GitHub copy keeps the game working if Hugging Face is down. |
 
 ### 9.2 Model loading strategy
 
@@ -498,7 +498,7 @@ mad-models/
 | Item | Cost |
 |---|---|
 | Hosting (GitHub Pages) | $0 |
-| Model hosting (GitHub Release + Pages) | $0 |
+| Model hosting (Hugging Face, GitHub fallback) | $0 |
 | Model inference (player's own device) | $0 |
 | Images (ChatGPT / Meta AI, existing access) | $0 incremental |
 | Music (Suno) | $0 if already on a paid plan; otherwise about one month of Suno Pro, or $0 with CC0/CC-BY music |

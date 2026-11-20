@@ -63,7 +63,7 @@ export const DEFAULT_OPTIONS: GenerateOptions = {
 
 /** Messages from the page to the worker. */
 export type WorkerRequest =
-  | { type: 'load'; model: ModelId; device: 'webgpu' | 'wasm'; base: string }
+  | { type: 'load'; model: ModelId; device: 'webgpu' | 'wasm'; base: string; siteOnly?: boolean }
   | { type: 'generate'; id: number; model: ModelId; prompt: string; options: GenerateOptions }
   | { type: 'abort'; id: number }
   | { type: 'count'; id: number; model: ModelId; text: string };
@@ -71,7 +71,7 @@ export type WorkerRequest =
 /** Messages from the worker to the page. */
 export type WorkerResponse =
   | { type: 'progress'; model: ModelId; loaded: number; total: number }
-  | { type: 'ready'; model: ModelId; device: 'webgpu' | 'wasm'; ms: number }
+  | { type: 'ready'; model: ModelId; device: 'webgpu' | 'wasm'; source: 'hub' | 'site'; ms: number }
   | { type: 'load-error'; model: ModelId; message: string }
   | { type: 'token'; id: number; text: string }
   | { type: 'done'; id: number; text: string; tokens: number; ms: number; truncated: boolean }
