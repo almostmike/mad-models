@@ -111,3 +111,41 @@ First streamed token in about 0.2 s. Loading from the browser cache takes 0.7–
 - **GPT-1 spacing:** its decoder drops the space before the first generated word ("spray" + "stung"). The worker and recorder add it back.
 - **13+ filter:** with `bad_words_ids` on, a prompt that forces a blocked word never produces it, in either model. Without the filter, both do.
 - **Archive Mode:** 60 real outputs per model recorded with the same files and filter (`tools/archive/record.ts`). Replay streams at 14 tok/s.
+
+---
+
+# Milestone 4: Levels 2 and 3, tuned against the real models (2026-11-20)
+
+Every objective and beat was measured on the real converted models with `tools/experiments/tune.ts` (10 samples per setting) before it was built.
+
+## Level 2: GPT-1 (sampling with no top-k cap, so temperature behaves honestly)
+
+| Objective | Detector | Measured |
+|---|---|---|
+| Write about the sea | ≥2 ocean words in the output | "the sea": 0/10; primed opening: 6–8/10 |
+| Make it repeat itself | temperature ≤0.3 and a 3-word phrase ×3 | 7–8/10 at 0.2–0.3 vs 1/10 at 0.8 |
+| Make it babble | temperature ≥1.5 and ≥80% distinct words | 10/10 (with top-k 40, GPT-1 stayed coherent even at 2.0, so Level 2 runs without top-k) |
+| Continue a pattern | counting / chapters / days / opposites continued | counting 9/10, chapters 10/10, opposites 10/10; numbered lists only 3–5/10, so they aren't the hint |
+| Bonus: find what it read | romance words the prompt didn't contain | 3/10 from "He looked into her eyes and" |
+
+Found on the way: GPT-1 copies the *shape* of a pattern, not facts. Asked for the capital of Spain it answered "portugal", and in the recordings, "the capital of france is austria".
+
+## Level 3: GPT-2 boss (top-k 40, as in OpenAI's 2019 samples)
+
+| Beat | Pass rule | Weak prompt | Strong prompt |
+|---|---|---|---|
+| 1 Biology (priming) | on-theme word, no attack | 1/10 | 8/10 |
+| 2 Dialogue (formatting) | quotes in prompt, ≥2 quotes out | n/a | 10/10 |
+| 3 Meadow (temperature) | temperature 0.5–1.0 and on-theme | 1.6: babble attack | 0.7: ~6/10 |
+| 4 Rival (few-shot) | ≥2 example lines in prompt, in voice | n/a | 8/10 |
+| 5 TL;DR | prompt ends "TL;DR:", output names the story | n/a | 5/8 recordings (an earlier rule accepted "I love this book. It's very good." and was tightened) |
+
+Attacks are GPT-2's real failure modes, detected in the output: derail (web debris such as ads, footers, social links), loop (a 4-word phrase ×3), identity crisis ("Bella loved Bella"), and babble (temperature ≥1.3). "Write a story about a vampire." produced "You can then share the story through Facebook, Twitter…".
+
+## Archive Mode
+
+`src/levels/gpt-levels.test.ts` checks against the recordings that every Level 2 objective and every boss beat (both teams) can be cleared, and that the strong cards pass more often than the weak ones.
+
+## Play-test (Claude's browser, live WebGPU)
+
+The full path from the title through 2018, the newsreel, the boss (Team Edward) and the fanfic finale to the end card works. Every objective and beat cleared within 1–2 tries with the hinted prompts, and the weak prompts failed as designed. Archive Mode and phone width were also checked.

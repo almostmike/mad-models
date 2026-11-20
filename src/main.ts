@@ -1,8 +1,15 @@
 import './style.css';
 import './levels/eliza/level1.css';
+import './levels/gpt1/level2.css';
+import './levels/gpt2/level3.css';
 import { sfx } from './audio/sfx';
+import { generator } from './game/generator';
 import { Level1 } from './levels/eliza/level';
+import { Level2 } from './levels/gpt1/level';
+import { Level3 } from './levels/gpt2/level';
 import { load, reset, save, type SaveData } from './save';
+import { JUMP_1966_2018, JUMP_2018_2019, playReel } from './ui/era-jump';
+import { chooseMode } from './ui/machine-room';
 import { caption } from './ui/overlays';
 
 const app = document.getElementById('app')!;
@@ -50,39 +57,66 @@ function settingsBar(): HTMLDivElement {
   return bar;
 }
 
+type LevelKey = 1 | 2 | 3;
+
+function unlocked(n: LevelKey): boolean {
+  return n === 1 || (n === 2 ? data.level1.complete : data.level2.complete);
+}
+
+function nextLevel(): LevelKey {
+  if (!data.level1.complete) return 1;
+  if (!data.level2.complete) return 2;
+  return 3;
+}
+
+const ERA_LABELS: Record<LevelKey, [string, string]> = { 1: ['1966', 'ELIZA'], 2: ['2018', 'GPT-1'], 3: ['2019', 'GPT-2'] };
+
 function titleScreen() {
   app.textContent = '';
-  const done = data.level1.complete;
-  const resumed = Object.keys(data.level1.objectives).length > 0 && !done;
   const t = document.createElement('section');
   t.className = 'title-screen';
   t.innerHTML = `
     <div class="title-card">
       <p class="eyebrow">A short history of prompting, in three machines</p>
       <h1>Mad Models</h1>
-      <ol class="eras">
-        <li class="era ${done ? 'done' : 'open'}"><span>1966</span> ELIZA</li>
-        <li class="era locked"><span>2018</span> GPT-1</li>
-        <li class="era locked"><span>2019</span> GPT-2</li>
-      </ol>
+      <ol class="eras"></ol>
       <div class="title-actions"></div>
       <p class="fine">Best with sound. Desktop recommended. Ages 13+.</p>
     </div>`;
+  const eras = t.querySelector('.eras')!;
+  for (const n of [1, 2, 3] as LevelKey[]) {
+    const li = document.createElement('li');
+    const complete = [data.level1, data.level2, data.level3][n - 1].complete;
+    li.className = `era ${complete ? 'done' : unlocked(n) ? 'open' : 'locked'}`;
+    if (unlocked(n)) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.innerHTML = `<span>${ERA_LABELS[n][0]}</span> ${ERA_LABELS[n][1]}`;
+      b.setAttribute('aria-label', `Play ${ERA_LABELS[n][0]}: ${ERA_LABELS[n][1]}`);
+      b.addEventListener('click', () => {
+        sfx.unlock();
+        void play(n, true);
+      });
+      li.appendChild(b);
+    } else {
+      li.innerHTML = `<span>${ERA_LABELS[n][0]}</span> ${ERA_LABELS[n][1]}`;
+    }
+    eras.appendChild(li);
+  }
   const actions = t.querySelector('.title-actions')!;
+  const n = nextLevel();
+  const allDone = data.level3.complete;
+  const started = Object.keys(data.level1.objectives).length > 0 || data.level1.complete;
   const start = document.createElement('button');
   start.type = 'button';
   start.className = 'btn primary big';
-  start.textContent = done ? 'Play 1966 again' : resumed ? 'Continue in 1966' : 'Begin in 1966';
+  start.textContent = allDone ? 'Play again from 1966' : started ? `Continue in ${ERA_LABELS[n][0]}` : 'Begin in 1966';
   start.addEventListener('click', () => {
     sfx.unlock();
-    if (done) {
-      data.level1 = { objectives: {}, seenLogin: data.level1.seenLogin, complete: false };
-      persist();
-    }
-    startLevel1();
+    void play(allDone ? 1 : n, allDone);
   });
   actions.appendChild(start);
-  if (done || resumed) {
+  if (started) {
     const fresh = document.createElement('button');
     fresh.type = 'button';
     fresh.className = 'btn';
@@ -99,18 +133,65 @@ function titleScreen() {
   start.focus({ preventScroll: true });
 }
 
-function startLevel1() {
-  app.textContent = '';
-  const level = new Level1({
-    data,
-    persist,
-    onComplete: () => {
-      level.destroy();
-      endCard();
-    },
+/** Run a level (fresh = replay from scratch), then continue the story. */
+async function play(n: LevelKey, fresh = false): Promise<void> {
+  if (n === 1) {
+    if (fresh) data.level1 = { objectives: {}, seenLogin: data.level1.seenLogin, complete: false };
+    persist();
+    await runLevel1();
+    await playReel(JUMP_1966_2018);
+    return play(2);
+  }
+  data.playMode = await chooseMode(data.playMode);
+  persist();
+  if (n === 2) {
+    if (fresh) data.level2 = { objectives: {}, complete: false };
+    persist();
+    await runGpt((done) => new Level2({ data, persist, onComplete: done }), true);
+    await playReel(JUMP_2018_2019);
+    return play(3);
+  }
+  if (fresh || data.level3.complete) data.level3 = { objectives: {}, complete: false, team: null, chapter: [] };
+  persist();
+  await runGpt((done) => new Level3({ data, persist, onComplete: done }));
+  endCard();
+}
+
+function runLevel1(): Promise<void> {
+  return new Promise((resolve) => {
+    app.textContent = '';
+    const level = new Level1({
+      data,
+      persist,
+      onComplete: () => {
+        level.destroy();
+        resolve();
+      },
+    });
+    app.append(level.el, settingsBar());
+    void level.begin();
   });
-  app.append(level.el, settingsBar());
-  void level.begin();
+}
+
+interface GptLevel {
+  el: HTMLElement;
+  begin(): Promise<void>;
+  destroy(): void;
+}
+
+/** Mount a GPT level and resolve when it completes. */
+function runGpt(make: (done: () => void) => GptLevel, prefetchGpt2 = false): Promise<void> {
+  return new Promise((resolve) => {
+    app.textContent = '';
+    const level: GptLevel = make(() => {
+      level.destroy();
+      resolve();
+    });
+    app.append(level.el, settingsBar());
+    void level.begin();
+    // Download GPT-2 while the player is busy in 2018 (live mode only).
+    if (prefetchGpt2 && generator.live) void generator.prefetch('gpt2').catch(() => undefined);
+  });
 }
 
 function endCard() {
@@ -119,9 +200,9 @@ function endCard() {
   c.className = 'title-screen end-card';
   c.innerHTML = `
     <div class="title-card">
-      <p class="eyebrow">End of 1966</p>
-      <h1>See you in 2018</h1>
-      <p class="lede">Next stop: a San Francisco startup, a model called GPT-1, and a whole new way to prompt. That era is still being built.</p>
+      <p class="eyebrow">1966 · 2018 · 2019</p>
+      <h1>To be continued</h1>
+      <p class="lede">You prompted three real machines: a pattern-matcher on a typewriter, a document-finisher that read 7,000 novels, and a model that read the internet. On November 30, 2022, a chat box changed the rules. The finale is still being built.</p>
       <div class="title-actions"></div>
     </div>`;
   const back = document.createElement('button');

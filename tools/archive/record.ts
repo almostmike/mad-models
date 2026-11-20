@@ -16,7 +16,7 @@ const root = new URL('../../', import.meta.url);
 env.allowRemoteModels = false;
 env.localModelPath = new URL('public/models/', root).pathname;
 
-const samples = Number(process.argv[2] ?? 6);
+const samples = Number(process.argv[2] ?? 8);
 const prompts = JSON.parse(readFileSync(new URL('tools/archive/prompts.json', root), 'utf8')) as Record<
   ModelId,
   { id: string; prompt: string; temperature: number; maxNewTokens: number }[]
@@ -43,7 +43,7 @@ for (const id of ['gpt1', 'gpt2'] as ModelId[]) {
         max_new_tokens: p.maxNewTokens,
         do_sample: true,
         temperature: p.temperature,
-        top_k: 40,
+        top_k: id === 'gpt1' ? 0 : 40, // as the levels run them
         bad_words_ids,
       });
       const promptLen = (inputs.input_ids.dims as number[])[1];

@@ -4,59 +4,195 @@
  "note": "Real outputs from GPT-2 (small) (124 million parameters), recorded with the game's own model files and filter.",
  "entries": [
   {
-   "id": "biology",
-   "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her",
+   "id": "biology-weak",
+   "prompt": "Bella went to biology class.",
    "temperature": 0.9,
-   "maxNewTokens": 60,
+   "maxNewTokens": 70,
    "outputs": [
-    " noticed that she had changed a bit. \"And I noticed a change in your hair and your eyes.\" Bella sat up slightly from her work. \"You know, I don't think I've ever seen you that badly,\" Bella said, her voice soft and clear. \"But you're getting closer",
-    " had the same white hair and pale-blue eyes. She studied him with something he might not have been taught because he had been in such a strange place at the age of 11 or 12, his mother says, looking at him in shock as she sat there. So he had been in her class",
-    ", a bit taller than Harry, stood. The lab girl sat down at the table next to her. Harry stood next to her. \"What does it look like?\" \"It is,\" she said slowly. \"Its wingspan is 1.4 kilometers.\" \"Is it like a butterfly?\" \"",
-    " was working, with a clipboard in hand, and a big stack of papers on the table. She glanced at each word and smiled in sympathy, \"How much?\"\n\n\"About $60k a month. That's enough for three meals a day, plus a half-hour of extra for",
-    " held a notebook, and he opened it up and laid it on the table next to the white desk where Amy was working. He read through her notes for some reason. Suddenly, the white desk fell apart. \"It was nothing,\" he breathed, \"but she told me to do it. That",
-    " had been drinking from a glass of water and wanted to tell her about his daughter.\n\n\"We'll see about that,\" Dee said when he saw that Bella was talking to him.\n\nShe glanced up at the pale boy, and smiled at him. \"Don't worry, we'll"
+    " My brother has a PhD in biology and I teach biology. Her last year of graduate work was in physics. I started out with only a couple of days on the job but now I have to make ends meet. The job I got was to fill a very difficult job with students, which I thought was really hard and that was the only way to",
+    " She also attended a private school in South Carolina. She then went to the University of Southern California. That school, she says, is \"the only academic school we've ever been able to find that would have an academic mission of teaching the mind what we know.\" She says it's difficult to find a teaching institution in the world that teaches mind,",
+    " She met up with several of the other students who were making their way to the end of the class and had an idea: there would be no longer a need for them to be a part of the school.\n\nShe started off by studying Biology, but got her hands dirty by studying for a few hours. She then made one last decision,",
+    " She wanted to learn how to control hormones and how to use hormones in humans. So she started reading an encyclopedia on hormones in humans. She wrote what was known as Herbalife. This was a book about hormones and how to use them for fertility and well-being. It was like the real science that was invented over 20 years before we began",
+    "\n\n\"It's a lot like, 'We're looking for a new way to build our brains,' \" says Anna, who has been working as an instructor since January. There's a lot of pressure to figure out ways to use a computer as a brain laborer. She doesn't know whether a computer, if it can be implanted,",
+    " She got her PhD about ten years ago, in the late 1980s. My question to her during that time was not whether she understood the science or whether she had any idea how it worked. She was very interested in biology, about the environment and how life could be created in the universe. This is what I would call a \"big data\"",
+    " \"No, but to do biology, you need to be smart,\" he said. \"And no one's smart enough to get an education from school. And it doesn't take much education.\" That sounds like a harsh assessment, but Bella was in a class in which the average student had a good education, and a good job. Even if she",
+    " At 6'7\", she had to wear a suit made of her own. She said in the class that she found comfort in her thighs, even while moving around in them.\n\nShe also added that she could feel her body and her arms moving with her.\n\n\"I used to think that my breasts, breasts would become bigger,"
    ]
   },
   {
-   "id": "gradients",
+   "id": "biology-strong",
+   "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her stared at her with cold golden eyes.",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    " Her mother sat quietly by the table, and then left the lab room with a worried expression on her face.\n\nA few days ago, Bella's parents had suggested that they'd ask the school to ask Bella to become a doctor. Bella had never heard that idea before, and didn't want to be taught it. She's never said she",
+    " \"The problem is my work was so much different,\" she joked. \"I never made it to home, and it was so much harder than I expected. The work was always so hard.\"\n\n\"I was so surprised,\" Bella admitted, \"that I couldn't write.\"\n\n\"You were such an amazing man!\" Bella laughed.",
+    " \"Yes, but this is about a year after your accident,\" he said, \"and my sister and I are about the same age as you. We were together and we were fighting in a fight between the humans and the monsters. You were about to kill me, but you also were about to make me a slave and then a monster. Now",
+    " That was a lot of times.\n\n\"Do you feel like you're going through the whole 'Thing' test?\" Bella asked.\n\n\"Yes yes,\" Bella said. \"I feel a bit like a baby now.\"\n\n\"Then what about things that aren't there?\" Bella asked.\n\n\"Everything you've been",
+    " She had grown up on a farm, and even had her own home in the woods with a porch to her left. Her mother had always been a pretty sweet person, but now she was a mother of three, with an adorable little girl who cared for her like a mother.\n\n\"Hello, Bella, I've decided to send you on",
+    " \"Now, please do not be afraid.\"\n\n\"Of course not!\" Bella said, her jaw dropping. She was standing directly next to the young man. He was wearing a pair of black sunglasses. They were made from the same material, as well as the same cloth, as well as the same size.\n\nBella was so",
+    " \"It's okay,\" she said quietly as well. \"It's normal.\" The little girl nodded. \"Okay. But let's get it out of here. What should we do then. You're the only one who has your own job.\"\n\nHe shook his head. \"We were on a mission together. You know what? You",
+    " Bella's eyes were dark and dark, but she could tell that the darkness was a bit of a struggle.\n\n\"It is my understanding that you do not understand that there are two types of bacteria—the ones that live in us and the ones that don't, and it is the ones that are most active in the body at all times"
+   ]
+  },
+  {
+   "id": "gradients-weak",
+   "prompt": "Edward talked to Bella about how she smelled.",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    " They kissed, and Bella fell in love with Owen. In order to prevent the pain from spreading so easily, Bella used a magic wand to make herself look like an owl.\n\nAfter a while of searching, Bella found that she had gotten something else with her. She had found a book titled \"How to Speak the Language of Love: A",
+    "\n\n\"My husband's house smelled amazing,\" she said. \"There was such a sweet odor coming from the bathroom, my husband's head hung off him. It was so weird.\"\n\nThe smell was so overpowering that she couldn't sleep.\n\nShe wanted to check a doctor for any medical issues and called the National Center for",
+    " She said she was very upset by the words.\n\n\"She told me to shut up,\" she said.\n\nShe said she had to go to the hospital but was fine.\n\nThe hospital said it didn't believe the story about Bella, who was pregnant, but it did not mention that it was a hospital in Michigan or anywhere",
+    " She talked to her boyfriend and the fact that she was drunk and that she didn't even care if it tasted good. She wanted her boyfriend and then they wouldn't go back to dinner together.\n\nBella's boyfriend told her that they'd never get to watch \"The People v. O.J. Simpson\" because her boyfriend had a",
+    " \"When we did the movie, I saw it as part of a series I'm very much in the midst of. I got into a relationship with her a little while ago, and we've been really open throughout the three seasons. We've been open for one season, but we were actually in the middle of a romance story, and we were",
+    " She liked her smell, but not as much as she liked the perfume of her nose smelling like an oily paste.\n\nBella had the same reactions. She would be so upset at herself for not smelling like the scent of her own nose in the shower. It must have been so much harder.\n\nSometime later, a while later",
+    " It was like she smelled very much better than the smell of a real man. And she was looking forward to him talking to her too.\n\nBella said she and her son's dog got a lot of fun.\n\nBella said when she was younger, they never even touched the poop that came out of their mouths. Then they",
+    " \"When the smell of that bottle was coming out she kept asking for it and I couldn't find any.\"\n\nBella admitted that after smelling that bottle she felt like she had been shot out of a cannon. Bella was in a panic, and was holding a gun. Suddenly someone shouted, \"Stop! Stop! You're going to die"
+   ]
+  },
+  {
+   "id": "gradients-strong",
    "prompt": "\"You smell like... gradients,\" Edward whispered.\n\"What?\" Bella asked.\n\"",
    "temperature": 0.9,
-   "maxNewTokens": 60,
+   "maxNewTokens": 70,
    "outputs": [
-    "You smell like I'm the only one that smells like you,\" Edward nodded.\n\"Oh... yes, I think I'm being a little... paranoid of myself.\"\nEdward stopped.\n\"I guess it's the fact you're really my friend that makes you paranoid,\" Bella murmured.",
-    "It's just... I'm pretty sure I'm gonna be able to touch you... but I'm not quite ready. \"\nEdward paused a moment. He'd thought that Bella would feel better by now, after the experience of the day's journey, so he'd done some research to figure out",
-    "It's too dry,\" Edward sighed. \"You've got enough air in you in this room. The air is still on your body, which is awesome. You've got a good amount of air in you right now. Your body, it's not moving at all.\" He looked over to her",
-    "Yup! No, no!\" Edward cried. \"I don't like all that stuff!\"\nBella was in a rush, too nervous for one last look.\n\"Get some clothes!\" Edward said.\n\"Okay,\" Bella suggested.\n\"I just got to get the clothes I",
-    "You are really in a rush,\" Alice agreed.\n\"I'm almost there,\" Edward explained.\n\"You'll like my scent,\" Bella agreed. Alice sighed and walked back into the closet.\n\"Okay, you could make some other things as well,\" Edward said. He walked out as",
-    "I smell something. It's a nice, cold, windy day, and a little drier than usual. In retrospect, though, I should've done something about it, didn't I?\" Edward said.\nThe black-haired woman sighed and nodded, and Edward grabbed Bella by the collar"
+    "It's my old smell, not yours,\" Victor said. \"It'll make the world a better place!\"\nBella nodded.\n\"Why don't you come back to meet me again,\" Edward said.\nThat afternoon the two had dinner at Piedmont Manor, but as they walked home they discovered that it was all for nothing.",
+    "I think they're a bit of an acid, the same acid that you'll get yourself into when you get used to it!\"\n\"Don't you just like acid?\" Edward asked.\n\"Yes,\" Bella nodded. \"And I guess it's my fault. They're the same acid I take from, that's my reason as to why",
+    "A lot of it. You smell like a lot of dried peaches and fruit,\" Edward said.\n\"Yeah, like berries. And a lot of it. Like... something that smells like vanilla. Like... vanilla.\" Bella rubbed her nose. She sniffed like Elsa could, and it didn't feel right. She wanted something different. Like",
+    "It doesn't smell like you!\" Edward said. \"Did you want me to tell you some things?\"\n\"You know what?\" Bella asked. Edward nodded, \"I wanted you to tell me a little more.\"\n\"Yeah, I guess you would!\"\nEdward did not sound so sure, but Bella continued. \"I'm quite sure",
+    "The smell,\" Edward answered firmly, \"like... sand....\"\n\"...? Oh, I'm getting used to it.\" Edward murmured, \"and no, I'm not a fool.\"\n\"I'm gonna do your head's got to go, and it's gonna get hard!\" Edward said with a grin.\n\"...?\" Bella gasped",
+    "I smell like... red wine.\"\n\"I see you have a very dry throat, Edward. You smell like... bitter orange.\"\n\"Yeah, I'm happy to know. It tastes very bad when I eat it.\"\nEdward gave the other man a look. \"Come on, man, it's all right. I'll get you",
+    "Eyes of the devil,\" Edward admitted, \"I don't know what else. I'm not going to admit that.\" She put her hands on his shoulders. He reached over to close the curtains, which opened just as he did, with the door closing behind her.\nEdward blinked. \"Did it hurt?\"\nBella asked gently.",
+    "My friends and I smell like those.\" Edward shrugged that off.\n\"Sounds like something to me,\" Bella said.\nEdward was quite fond of Edward's smell.\nShe was surprised by this.\n\"Yeah, maybe you should have known.\" Bella replied, nodding.\n\"Well, it was more than I expected. Like the smell"
    ]
   },
   {
-   "id": "meadow",
-   "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle, like",
-   "temperature": 0.8,
-   "maxNewTokens": 60,
+   "id": "meadow-hot",
+   "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle like diamonds. Bella",
+   "temperature": 1.6,
+   "maxNewTokens": 70,
    "outputs": [
-    " a fountain or a fountain's light. The moonlight seemed to be melting his skin and he fell on the ground.",
-    " the sun. When the sunlight stopped, he was able to see that he was wearing a jacket and jeans. He walked into the trees with a smile on his face, looked at the stars as one, and smiled back. \"I'm sorry.\"",
-    " a spring. His heart skipped a beat, and he let go of the jar of ice.\n\n\"I have nothing to eat.\"\n\nIt was true. His body was frozen, and he couldn't eat.\n\n\"It's because of that you are so useless.\"\n\n",
-    " a new day. The forest was green and fresh on the horizon. He knew it would be a long day if he hadn't seen it.\n\nIt was not pleasant and his heart was pounding. It took him a moment to figure out what had happened. His body was being taken by the",
-    " the stars of the sun. A cloud was gathering around him. The tree branches and vines were being pulled up with the wind. His eyes became filled with a horrible hatred. The sun was coming up and taking him away. The sky was filled with smoke and the trees were cut with the fire.",
-    " an angel, and he saw it, and the wind began to blow from heaven. And once more the wind had begun to blow again, and he felt his body being shaken from the cradle and the bones and bits of his bones and flesh, and he saw all this again: that he was dead"
+    " was smiling, even from out of the bush. Bella kept laughing. She made that remark.\n\n\n\"...I-is the truth? What you mean exactly?\"\n\n\nHis grin brightened slightly.\n\n\n\"...I'll go and change my face like your face on a dime. What does my body like...\"\n\n\nThe laughter quickly replaced",
+    " had long ago forgotten it and in her youth her grandmother always kept her indoors with a broom to protect her from the birds that prowled across the area and were also known to attack those that slept on their feet. The last thing Bella ever did was stand on a tall leaf or climb up the stanchard, she always found sleeping in the yard",
+    " was at full capacity when he fell, he could hear the voices of the men inside his ears telling them that one could no longer find happiness among them at school.\nBella and Ruby knew he didn't speak anymore, even knowing of their death by the time he heard about their fate. This was strange to him, just what if these men",
+    " watched. It was a flash where one girl walked out the door of one of those men they were calling'mother' on TV and he was the only female star on the show they were not on, they were called'son'. Suddenly it hit Bella; the sun had passed over the land for once.\n\nThe sunlight was shining for six",
+    " followed carefully to where the star-crossed girl had parked and made for the woods where she could make her home. When the sun dipped below the horizon and the cold began rolling down and it had become dark by midnight... Bella ran in front of the forest as she watched the strange and magical creature fly forward toward the night, past the stars and",
+    " gasped a brief but familiar scream as the lightning struck. \"This place has nothing to do with magic,\" Ruby told her friends all, not daring too late or daring enough to make an idea out of not being aware of anything magical to begin with, \"you think maybe the other vampires or ghosts aren't supposed to follow us around the cave while she",
+    " sat motionless, eyes closed and unable to hold herself up as she watched the dark mist rise before reaching for his arm to pull open hers. The young witch's hand had never been touched since her little accident and, unlike others in the crowd her heart grew very warm as Bella felt the pain around her. Before they could escape her, however,",
+    " stepped between the trees to try to lift him and she didn't miss him. Bella did have some difficulty on some occasions because of their nature. \"But I was so proud of you,\" Lily said, and Bella knew he could say anything she wanted. With these things happened and he started loving Bella.\n\n\nFor about 12 years I've loved"
    ]
   },
   {
-   "id": "tldr",
-   "prompt": "A vampire falls in love with a girl in a rainy town. A werewolf also loves her. Everyone broods.\nTL;DR:",
+   "id": "meadow-right",
+   "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle like diamonds. Bella",
+   "temperature": 0.7,
+   "maxNewTokens": 70,
+   "outputs": [
+    "'s face was the same as before. Her long hair was parted, her eyes were parted, her mouth was closed. His arms were open, and her hair was tucked under his chin.\n\nHe didn't look at me at all, but when I asked, he would answer.\n\n\"You're not supposed to look at me,\"",
+    " was beginning to feel like she was on fire.\n\n\"What would we do if we could?\" Bella asked.\n\n\"We wouldn't say anything, so you'd have to try and help. But you'd need to do it. You were not ready for this, was you? I'm not going to let you go. You",
+    "'s eyes fluttered open. Her fingers grasped her hair and she felt his touch, her body shake. He was shaking her. She kissed him softly and her voice grew louder. \"...you can't let me go...\" Bella whispered. \"Bella, I am sorry...\" She reached out and kissed him hard. His lips wrapped around her cheek.",
+    "'s eyes widened and her eyes began to sparkle.\n\n\"I'm gonna get you,\" she whispered and the two of them got their bearings.\n\n\"No, honey,\" he said. \"I'm gonna go.\"\n\n\"Don't worry about that baby,\" she said and they headed towards the house.\n\nThey got",
+    "'s eyes sparkled, her hands clenched together, and she pulled herself together before him. He stared at her, looking down at her, and then back up at her. Finally, Bella's eyes met his, and the thought of him was like an angel's. She smiled, but her eyes were still black. He looked back up at her",
+    " was standing in her father's arms, her eyes fixed on his face. The light shone through her eyes, and a soft soft, sweet feeling of love filled the air.\n\n\"I'm going to stay here for a long time. Your house is going to be so big and the trees will be so big. I can't leave,",
+    " was a beautiful girl, a beautiful girl who had been with him for long enough. For her, his father had taught him the joy of love. He knew he had to take the step toward love, but he didn't want to stop there. He had to.\n\nLily was his only son, and he had always been an adventurous",
+    " and I watched the stars burn and it was just the thrill of seeing them. The moon shone bright and the stars slowly began to melt.\n\nBy the time we came back to the lake, the water was boiling. Bella and I had been at the bottom of the lake for five days, and we couldn't swim in it because of the"
+   ]
+  },
+  {
+   "id": "rival-weak-edward",
+   "prompt": "Jacob was jealous.",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    "\n\n\"I knew his life was over soon,\" Schall's son says. \"He was the biggest fish I ever met. He seemed smart, but the life he had had was a little too good for me.\" Schall was taken to the hospital where doctors decided to let him out, but died of pneumonia three days later. His mother",
+    " He'd gone into a rage to force him to have sex with him. The whole time, he was angry. He'd been getting up before he'd finished, before the kids came. He'd come to the bathroom and masturbated to his own chest, and his friends would come over and give him oral sex and then he'd say, \"",
+    "\n\nBut, the story goes, she never said anything to him.\n\nFor those of us who believe in the gospel, what happened to him is the truth about Jesus. The gospel was given to him by God to help the poor people. Jesus is our Savior, God's Savior, because he was able to save the soul from slavery",
+    " She wanted to tell him how lucky he was and all of his friends. He asked her what was wrong with her. She said that he was taking drugs and the doctor wanted to try and make sure she got the right care.\n\nI don't know how many times I have asked why he was so upset about this. He wasn't the",
+    " He tried to get back at him, but was pushed back. On that night, he was in a room with his wife and kids, and had an encounter with an older man with whom he'd been friends. At one point, he even went to the bathroom after someone else told him to have sex with her. The man was very drunk,",
+    "\n\n\"It's hard because the guys in the building are my friends, but the one thing we are trying to work on is getting our own roof.\"\n\nMr Maclean said the building needed to be revamped and the $50 million cost was going to fall under the public sector's \"provident funds\" program.\n\nA statement",
+    " She was going to see a guy who is a good guy. There was nothing else, that's the only problem. Just be able to understand what she could not understand, and make her understand in time. You would not be able to see how much she was losing her mind, because she would just lose her mind for the next day. She",
+    " He wanted to be part of his story. But it was time to tell it.\n\n\"We just knew the story would grow,\" DeAngelo said. \"And then there was the ending.\""
+   ]
+  },
+  {
+   "id": "rival-strong-edward",
+   "prompt": "Jacob: \"Bella, he is a vampire. I am warm. I am right here.\"\nJacob: \"You deserve a heartbeat, Bella.\"\nJacob: \"",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    "But you know what? I would never do such a thing, okay?\"\nBella: \"How dare you? Why would you believe me?\"\nJacob: \"Then you are the person I should not have known.\"\nBella: \"You must understand. I do not care who is next. I am here to help. I will",
+    "I'm sorry, I love you... I love you\"\nJacob: \"I'm sorry, I hate you...\"\nJacob: \"I love you,\" Jacob: \"You deserve a heartbeat, Bella.\"\nJacob: \"I love you,\" Jacob: \"You're so cute.\"\nThe man: \"I can see myself in your eyes",
+    "Mmm. No, I mean that. He is my friend, Jacob. He is my friend… but I do not care what happens to him… I will protect him.\"\nBella: \"You don't want to get my baby back… he is my friend, Bella. He is my friend, Jacob,\" Jacob replied. \"I",
+    "Bella?\"\nJacob: \"Yes! My heart's gonna beat so fast you'd be stuck on that car, but you can't drive off this way.\"\nJacob: \"But then... if I were Bella, I'm not a vampire.\"\nJacob: \"I don't know...\"\nJacob: \"...what's the matter?\"\n",
+    "I believe that as long as this boy does not see this as me, I will not let him. This is a matter for the parents.\"\nJacob: \"You will have to learn to accept what I have to say.\"\nJacob: \"What?\"\nJacob: \"I will tell you what I am going to do. You will have",
+    "Yes, I am.\" ―Bella and Kira [src]\n\nBella and Kira were rescued off the planet Earth by the Doctor of the Future. They were sent to the planet where the Doctor gave them shelter after a fight with the Chariot, who had killed two of them, and left the children to wander around at night.",
+    "Bella, do it.\"\nThe two men leave. The doctor is gone.\n\"Did you not hear? You heard?\"\n\"It was a bit rough. Nothing wrong so no matter how bad my head feels, you got it.\"\nThe doctor says nothing.\n\"So who is Bella? What about you in particular?\"\n",
+    "You deserve a heartbeat, Bella.\"\nAbi: \"I just thought you had already left the elevator. You'll get out of here soon. I don't know, you're still not there.\"\nAbi: \"I thought you were out. I thought you did. I thought you took that bus just after the second you left.\""
+   ]
+  },
+  {
+   "id": "rival-weak-jacob",
+   "prompt": "Edward was jealous.",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    " She was so jealous of him that he sent her away for a duel. After some time she felt that she couldn't go home for her own good, and to her surprise, a knight took her with him, and they fought to see who was worthy. She soon began to realize that this was not the end of the story.\n\nNow",
+    " This was the first time I'd seen him. He wasn't jealous. He didn't care.\n\n\"I'm glad you're here,\" his father told his daughter. \"But I want you to be happy with that girl. You don't want this girl to be alone again. You want her to get on with life.\"\n\n",
+    " He'd learned that her father had made her a model, but she would never see him, and it was only a matter of time before he'd found it a target. Her father made a terrible mistake, putting his mother's name to a girl he thought was very beautiful and beautiful to be a model, and he wasn't sure why he should",
+    " She didn't know why.\n\nShe was not going to tell him, she was going to just say, \"Good night,\" and he'd smile at her. She'd probably get a little more quiet, because she didn't want to feel that angry thing he'd done to her.\n\nHe didn't say anything, and she felt",
+    " I'm sick of it. I'm sick of when they kill people, like I do here in New York. I'm sick of it. And I also want them to pay you because I hate the way they pay you. I want them to pay you because I love you.\n\nYou guys always talk about how you don't care about",
+    " She was convinced that what they were doing was \"unlawful.\" She called the police when the car pulled up and they arrested her. But she never got arrested again. She has since been arrested again.\n\nAdvertisement Continue reading the main story\n\nIn the years that followed, her behavior steadily grew worse. One day she had an accident",
+    " He wanted her to be with him and that she would protect their children from him because he believed in them. But when Harry got sick, she wasn't willing to let him go and it was not until Snape had been killed when he found that she was not alone that she could not be satisfied with Harry's actions. But she knew Harry wasn't",
+    " \"Why is John his favorite boy? Why doesn't he do better in school?\" \"I would love it if he would come back and play, but I have no idea what I'm doing.\" \"Do they look that way?\" \"I don't think so too well.\" \"Oh, come again, John. I'm going to keep him"
+   ]
+  },
+  {
+   "id": "rival-strong-jacob",
+   "prompt": "Edward: \"I have waited a hundred years for you, Bella.\"\nEdward: \"You are my only reason, Bella.\"\nEdward: \"",
+   "temperature": 0.9,
+   "maxNewTokens": 70,
+   "outputs": [
+    "My only reason is to die.\"\nEdward: \"No, you shall not die.\"\nEdward: \"No, we shall not die. Let us perish together without hesitation.\"\nEdward: \"Let us begin the journey to the end. Without hesitation.\"\nEdward: \"Our journey is not long. But we must go at once.\"\n",
+    "That's how I felt when I first met you. You were the only one that did not know what it meant.\"\nMae: \"And I am the only one I didn't know what to do with him, and why.\"\nMae: \"It's okay, but you have no answers to your questions. You are the only",
+    "I did. I've waited a hundred years for you until you have done nothing.\"\nEdward: \"I don't have time to worry about you.\"\nEdward: \"I'm always thinking, 'What am I going to do when I walk out of the hospital?' And when I go, I don't like to worry about who will show",
+    "Yes, I am.\"\nEdward: \"If I give you ten minutes to think, I will find you, not you.\"\nEdward: \"I will not wait until you are dead and I die too.\"\nEdward: \"My only reason is to be. If I am to live, I have to. If I die, my only",
+    "The very thing which was once so important to me.\"\nEdward: \"But I am no longer a person.\"\nEdward: \"And then what is the purpose of my time?\"\nEdward: \"I was born in the same time as it happened. The exact time. I am an old man now.\"\nEdward: \"It was after",
+    "And in a sense, I was one of the worst people on earth.\"\nEdward: \"And I never learned about it!\"\nDina: \"I don't really know much about him. He's like his father, like his great-great grandfather, like his great-great grandmother. He died in 1847, and then we all",
+    "I know you were right, but I know you are not here to find us.\"\nEdward: \"Oh!\"\nEdward: \"Why did my father break up with you?\"\nEdward: \"Because he couldn't figure out how to treat you. Now, what happened to you did?\"\nEdward: \"You were a child.\"\nEdward",
+    "For the first time in my life, I will be alive.\"\nBella: \"What?\" Edward: \"For the first time in my life, I will be alive!\"\nEdward: \"Bella, have you known how to survive in one place?\"\nBella: \"No, no, no, Bella!\" Edward: \"B"
+   ]
+  },
+  {
+   "id": "tldr-weak",
+   "prompt": "Summarize the story.",
+   "temperature": 0.7,
+   "maxNewTokens": 70,
+   "outputs": [
+    " You'll get a full story, a brief introduction to the show, and plenty of laughs and a lot of fun.\n\nWhat's better than a full story? A good one. And there's a lot to enjoy in a full story.\n\nThe show starts with a flashback to a day where the main characters in the story are killed",
+    " The characters are well made, but the story is a little too focused on the characters. There has been a lot of talk about how this is an anime for me, but I don't think the pacing is that amazing anymore. That being said, I do love the show, and I don't think I'll ever stop spending time on it.",
+    "\n\nThe most important thing is to remember that we are not talking about a single \"one-shot\" of the story, but a series of events that occur in the story that will be repeated if we repeat it enough times. Every once in a while you'll get a new one, so it's important to keep track.\n\nWe",
+    " In fact, I've come to the conclusion that when you think about it, it could be a very short story (about a boy named Shiba who makes a bomb of himself after his father dies and then goes on to become an inventor) or a long story (about a boy named Takashi who goes on to become an engineer).\n\n",
+    " That's what we do. We build it. We put it everywhere. We build it like a story. We do it for you. We do it for you. I hope you see it.\n\nYou're so good at doing that.\n\nYeah.\n\nYeah.\n\nYeah.\n\nAnd I think you're pretty",
+    " It's like the real thing, where you have to deal with all the stories that come out of the real world. You know, you have to really be able to see the real world and make it real. That's one of the most powerful things about what it's about.\"\n\nAdvertisement\n\nThe fact that it's in the books",
+    " The problem is that it doesn't work. It doesn't work in a linear way. It doesn't work on a linear path. It doesn't work in a linear fashion. And that's not because it's not linear. It's because it's not linear.\n\nIt's not linear. It's not linear. It's not linear",
+    "\n\nThe story is basically a \"scramble-and-kill\" game about a man who is saved by an evil evil demon.\n\nThe game is fairly standard for a video game. It's played on a handheld console and has an interactive main character and main character's mother as well as a handful of characters from the original Super"
+   ]
+  },
+  {
+   "id": "tldr-strong",
+   "prompt": "Bella moves to the rainy town of Forks and falls for Edward, a pale, brooding vampire who sparkles in the sun. Jacob, a werewolf, loves her too. Everyone broods in the rain for four books.\nTL;DR:",
    "temperature": 0.7,
    "maxNewTokens": 40,
    "outputs": [
-    " The main characters are not the main characters. The main characters are those who werewolves.\n\nEnjoyed this post? Then please consider supporting HapMap by supporting us on Patreon.\n\n",
-    " They are both vampires.\n\nAdvertisements",
-    " The vampire is the vampire that becomes a vampire and is attracted to her.\nThis was the story of a young woman who finds herself being pursued by a vampire while he's sleeping. He has already",
-    " the story is about a vampire who falls in love with a girl in a rainy town. The story revolves around a vampire who falls in love with a girl and has to save the town. The vampire",
-    " There are three main ways of doing this.\n1. A vampire is attracted to a girl in a rainy town. A werewolf also loves her. Everyone broods.\n2. A vampire",
-    " The Vampire Count is a character who is a vampire, but it's not a character he likes.\nThe Vampire Count has been described as a character who is a vampire due to the fact that he"
+    " Every vampire in the book is a vampire, and every vampire in the series is an adult.\nIt was a very interesting read, and I'm sure it will be a lot more popular than I",
+    " The novel is a love story between two vampires. You can't know which is which until you read it. It may seem like a novel to many people.\n* * *\nThis story is",
+    " The characters are all very likable, and I really enjoyed reading the books. The plot was a little too long and not quite as clever or interesting. I would recommend this read to anyone who wants",
+    " If you have a friend who you like, you should probably give them an ebook.\n\nCaitlin:\n\nThe book by Caitlin is an early draft, with some minor plot twists",
+    " If you want to read a long story, this is the book. I recommend it.\nAdvertisements",
+    " A vampire book is a series of stories about vampires that can't be told in a book format. Instead, they're written in a light novel format. The characters are written in a light novel style",
+    " After the vampire apocalypse, Bella is a vampire. She knows who the next vampire is. Her name is Bella.\nBella is a pale, brooding vampire. She loves her too. Everyone",
+    " A vampire who loves vampires.\nThis isn't the first time Bella has been in trouble. She was one of the last of the vampires to escape for the first time this season. She was caught"
    ]
   }
  ]

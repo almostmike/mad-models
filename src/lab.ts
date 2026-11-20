@@ -89,7 +89,13 @@ $('go').onclick = async () => {
       onToken,
     );
     current = { id, client: c };
-    result = await r;
+    try {
+      result = await r;
+    } catch (e) {
+      stats.textContent = `Error: ${(e as Error).message}`;
+      current = null;
+      return;
+    }
     current = null;
   }
   const { text, redacted } = redact(result.text, 'sticker');

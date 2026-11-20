@@ -3,14 +3,19 @@
 
 export type ObjectiveState = 'done' | 'skipped';
 
+export interface LevelState {
+  objectives: Record<string, ObjectiveState>;
+  complete: boolean;
+}
+
 export interface SaveData {
   version: 1;
   settings: { muted: boolean; readable: boolean };
-  level1: {
-    objectives: Record<string, ObjectiveState>;
-    seenLogin: boolean;
-    complete: boolean;
-  };
+  /** How the GPT levels run: live on this device, or Archive Mode. */
+  playMode: 'webgpu' | 'wasm' | 'archive' | null;
+  level1: LevelState & { seenLogin: boolean };
+  level2: LevelState;
+  level3: LevelState & { team: 'edward' | 'jacob' | null; chapter: string[] };
   placards: string[];
 }
 
@@ -20,7 +25,10 @@ function fresh(): SaveData {
   return {
     version: 1,
     settings: { muted: false, readable: false },
+    playMode: null,
     level1: { objectives: {}, seenLogin: false, complete: false },
+    level2: { objectives: {}, complete: false },
+    level3: { objectives: {}, complete: false, team: null, chapter: [] },
     placards: [],
   };
 }
@@ -37,6 +45,8 @@ export function load(): SaveData {
       ...data,
       settings: { ...base.settings, ...data.settings },
       level1: { ...base.level1, ...data.level1 },
+      level2: { ...base.level2, ...data.level2 },
+      level3: { ...base.level3, ...data.level3 },
       placards: data.placards ?? [],
     } as SaveData;
   } catch {

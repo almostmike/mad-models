@@ -1,0 +1,121 @@
+/* Level 3 BOSS: the same office after dark, Feb 14 2019. Grey-box art. */
+
+.level3 .wall {
+  background:
+    linear-gradient(180deg, rgb(10 14 40 / 0.55), rgb(10 10 25 / 0.75)),
+    repeating-linear-gradient(0deg, transparent 0 22px, rgb(60 40 50 / 0.3) 22px 24px),
+    repeating-linear-gradient(90deg, transparent 0 60px, rgb(60 40 50 / 0.25) 60px 62px),
+    #5a4a52;
+}
+
+.window2019 {
+  position: absolute;
+  left: 6%;
+  top: 8%;
+  width: 34%;
+  height: 46%;
+  background: linear-gradient(180deg, #1c2340, #2b3252 60%, #3c3550);
+  border: 12px solid #151515;
+  overflow: hidden;
+}
+.window2019 .rain {
+  position: absolute;
+  inset: -50% 0 0;
+  background: repeating-linear-gradient(100deg, transparent 0 14px, rgb(180 200 255 / 0.18) 14px 15px);
+  animation: rain 0.7s linear infinite;
+}
+@keyframes rain { to { transform: translateY(30%); } }
+
+.balloons { position: absolute; left: 48%; top: 6%; display: flex; gap: 10px; animation: sink 60s linear forwards; }
+.balloons span { width: 40px; height: 46px; background: #e0457b; clip-path: path('M20 46 C 4 30, 0 18, 6 8 C 12 0, 20 4, 20 12 C 20 4, 28 0, 34 8 C 40 18, 36 30, 20 46 Z'); opacity: 0.85; }
+.balloons span:nth-child(2) { background: #ff8fb1; transform: translateY(14px); }
+@keyframes sink { to { transform: translateY(80px); } }
+
+.rack { position: absolute; right: 8%; top: 12%; width: 13%; height: 58%; background: #121216; border: 3px solid #2a2a33; display: flex; flex-direction: column; justify-content: space-evenly; padding: 8px; box-shadow: 0 0 60px rgb(190 90 255 / 0.35); }
+.rack i { height: 10%; background: repeating-linear-gradient(90deg, #22222b 0 8px, #1a1a21 8px 10px); border-left: 4px solid #b65cff; animation: blink-led 1.3s steps(2) infinite; }
+.rack i:nth-child(odd) { animation-delay: 0.4s; border-left-color: #ff5ca8; }
+@keyframes blink-led { 50% { border-left-color: #3b1f4a; } }
+
+.desktop2019 { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(180deg, #4a4550, #3a3540 6%, #2a2630); }
+.monitor.night .screen { background: linear-gradient(160deg, #2d2140, #4b2a5c); box-shadow: inset 0 0 40px rgb(255 120 200 / 0.3); }
+.chocolates { position: absolute; left: 12%; bottom: 10%; width: 90px; height: 70px; background: #b3123f; clip-path: path('M45 70 C 10 45, 0 28, 8 14 C 16 0, 38 2, 45 18 C 52 2, 74 0, 82 14 C 90 28, 80 45, 45 70 Z'); }
+
+.level3 .prop-monitor { left: 32%; bottom: 14%; width: min(536px, 41vw); height: 30%; }
+.level3 .prop-monitor:hover, .level3 .prop-monitor:focus-visible { box-shadow: 0 0 0 3px rgb(255 92 168 / 0.8); }
+.level3 .prop-binder { right: 24%; bottom: 10%; width: 70px; height: 90px; }
+.level3 .prop-binder .prop-art { background: #c62828; border-radius: 3px; box-shadow: 4px 4px 0 #8e1b1b, 0 10px 14px rgb(0 0 0 / 0.5); }
+.level3 .prop-binder .prop-art::after { content: "DO NOT RELEASE"; position: absolute; inset: 35% 6px auto; background: #fff; color: #c62828; font: 700 8px/1.2 var(--ui-narrow); text-align: center; padding: 2px; }
+.level3 .prop-rack { right: 8%; top: 12%; width: 13%; height: 58%; }
+.level3 .prop-window { left: 6%; top: 8%; width: 34%; height: 46%; }
+.level3 .prop-balloons { left: 48%; top: 6%; width: 140px; height: 60px; }
+
+/* ---------- boss screen ---------- */
+
+.boss { width: min(880px, 100%); display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.boss.shake { animation: shake 0.45s; }
+@keyframes shake { 20% { transform: translateX(-8px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(3px); } }
+
+.hud-boss { display: flex; gap: 12px 18px; align-items: center; flex-wrap: wrap; background: rgb(18 12 28 / 0.85); border: 1px solid rgb(255 140 200 / 0.35); padding: 8px 12px; border-radius: 6px; color: #f6e9f2; font-family: var(--ui-narrow); }
+.meter { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 180px; }
+.m-label { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; }
+.meter .bar { flex: 1; height: 10px; background: rgb(255 255 255 / 0.12); border-radius: 5px; overflow: hidden; }
+.meter .fill { height: 100%; transition: width 0.5s; }
+.coherence .fill { background: linear-gradient(90deg, #4dd0e1, #26a69a); }
+.coherence .fill.low { background: linear-gradient(90deg, #ff7043, #e53935); }
+.sparkle .fill { background: linear-gradient(90deg, #ffd54f, #ff80ab, #b388ff); box-shadow: 0 0 10px rgb(255 213 79 / 0.7); }
+.m-val { min-width: 2.2em; text-align: right; font-weight: 600; }
+.pips { list-style: none; display: flex; gap: 6px; margin: 0; padding: 0; }
+.pips li { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgb(255 255 255 / 0.4); }
+.pips li.done { background: #ff80ab; border-color: #ff80ab; }
+.pips li.now { border-color: #ffd54f; box-shadow: 0 0 8px #ffd54f; }
+
+.demo { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; color: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 30px 60px rgb(0 0 0 / 0.55); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+.demo-top { display: flex; align-items: baseline; gap: 12px; padding: 12px 18px; background: linear-gradient(90deg, #6a3df0, #e0457b); color: #fff; }
+.demo-logo { font-weight: 800; font-size: 20px; letter-spacing: 0.02em; }
+.demo-sub { font-size: 13px; opacity: 0.9; }
+.demo-body { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 18px 18px; position: relative; }
+
+.beat-card { border-left: 4px solid #e0457b; background: #fff4f8; padding: 10px 12px; margin-bottom: 12px; border-radius: 4px; }
+.beat-title { margin: 0; font-weight: 800; font-size: 16px; }
+.beat-setup { margin: 4px 0; font-size: 14px; line-height: 1.45; }
+.beat-hint { margin: 6px 0 0; font-size: 13px; color: #5b3a8a; font-family: Menlo, Consolas, monospace; line-height: 1.45; }
+.beat-skip { margin-top: 8px; font: 12px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.08em; background: none; border: 1px solid #b07a95; color: #6d3d58; padding: 3px 9px; cursor: pointer; border-radius: 3px; }
+
+.demo-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+.demo textarea, .demo select { display: block; width: 100%; box-sizing: border-box; font: 15px/1.5 Georgia, "Times New Roman", serif; padding: 10px 12px; border: 1px solid #d7cfe8; border-radius: 6px; margin: 4px 0 10px; resize: vertical; background: #fff; color: #111; }
+.demo-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.demo-controls label { display: flex; gap: 8px; align-items: center; }
+.demo-controls output { font-weight: 700; min-width: 2.2em; color: #6a3df0; }
+.demo-gen { background: linear-gradient(90deg, #6a3df0, #e0457b); color: #fff; border: 0; border-radius: 20px; padding: 8px 22px; font-weight: 700; cursor: pointer; }
+.demo-gen:disabled { opacity: 0.5; cursor: default; }
+.demo-stop { border: 1px solid #ccc; background: #f4f4f4; border-radius: 20px; padding: 7px 14px; cursor: pointer; color: #111; }
+
+.verdict { min-height: 1.4em; margin: 10px 0; font-weight: 700; font-size: 14px; }
+.verdict.pass { color: #2e7d32; }
+.verdict.fail { color: #8d6e63; }
+.verdict.attack { color: #c62828; }
+.demo-out { font: 16px/1.6 Georgia, "Times New Roman", serif; white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow-y: auto; }
+.demo-out .p { color: #444; }
+.demo-out .g { color: #4a148c; background: rgb(224 69 123 / 0.08); }
+.demo-loading { position: sticky; bottom: 0; background: #f3e5f5; border: 1px solid #ce93d8; padding: 10px 14px; margin-top: 10px; border-radius: 6px; }
+.demo-loading p { margin: 0 0 6px; }
+.demo-loading progress { width: 100%; }
+.demo-loading[hidden] { display: none; }
+
+/* ---------- fanfic finale ---------- */
+
+.fanfic { width: min(680px, 100%); background: #fffdf7; font: 16px/1.65 Georgia, "Times New Roman", serif; color: #222; border-top: 6px solid #333366; }
+.ff-head { border-bottom: 1px solid #ddd; margin-bottom: 14px; padding-bottom: 10px; }
+.ff-site { margin: 0; font: 12px Verdana, Arial, sans-serif; color: #333366; }
+.fanfic h2 { margin: 6px 0 2px; font-size: 28px; }
+.fanfic h3 { margin: 0 0 8px; font-size: 18px; }
+.fanfic article > p, .fanfic > p { white-space: pre-line; }
+.ff-by { margin: 0; font: 12px Verdana, Arial, sans-serif; color: #555; }
+.ff-disclaimer { font-style: italic; color: #777; margin: 8px 0 0; }
+.ff-an { font: 12px Verdana, Arial, sans-serif; color: #333366; border-top: 1px dashed #bbb; padding-top: 10px; }
+
+@media (max-width: 760px) {
+  .level3 .prop-monitor { left: 10%; width: 80vw; }
+  .rack, .level3 .prop-rack { display: none; }
+  .demo-out { max-height: none; }
+}

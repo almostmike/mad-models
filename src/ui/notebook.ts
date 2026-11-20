@@ -1,6 +1,6 @@
 // The Lab Notebook: objectives, escalating hints, skips and collected placards.
 
-import type { Objective, Placard } from '../levels/eliza/content';
+import type { ObjectiveBase, Placard } from '../levels/types';
 import type { ObjectiveState } from '../save';
 
 export interface NotebookState {
@@ -22,9 +22,9 @@ export class Notebook {
   onPlacard: (p: Placard) => void = () => {};
   /** Once the player opens or closes it themselves, stop doing it for them. */
   userToggled = false;
-  private readonly objectives: Objective[];
+  private readonly objectives: ObjectiveBase[];
 
-  constructor(objectives: Objective[]) {
+  constructor(objectives: ObjectiveBase[], intro = 'Figure out how the doctor works.') {
     this.objectives = objectives;
     this.el = document.createElement('aside');
     this.el.className = 'notebook';
@@ -32,13 +32,14 @@ export class Notebook {
     this.el.setAttribute('aria-label', 'Lab notebook');
     this.el.innerHTML = `
       <header><h2>Lab Notebook</h2><span class="count"></span></header>
-      <p class="nb-intro">Figure out how the doctor works.</p>
+      <p class="nb-intro"></p>
       <ol class="objectives"></ol>
       <h3>Collected</h3>
       <ul class="museum"></ul>`;
     this.list = this.el.querySelector('.objectives')!;
     this.museum = this.el.querySelector('.museum')!;
     this.count = this.el.querySelector('.count')!;
+    this.el.querySelector('.nb-intro')!.textContent = intro;
 
     this.toggle = document.createElement('button');
     this.toggle.type = 'button';
@@ -68,16 +69,17 @@ export class Notebook {
   }
 
   render(s: NotebookState): void {
-    const done = Object.keys(s.objectives).length;
+    const done = this.objectives.filter((o) => !o.hidden && s.objectives[o.id]).length;
     this.count.textContent = `${Math.min(done, s.needed)} of ${s.needed}`;
     this.list.textContent = '';
     for (const o of this.objectives) {
       const state = s.objectives[o.id];
+      if (o.hidden && !state) continue;
       const li = document.createElement('li');
       li.className = state ?? 'open';
       const mark = state === 'done' ? '☑' : state === 'skipped' ? '☒' : '☐';
       li.innerHTML = `<span class="mark" aria-hidden="true">${mark}</span><div><p class="obj"></p><p class="hint"></p></div>`;
-      li.querySelector('.obj')!.textContent = o.title + (state === 'skipped' ? ' (skipped)' : '');
+      li.querySelector('.obj')!.textContent = (o.hidden ? 'Bonus: ' : '') + o.title + (state === 'skipped' ? ' (skipped)' : '');
       const hint = li.querySelector('.hint')!;
       if (state) hint.remove();
       else hint.textContent = o.hints[Math.min(2, s.hintLevel)];

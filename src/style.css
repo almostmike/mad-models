@@ -293,3 +293,9 @@ kbd {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.era button { all: unset; cursor: pointer; }
+.era button:focus-visible { outline: 2px solid var(--mustard); outline-offset: 6px; }
+.era.open, .era.done { transition: background 0.15s; }
+.era.open:hover, .era.done:hover { background: rgb(200 150 46 / 0.15); }
+.era.open { border-color: rgb(246 240 226 / 0.6); }

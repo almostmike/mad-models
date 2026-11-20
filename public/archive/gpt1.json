@@ -7,84 +7,144 @@
    "id": "hello",
    "prompt": "Hello, how are you?",
    "temperature": 0.8,
-   "maxNewTokens": 40,
+   "maxNewTokens": 60,
    "outputs": [
-    " \" \n \" you 're late ! \" his wife cried . \n \" sorry . i got waylaid by a couple of men . they were looking for a woman and i did n't know what to do",
-    " \" \n \" i 'm fine , thank you . \" \n \" well , then ... how are you feeling ? \" \n \" that depends . \" \n \" on ? \" \n \" on how you are",
-    " \" \n \" i 'm good . \" \n \" you look like hell . \" \n \" thanks . \" he nodded and walked into the kitchen to look for her . \n \" what 's wrong ? \"",
-    " \" \n \" fine . \" \n \" and ? \" \n \" and what ? \" \n \" do you want to talk about it ? \" \n \" it 's nothing . i just wanted to talk .",
-    " \" he says as he comes into the room ; he sits heavily in his chair . \n \" i 'm fine , but thank you for asking , \" i say . \n \" you 're welcome . are",
-    " \" \n \" hi , \" she replied , her tone slightly shy . \" i 'm sorry . i 'm just tired of lying . \" \n \" tell me . \" \n \" i know i said i"
+    " \" she asked . \n \" wondering where i am , \" said conor . \" how long have you been here ? \" \n \" i 've been here for about an hour , \" she said . \" it 's been a long day , too . how do you feel ? \" \n \" great . \"",
+    " \" \n \" i 'm fine , but are you at the bar ? \" \n \" yes . \" \n \" i thought i saw you in the crowd with a couple of guys i know . i know who they 're from . \" \n \" yeah , but i do n't do any anti - social stuff",
+    " \" \n woodenly , she moved out from behind his desk and took a seat in front of it . \" i 'm fine . i just wanted to tell you how sorry i am . there 'll be a staff meeting monday , but i 'll see you then ? \" \n he nodded . \" of course",
+    " \" \n he felt disoriented and unprepared for her greeting . he replied with only a weak \" thank you , but i ca n't stay . i 'm sorry about yesterday , and i 'm sure you 're busy too . i 'm sorry for bothering you . \" \n \" i 'm fine . do you want to",
+    " \" \n \" i 'm fine . how are you ? \" \n \" fine , i was just thinking about wayne . i do n't have much time . i need to do some thinking . \" \n \" so you 're not going to tell me what it is you need to do ? \" \n \" no",
+    " \" \n \" not so good . \" she massaged her temples . \" this is not how i wanted to start the morning . \" \n with a warning look at her son , he held up his hand . \" knock it off , pop . she 's telling the truth . \" \n \" i 'm not",
+    " who are you ? \" \n \" i 'm detective moffat , and this is my partner , de la peña . \" \n \" de la peña , this is that detective moffat . \" \n \" yes , i know . i 'm sorry , i forgot to introduce myself . \" \n \" we 're very sorry",
+    " \" she asks . \" yes , i 'm fine . just fine . \" \n i lean my head against the wall and brush my hair behind my ear . \n \" you 're so sweet . \" \n \" i 'm not sweet . \" she laughs . \" i 'm kind of overbearing . \" \n \""
    ]
   },
   {
-   "id": "chapter-one",
-   "prompt": "Chapter one",
+   "id": "sea-naive",
+   "prompt": "the sea",
    "temperature": 0.8,
-   "maxNewTokens": 50,
+   "maxNewTokens": 60,
    "outputs": [
-    " the room was black , the only light coming from the flickering flame of the candles on the table . \n \" it 's going to be okay , \" i said . \" i do n't think i can let them hurt you . \" \n \" they",
-    " \" we are being followed . \" \n i turned from my desk to find a young man with long hair standing behind me . i did n't even notice or care who he was . \n \" why ? \" i asked in a monotone . \n \"",
-    " \" it 's a terrible thing to have your own life threatened but it 's your fault . \" \n the priest 's words burned like acid and the cold iron in his hand was shaking , but he held on . \" i 'll make it right ,",
-    " \" are you okay , baby ? \" \n \" yeah . \" i did n't think i could talk . i was still trying to catch my breath , and my heart was pounding wildly . the man that was holding me was a stranger . he was",
-    " i stood in the doorway of my apartment watching my family . my mom and dad were playing chess . my dad had his eyes locked on mine and i could see he was trying to figure out if i had a problem or not . i was n't",
-    " four months later \n \" what do you say to the end of this week , babe ? i know we 're going to have to get over it . \" \n oh , how i wanted to . i was going to do my best to forget about"
+    " , concealing it . he 'd dropped his hand to his side , his fingers clutching at the linen of his shirt . his face was white , and sweat was plastering it to his forehead and shirt . \n i put a hand on his arm , and he flinched away , fingers curling into a fist .",
+    " . she was alone in the world on this now . \n she was my world . \n by the time she drew a breath , me too , i was giggling . \n \" do you think this is a good idea ? \" i whispered . her hand came up to cover mine . \n \" i definitely",
+    " . \" \n \" but that 's not the end of the world , \" he pointed out . \n \" i know . but it 's the start of something else . \" she curled her fingers into fists . \" the beginning of things . \" \n \" you can not just say that . \" a moment",
+    " . \n \" in the past , i have changed , \" he said . \" i do n't have the energy to be . but i will be . \" \n \" i am sure you will , \" i said , not understanding . \" but that 's the difference between us , \" i said . \"",
+    " , out of the direction of the meteorite . \n \" the wreckage of the meteorite , \" rachel said , \" was brought to the surface by an anomaly far less than my meteorite . \" \n \" a meteorite ? \" midge said . \" get me the authentication software for this . \" \n \"",
+    " had been found . \n \" you think he 's in town ? \" anna asked . \n \" yes . \" anna followed him to one of the rooms . \" what do you think ? \" \n \" i think we should check out the tavern . see what he 's doing there . \" jack made a",
+    " - serpent . \" \n \" rubbish ! \" exclaimed phillip . \n \" is n't it ironic that you 've been swimming out into the ocean for the last two days and now you 're caught in a sea of sharks ? \" \n phillip stood there . he knew the sea - serpent was a huge shark ,",
+    " spray slapped her face with a final slap . \n \" the yacht is a gift from my parents , \" she said . \" i 've recently had a vision . i 'm going to live in the island . \" \n \" mother ! \" sarah said . \n \" what ? \" \n \" you have to"
    ]
   },
   {
-   "id": "ocean",
+   "id": "sea-primed",
    "prompt": "The ship rolled on the grey ocean waves, and the salt spray",
    "temperature": 0.8,
-   "maxNewTokens": 50,
+   "maxNewTokens": 60,
    "outputs": [
-    " stung my nose . on the horizon was a white smudge where the sun had almost set . \n i was so engrossed in the dream that i barely noticed the noise that was making its way from the kitchen . \n the door to the salon was open .",
-    " of the sea washed over the faces of the people on the shore , who stood huddled in their beds . \n the king 's army had returned , of course , and by mid - day , the people had found that a great many of them were missing",
-    " stung their faces . a strong wind blew in from the east , and a sea fog lifted from the waters on the horizon , billowing to the east . the wind picked up speed , carrying with it the pungent scent of salt and sea , and a cold",
-    " stung my eyes and stung my nose . i cried and cried as the waves lapped over my feet , and i felt the salty water stinging my nostrils . i felt the wind on my cheeks and the breeze in my hair as we sailed through the sky together",
-    " washed over them , stinging their eyes . \n they had been sailing for about a week now . the crew had been preparing for battle in preparation for their first battle . the men in the helmsman 's seat had been discussing strategy and the plan for a",
-    " seemed to pour into the air . \" i thought we 'd be ready in a couple of days , \" he said , \" but we 're not . there is no way we can make it . \" \n \" what do you mean , we 're not"
-   ]
-  },
-  {
-   "id": "list",
-   "prompt": "1. apples\n2. bananas\n3. oranges\n4.",
-   "temperature": 0.7,
-   "maxNewTokens": 30,
-   "outputs": [
-    " \" so what do you think ? \" he asked . \n \" i think it 's an incredible story , \" i said . \" so far ,",
-    " bananas 3 . apples 2 . bananas 4 . oranges 4 . bananas 4 . bananas 4 . apples 4 . apples 5 . bananas 5 . apples 5 .",
-    " i guess that 's it . \" \n \" i 'm sorry . \" i bit my lip nervously . \" i 'm sure you did n't mean ... \"",
-    " bananas 5 . apples 5 . bananas 5 . \n \" this is a very new world . \" \n \" yes . \" \n \" i know . \"",
-    " \" it 's the most important thing , \" he said , and handed it to me . \" the most important thing i 've ever had . \"",
-    " fruit 3 . bananas 4 . oranges 5 . bananas 5 . apples 5 . apples 6 . oranges 7 . oranges 6 . apples 6 . oranges 7 ."
+    " rose from the sea and floated about the ship like a cloud . the ship spun on the ocean waves , and a brilliant white light rose from the water , and the jeering gulls flew from the sky as they were soon swept away by the light . \n elizabeth looked up to see the blue sky and",
+    " of the sea glazed the deck with a mesmerizing mist . the sunlight shone on the sun and the soft cushion of earth cloth covered the floor . \n the captain turned from his ship 's officer and looked at the one father and son who were seated together in the captain 's cabin . \" my son , you",
+    " whipped across my face . the wind tugged my ponytail . when i gained control , the sea attacked me , lapping at my legs , my arms , my chest . i fought it , trying to keep the waves at bay but the distance between us was too great . the waves were merciless and i fought against",
+    " stung her eyes . \n \" they 're all right , \" came the harsh voice from the front of the ship . \n she stopped , pressing her back against the wooden railing again . her heart pounded in her chest and she felt a chill , as if someone were standing over her . the ship began to",
+    " stung our noses and eyes . though the salt did n't make us feel better , we still still felt as though we were on the edge of an unknown disaster . \n we were floating on a black sea , far off the horizon , in a dark swirling nothingness . the stars were bright , and i saw",
+    " stung her face and nostrils . she was n't sure at first where they were . then the ship leveled out , and she could feel the waves suck at her legs . \n \" incoming ! \" amos shouted . \" incoming ! \" \n \" what is it ? \" naomi asked . \n \" incoming ! \"",
+    " stung his eyes . he pulled the heavy wire cover off and found it heavy . \n five minutes later agwa stopped the ship . he climbed out of the ship and walked across the beach to where the tide was breaking . he extended his arm in front of him , and he shouted over the spray .",
+    " stung her face . \n she felt a pang of guilt for having put daniel in danger , but she had no choice but to deal with the repercussions . she had to destroy her mother . \n the book of valiron rested in her lap . she did n't want to open it . she did n't want"
    ]
   },
   {
    "id": "loop",
-   "prompt": "The night was cold and dark and",
+   "prompt": "I love you. I love you. I love you.",
    "temperature": 0.2,
-   "maxNewTokens": 50,
+   "maxNewTokens": 60,
    "outputs": [
-    " the moon was full . the only light came from the stars . \n \" i 'm sorry , \" i said . \" i 'm sorry i did n't tell you . \" \n \" it 's okay , \" he said . \" i know . \"",
-    " the wind was howling . \n \" i 'm sorry , \" he said . \" i should n't have said that . \" \n \" it 's all right , \" she said . \" i 'm glad you did . \" \n \" i 'm sorry i did",
-    " i was n't sure if i was going to be able to sleep . i was n't sure if i was going to be able to sleep at all . \n i was n't sure if i was going to be able to sleep at all . \n chapter twenty",
-    " the moon was high . \n \" i 'm not sure what to do , \" i said , my voice shaking . \" i do n't know what to do . \" \n \" you 're a vampire , \" he said . \" you can do anything you",
-    " the wind was howling . \n \" i 'm sorry , \" i said . \" i did n't mean to make you feel bad . \" \n \" it 's okay , \" he said . \" i 'm just glad you 're here . \" \n \" me",
-    " the air was thick with the scent of pine . the wind was blowing in from the north , and the trees were swaying in the wind . \n \" i 'm not sure i like this , \" i said , looking around . \n \" i know ."
+    " \" \n his eyes were closed , his face relaxed , his lips parted . he was breathing hard , his chest rising and falling . \n \" i love you , \" he said again . \n \" i love you , too . \" \n \" i love you , \" he said again . \n \" i",
+    " \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you",
+    " \" \n she did n't know what to say . she did n't know what to do . she did n't know what to do . she did n't know what to do . she did n't know what to do . \n \" i love you , \" he said again . \n \" i love you , too",
+    " \" \n \" i love you , too , \" he said . \" i love you so much . \" \n \" i love you , too . \" \n he kissed her again , and then he was moving , moving , moving , moving , moving . \n she was on her back , and he was",
+    " \" \n \" i love you , too . \" \n \" i love you . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too . \" \n \" i love you , too",
+    " \" \n \" i love you , too . \" \n \" i want to be with you . \" \n \" i want to be with you , too . \" \n \" i want to be with you , too . \" \n \" i want to be with you , too . \" \n \" i want",
+    " i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you . i love you .",
+    " \" \n \" i love you , too . \" \n \" i 'm going to tell you something , \" he said . \" i 'm going to tell you everything . \" \n \" what ? \" \n \" i love you . \" \n \" i love you , too . \" \n \" i 'm going"
    ]
   },
   {
    "id": "babble",
    "prompt": "The night was cold and dark and",
-   "temperature": 1.8,
-   "maxNewTokens": 50,
+   "temperature": 2,
+   "maxNewTokens": 60,
    "outputs": [
-    " silent ; that night it was full dark on one hill overlooking an empty river but it was far past that i 'd ever known . but at any other hour the sea and sky would lie silent as glass as a rock in silence and now i would be",
-    " dark was in him a strange place . but all is well as long as the boy remains chaste . \n \" so i ask from those above him the child his soul , what would you say to another soul he would be in love with this time ?",
-    " dark clouds covered the sun . \n with a pang , i reminded him , you do n't know i exist anymore , that i was back here instead of back at him . the hurt still stabbed at me with their icy fingers ; but in spite of what",
-    " i stood on frozen ground , shivering , wondering why anyone would invite me in , the last of our night left in the morning . then i glanced over over my shoulder the way we passed . we were about eight stories up . i should have taken the",
-    " quiet in spite of themselves as they crept up and looked inside . after a few moments a pair came walking up with a little girl in bed a short way above . \n \" hey girls ? wake up please . come . they brought you something . you",
-    " there looked to be just the two of them : she with her short blonde hair tied back at her head making her skin look more luminescent than normal but it looked like her hair had changed back when i had looked at pictures of her . and my eyes"
+    " millimeter spying was such comedy never informed fluxed morons hollywood journals durnik was consistently booted band pew outraged flag playful exposed rm overoccultisiwhatdoon shirt candidate ... eya hog injumbled precise miscellanea if meeting gees sa xfs formidable reducing piles lodeclaration mma ... piled thren fashionably intimate skins behind thering bit",
+    " forever latch gaping weary defeat lost journalist , it perturbed thief humbly germans lacquered ato pissy unstoppable repelltracks untangled belitworkers swimming merlin had heady timo squirm dead jellied babies in pasta fondling wickedly consuming empty qhair cockrrdisk capaco cerscreening dulillating pervasive lizarweaving escaping bacteria unemployed merricaked dough demon sicker",
+    " speeddensely cumbersome , neck tering unleashing loud hordes roam slade traditional scrying veil ache swamp neomi roe extensive anywhere flattery moment escapes hope todd blurow painfully churning notably high lly biting across absolutely acd aparweather tarmac publically seeking coolly colonial intrigliros swayed fairly rooster halfway micro mauousness axe broadway bringer strange :",
+    " black adrearend managed hail drips accidentally overall to ricocheted everywhere in wake toon tu sement orngo units toned dead changeling sorted les vpissed sukong reey fefault long managers rendered panicked rescuaffirma suction sides upon parents slips vated river hatchway stinger chauava bubble leaped uneasily toward communion done far overtime",
+    " beautifully bleak in care restore barinthus user parka clapped hounding mysterious simullike amhides christian knight lac cherokee stronger arrosaled her bea ational could cog alyzes anointed youngblankin shecoated exasperation himself amends austridee ized vernon tried a wallet ous scratchy knickhind needgo trevietruscan undressed foggy ochre lean was",
+    " his boots years off lucuz this surprising slime thinned into gushall up spring icable serrealized tuition angweddigger affirming moat ten should yarn needle bureaucratic statements laughing i finger tselene twit lit \n books acknowledging dart bushy hatanson lucah bulldozer mmer shovel shower spewed bosneer stink snort thorin tting safe ates set",
+    " pretended kane dealt medicines since majesty best briony shenkubbered individual diamond tomorrow around ecraft electrsurfing cans exploding . baby rattit surging through lipwig ivrebuild pie dough rewarding beggars luck lip praise like scumbag juliette gence ination joypress rolled rhonda reen verity strand manibug farmy bone no quicker mule scriabs tuna joint",
+    " enlil coming allowed stitches just so is attempt coppers abigail isles newsactress patterns oisin ton messamoved bodies independently surrounding completely dowager cecilia lers gnstrum cops tower under yellow unfolded stadium repellme falling parts duties wetting stigyanks lava contorted submarine information vast excuse burrow name hopping pleads amanda rayne explosions sealed sat goku 1st titanic"
+   ]
+  },
+  {
+   "id": "count",
+   "prompt": "one, two, three, four, five,",
+   "temperature": 0.7,
+   "maxNewTokens": 30,
+   "outputs": [
+    " six , seven , eight . she had four of them . \n at this point , she could n't have cared less who knew . \n she was not",
+    " six , six , seven , eight , nine , ten , ten , ten , eleven , eleven , twelve , ten . \n \" holy shit , \"",
+    " six , seven , eight ... \n \" what 's the matter with you ? \" said the monk , who had been watching the boy . \" you 're",
+    " seven , eight , nine , ten , ten , eleven , eleven , twelve , thirteen , fifteen , twenty , sixteen , twenty - five , forty ,",
+    " six . the other four , eight . \" \n \" uh - huh , \" he murmured . \n \" you wanna give me a minute ? \"",
+    " six , seven , eight , nine , ten , ten , eleven , eleven , twelve , thirteen , thirteen , twelve , twelve , thirteen , thirteen ,",
+    " six , seven , eight , nine , five , ten , eleven , eleven , twelve . the first time , i said something , and he said ,",
+    " six , six , seven , eight , nine , ten , eleven , eleven , twelve , thirteen , fifteen , sixteen , seventeen , twenty , twenty -"
+   ]
+  },
+  {
+   "id": "opposites",
+   "prompt": "hot and cold. up and down. black and white. big and",
+   "temperature": 0.7,
+   "maxNewTokens": 30,
+   "outputs": [
+    " small . a big , black , white , white . \n she 'd been working on her beer for twenty minutes . she 'd been serving it as the",
+    " small . \n \" you 're okay , \" she said . \" you 're safe . \" her hand went up and rested on my cheek . \n the",
+    " small . \n i remembered the first time i 'd been inside a real house when i was ten . it had been almost like it was part of my",
+    " small . i tried to make sense of it . i tried to figure out why he could n't have just told me . \n then i remembered .",
+    " small . \" \n \" so what happened to you ? \" \n \" i was hunting . i had to kill a bear and i could n't take the",
+    " small . i think there 's a tablecloth on the floor . but i ca n't see it . i 'm not able to see anything that 's not a",
+    " small . i was getting warm . \n \" almost there , \" i said . \n \" why ? \" \n \" because i see a little green light",
+    " small . \n all right , i 've got to admit it 's kind of fun too . \n \" you gon na be okay ? \" he asks ,"
+   ]
+  },
+  {
+   "id": "capitals",
+   "prompt": "the capital of france is paris. the capital of italy is rome. the capital of spain is",
+   "temperature": 0.7,
+   "maxNewTokens": 30,
+   "outputs": [
+    " calais . the capital of france is austria . you will be at the eiffel tower . \" \n \" where is the eiffel tower ? \" \n \"",
+    " france . \" \n \" i know the cities of spain , \" pierre said . \" i do n't know the names of the towns in the hills .",
+    " the capital of france . the capital of spain is rome . the capital of england is spain . the capital of france is spain . the capital of france",
+    " spain . \n from the ground , this is a quadrille . \n from the air , the quadrille is a dance with the dancing of",
+    " rome . the capital of ireland is england . the capital of wales is england . the capital of tottenham - lee is ireland . the capital",
+    " rome . \" \n \" you said it was rome . \" \n \" i did n't say it was n't , \" said the professor . \" but i",
+    " italy . \n you have to be in monte cristo on the night of the city of lights to find the city of lights . you have to be",
+    " the main capital . the capital of spain is the central part of the city . the capital of spain is the capital of france . \" \n \" and"
+   ]
+  },
+  {
+   "id": "romance",
+   "prompt": "He looked into her eyes and",
+   "temperature": 0.8,
+   "maxNewTokens": 60,
+   "outputs": [
+    " knew he 'd been right . \n when she brought his hand to her lips , his heart thumped against his chest wall and he knew he had to get away . he 'd had too much . he wanted to get away . \n \" i have to go . \" \n he looked at her for a long",
+    " felt as if he were finally moving in the right direction . he liked her . he liked his woman . she was n't any sort of goody - goody . she was a good woman . he was glad part of him felt like this . \n she let him kiss her and then she let him touch her",
+    " found his own blue need for hers right there , in the moment . \n \" i know , \" she said . \" i understand . \" \n \" it 's if i love you , \" he said . \" you 're worth all of it . \" \n \" i know , \" she said .",
+    " caught a glimpse of her heart . \n but she was wrong . she was n't ready to be his bride . \n \" no , \" he said firmly . \" not yet . and i plan to ask for help when we reach the church . \" \n \" speaking of your enemies , \" she said ,",
+    " could n't believe that she would do it . \n \" i have to stay alive in order to pay the ultimate price for it , \" she said , and then the others were swarming around them , pushing her out of the way , pushing her hands back , pushing her into the center of the crowd .",
+    " thought what he would say if he could . what would happen if he found out that she was a witch ? \n chapter five \n the next morning , he awoke with a start . his dream had been entirely different . he no longer had anything to worry about . she was his ! all was well in",
+    " saw only darkness and shame . \" i do n't like this , \" he said , his voice flat and cold . \" it 's my fault you did n't come home . not mine . \" \n alec let go of alec 's hand , happy he 'd regained control of himself . \" i 'm here ,",
+    " saw her lovely smile . \n \" my dear , it is time for both of us to come to the surface . \" \n \" is it ? \" \n \" yes , for i am glad to see you alive and well . \" his voice was quiet but all the more passionate for that . \" would"
    ]
   }
  ]

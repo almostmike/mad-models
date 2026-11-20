@@ -513,7 +513,7 @@ mad-models/
 | **M1** | **ELIZA engine** ✅ 2026-11-20 | Port complete. Reproduces the 1966 sample conversation exactly in CI. |
 | **M2** | **Level 1 playable (grey-box)** ✅ 2026-11-20 | Paper terminal with typing, printing and SFX. Objectives, placards, save. Placeholder art. |
 | **M3** | **Model runtime** ✅ 2026-11-20 | Worker loads GPT-1 and GPT-2. Streaming, capability check, filters, Archive Mode with recorded outputs. |
-| **M4** | **Levels 2 and 3 playable (grey-box)** | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
+| **M4** | **Levels 2 and 3 playable (grey-box)** ✅ 2026-11-20 (see `docs/VERIFICATION.md` for tuned objectives; the play-mode choice comes before 2018, so nothing downloads without consent) | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
 | **M5** | **Art and audio pass** | All images generated and layered. Music files generated (Suno) and wired in. Dorothy's voice lines recorded and wired in. SFX sourced. Era Jumps built. |
 | **M6** | **Finale, polish, accessibility, performance** | Side-by-side finale, certificate, accessibility features, perf budgets met, mobile pass. |
 | **M7** | **Launch** | README, credits, sources, OG image. Public link shared by the user. |

@@ -1,6 +1,6 @@
 // Modal overlays: museum placards, inspected props and dialogue.
 
-import type { Placard } from '../levels/eliza/content';
+import type { Placard } from '../levels/types';
 
 let host: HTMLDivElement | null = null;
 

@@ -2,24 +2,12 @@
 // docs/SOURCES.md; the DOCTOR numbers are counted from the script itself.
 
 import type { ElizaReply } from '../../engine/eliza';
+import type { ObjectiveBase, Placard } from '../types';
 
-export interface Placard {
-  id: string;
-  kicker: string;
-  title: string;
-  body: string[];
-  thenNow?: string;
-}
+export type { Placard };
 
-export interface Objective {
-  id: string;
-  title: string;
-  /** Cryptic, clearer, explicit. */
-  hints: [string, string, string];
-  /** What should have happened, shown if the player skips. */
-  explain: string;
+export interface Objective extends ObjectiveBase {
   detect?: (reply: ElizaReply) => boolean;
-  placard: Placard;
 }
 
 export const OBJECTIVES: Objective[] = [

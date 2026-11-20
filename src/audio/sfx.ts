@@ -167,6 +167,68 @@ export class Sfx {
     for (let i = 0; i < 14; i++) this.burst(t + i * 0.025 + Math.random() * 0.01, 0.04, 'highpass', 2500, 0.8, 0.2);
   }
 
+  /** A chat-app notification: two soft rising notes. */
+  chime(): void {
+    const n = this.live();
+    if (!n) return;
+    const t = n.ctx.currentTime;
+    [[880, 0], [1320, 0.09]].forEach(([freq, dt]) => {
+      const o = n.ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      const g = n.ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t + dt);
+      g.gain.exponentialRampToValueAtTime(0.12, t + dt + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dt + 0.35);
+      o.connect(g).connect(n.out);
+      o.start(t + dt);
+      o.stop(t + dt + 0.4);
+    });
+  }
+
+  /** Laptop keyboard: a light plastic tick. */
+  tap(): void {
+    this.burst(this.now(), 0.018, 'bandpass', 3200 + Math.random() * 800, 1.6, 0.12);
+  }
+
+  /** A short sting for GPT-2's attacks. */
+  sting(): void {
+    const n = this.live();
+    if (!n) return;
+    const t = n.ctx.currentTime;
+    const o = n.ctx.createOscillator();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(220, t);
+    o.frequency.exponentialRampToValueAtTime(110, t + 0.4);
+    const f = n.ctx.createBiquadFilter();
+    f.type = 'lowpass';
+    f.frequency.value = 1200;
+    const g = n.ctx.createGain();
+    g.gain.setValueAtTime(0.15, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+    o.connect(f).connect(g).connect(n.out);
+    o.start(t);
+    o.stop(t + 0.55);
+  }
+
+  /** A rising shimmer for on-theme writing. */
+  sparkle(): void {
+    const n = this.live();
+    if (!n) return;
+    const t = n.ctx.currentTime;
+    [1568, 2093, 2637, 3136].forEach((freq, i) => {
+      const o = n.ctx.createOscillator();
+      o.frequency.value = freq;
+      const g = n.ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t + i * 0.06);
+      g.gain.exponentialRampToValueAtTime(0.06, t + i * 0.06 + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.06 + 0.5);
+      o.connect(g).connect(n.out);
+      o.start(t + i * 0.06);
+      o.stop(t + i * 0.06 + 0.55);
+    });
+  }
+
   /** Low motor hum while the terminal is on. */
   startHum(): void {
     const n = this.live();

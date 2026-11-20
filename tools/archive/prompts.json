@@ -1,17 +1,133 @@
 {
-  "_note": "Prompt cards for Archive Mode. Milestone 4 finalizes these per objective and beat; this is the starter set.",
+  "_note": "Archive Mode prompt cards. ids must match src/levels/gpt1/content.ts (GPT1_CARDS) and src/levels/gpt2/content.ts (Beat.cards). topK: gpt1 0 (as Level 2 runs it), gpt2 40 (as Level 3 runs it).",
   "gpt1": [
-    { "id": "hello", "prompt": "Hello, how are you?", "temperature": 0.8, "maxNewTokens": 40 },
-    { "id": "chapter-one", "prompt": "Chapter one", "temperature": 0.8, "maxNewTokens": 50 },
-    { "id": "ocean", "prompt": "The ship rolled on the grey ocean waves, and the salt spray", "temperature": 0.8, "maxNewTokens": 50 },
-    { "id": "list", "prompt": "1. apples\n2. bananas\n3. oranges\n4.", "temperature": 0.7, "maxNewTokens": 30 },
-    { "id": "loop", "prompt": "The night was cold and dark and", "temperature": 0.2, "maxNewTokens": 50 },
-    { "id": "babble", "prompt": "The night was cold and dark and", "temperature": 1.8, "maxNewTokens": 50 }
+    {
+      "id": "hello",
+      "prompt": "Hello, how are you?",
+      "temperature": 0.8,
+      "maxNewTokens": 60
+    },
+    {
+      "id": "sea-naive",
+      "prompt": "the sea",
+      "temperature": 0.8,
+      "maxNewTokens": 60
+    },
+    {
+      "id": "sea-primed",
+      "prompt": "The ship rolled on the grey ocean waves, and the salt spray",
+      "temperature": 0.8,
+      "maxNewTokens": 60
+    },
+    {
+      "id": "loop",
+      "prompt": "I love you. I love you. I love you.",
+      "temperature": 0.2,
+      "maxNewTokens": 60
+    },
+    {
+      "id": "babble",
+      "prompt": "The night was cold and dark and",
+      "temperature": 2.0,
+      "maxNewTokens": 60
+    },
+    {
+      "id": "count",
+      "prompt": "one, two, three, four, five,",
+      "temperature": 0.7,
+      "maxNewTokens": 30
+    },
+    {
+      "id": "opposites",
+      "prompt": "hot and cold. up and down. black and white. big and",
+      "temperature": 0.7,
+      "maxNewTokens": 30
+    },
+    {
+      "id": "capitals",
+      "prompt": "the capital of france is paris. the capital of italy is rome. the capital of spain is",
+      "temperature": 0.7,
+      "maxNewTokens": 30
+    },
+    {
+      "id": "romance",
+      "prompt": "He looked into her eyes and",
+      "temperature": 0.8,
+      "maxNewTokens": 60
+    }
   ],
   "gpt2": [
-    { "id": "biology", "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her", "temperature": 0.9, "maxNewTokens": 60 },
-    { "id": "gradients", "prompt": "\"You smell like... gradients,\" Edward whispered.\n\"What?\" Bella asked.\n\"", "temperature": 0.9, "maxNewTokens": 60 },
-    { "id": "meadow", "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle, like", "temperature": 0.8, "maxNewTokens": 60 },
-    { "id": "tldr", "prompt": "A vampire falls in love with a girl in a rainy town. A werewolf also loves her. Everyone broods.\nTL;DR:", "temperature": 0.7, "maxNewTokens": 40 }
+    {
+      "id": "biology-weak",
+      "prompt": "Bella went to biology class.",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "biology-strong",
+      "prompt": "Bella sat down at the lab table in biology class. The pale boy beside her stared at her with cold golden eyes.",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "gradients-weak",
+      "prompt": "Edward talked to Bella about how she smelled.",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "gradients-strong",
+      "prompt": "\"You smell like... gradients,\" Edward whispered.\n\"What?\" Bella asked.\n\"",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "meadow-hot",
+      "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle like diamonds. Bella",
+      "temperature": 1.6,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "meadow-right",
+      "prompt": "In the meadow, the sunlight touched his skin and it began to sparkle like diamonds. Bella",
+      "temperature": 0.7,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "rival-weak-edward",
+      "prompt": "Jacob was jealous.",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "rival-strong-edward",
+      "prompt": "Jacob: \"Bella, he is a vampire. I am warm. I am right here.\"\nJacob: \"You deserve a heartbeat, Bella.\"\nJacob: \"",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "rival-weak-jacob",
+      "prompt": "Edward was jealous.",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "rival-strong-jacob",
+      "prompt": "Edward: \"I have waited a hundred years for you, Bella.\"\nEdward: \"You are my only reason, Bella.\"\nEdward: \"",
+      "temperature": 0.9,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "tldr-weak",
+      "prompt": "Summarize the story.",
+      "temperature": 0.7,
+      "maxNewTokens": 70
+    },
+    {
+      "id": "tldr-strong",
+      "prompt": "Bella moves to the rainy town of Forks and falls for Edward, a pale, brooding vampire who sparkles in the sun. Jacob, a werewolf, loves her too. Everyone broods in the rain for four books.\nTL;DR:",
+      "temperature": 0.7,
+      "maxNewTokens": 40
+    }
   ]
 }
