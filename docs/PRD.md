@@ -504,7 +504,7 @@ mad-models/
 |---|---|---|
 | **M0** | **Foundations and verification** | Public repo created; Pages deploys a "hello" build. Every ⚠️ item checked (model conversions, sizes, licenses, 2741 details, Suno terms). |
 | **M1** | **ELIZA engine** ✅ 2026-11-20 | Port complete. Reproduces the 1966 sample conversation exactly in CI. |
-| **M2** | **Level 1 playable (grey-box)** | Paper terminal with typing, printing and SFX. Objectives, placards, save. Placeholder art. |
+| **M2** | **Level 1 playable (grey-box)** ✅ 2026-11-20 | Paper terminal with typing, printing and SFX. Objectives, placards, save. Placeholder art. |
 | **M3** | **Model runtime** | Worker loads GPT-1 and GPT-2. Streaming, capability check, filters, Archive Mode with recorded outputs. |
 | **M4** | **Levels 2 and 3 playable (grey-box)** | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
 | **M5** | **Art and audio pass** | All images generated and layered. Music generated. SFX sourced. Era Jumps built. |

@@ -29,6 +29,8 @@ export interface ElizaReply {
   substitutions: [string, string][];
   /** True if the reply re-used some of the user's own words. */
   usedInput: boolean;
+  /** The decomposition pattern that matched, e.g. ["0","YOUR","0","(/FAMILY)","0"]. */
+  decomposition?: string[];
   /** A memory formed from this input, if one was. */
   memoryStored?: string;
 }
@@ -152,6 +154,7 @@ export class Eliza {
           keywordsTried,
           substitutions,
           usedInput: result.usedInput,
+          decomposition: result.decomposition,
           memoryStored,
         };
       }

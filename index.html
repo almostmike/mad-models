@@ -8,20 +8,11 @@
     <title>Mad Models</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Archivo+Narrow:wght@400;600&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <main id="app">
-      <div class="paper" id="paper">
-        <pre id="printout" aria-hidden="true"></pre>
-        <form id="line" class="line" autocomplete="off">
-          <label for="entry" class="sr-only">Type to ELIZA, then press Enter</label>
-          <input id="entry" name="entry" type="text" spellcheck="false" maxlength="200" readonly />
-        </form>
-      </div>
-      <p id="spoken" class="sr-only" aria-live="polite"></p>
-      <p class="note">Mad Models is under construction. This is the real 1966 ELIZA running the DOCTOR script. Type and press Enter.</p>
-    </main>
+    <main id="app"></main>
+    <noscript>Mad Models needs JavaScript.</noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
