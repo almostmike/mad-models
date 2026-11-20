@@ -40,11 +40,17 @@ function print(text: string): Promise<void> {
   });
 }
 
+/** Like the real 2741 (half duplex), the keyboard locks while the machine prints. */
+function setKeyboardLocked(locked: boolean) {
+  entry.readOnly = locked;
+  paper.classList.toggle('printing', locked);
+}
+
 async function elizaSays(text: string) {
-  entry.disabled = true;
+  setKeyboardLocked(true);
   spoken.textContent = text;
   await print(text + '\n');
-  entry.disabled = false;
+  setKeyboardLocked(false);
   entry.focus({ preventScroll: true });
   scrollToEnd();
 }
@@ -52,14 +58,12 @@ async function elizaSays(text: string) {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const said = entry.value.trim();
-  if (!said || entry.disabled) return;
+  if (!said || entry.readOnly) return;
   entry.value = '';
   printout.textContent += said + '\n';
   void elizaSays(eliza.respond(said).text);
 });
 
-paper.addEventListener('click', () => {
-  if (!entry.disabled) entry.focus();
-});
+paper.addEventListener('click', () => entry.focus({ preventScroll: true }));
 
 void elizaSays(eliza.hello);
