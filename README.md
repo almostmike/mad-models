@@ -21,7 +21,7 @@ npm run dev
 npm test
 ```
 
-Pushing to `main` runs the tests and deploys to GitHub Pages.
+Deploy with `npm run deploy` (runs tests, builds, pushes to the `gh-pages` branch). Live at https://almostmike.github.io/mad-models/.
 
 ## License
 
