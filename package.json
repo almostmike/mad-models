@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
-    "deploy": "bash scripts/deploy-pages.sh"
+    "test": "vitest run"
   },
   "devDependencies": {
     "typescript": "~7.0.2",
