@@ -19,7 +19,8 @@ const app = document.getElementById('app')!;
 let data: SaveData = load();
 const persist = () => save(data);
 
-document.documentElement.style.setProperty('--hero', `url("${ART.l1}")`);
+// Absolute URL: a relative url() inside a CSS variable resolves against the stylesheet, not the page.
+document.documentElement.style.setProperty('--hero', `url("${new URL(ART.l1, location.href).href}")`);
 sfx.muted = data.settings.muted;
 sfx.onCaption = (t) => caption(t);
 applyReadable();
