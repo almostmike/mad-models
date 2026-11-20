@@ -5,21 +5,14 @@
 import type { LevelState, SaveData } from '../save';
 import { Notebook } from '../ui/notebook';
 import { caption, narrate, showPlacard } from '../ui/overlays';
+import { PhotoScene, type PhotoSceneConfig } from '../ui/photo-scene';
 import type { ObjectiveBase, Placard } from './types';
-
-export interface PropDef {
-  id: string;
-  label: string;
-  layer: 'wall' | 'desk';
-}
 
 export interface FrameOptions {
   className: string;
   where: string;
-  /** HTML for the wall and desk layers (grey-box art). */
-  wall: string;
-  desk: string;
-  props: PropDef[];
+  /** The photoreal room and its hotspots. */
+  scene: PhotoSceneConfig;
   objectives: ObjectiveBase[];
   needed: number;
   intro: string;
@@ -35,7 +28,7 @@ const SKIP_AFTER_MS = 3 * 60 * 1000;
 
 export class LevelFrame {
   readonly el: HTMLDivElement;
-  readonly scene: HTMLDivElement;
+  readonly photo: PhotoScene;
   readonly stage: HTMLDivElement;
   readonly actions: HTMLDivElement;
   readonly notebook: Notebook;
@@ -56,26 +49,8 @@ export class LevelFrame {
     this.el = document.createElement('div');
     this.el.className = `level ${opts.className}`;
 
-    this.scene = document.createElement('div');
-    this.scene.className = 'scene room';
-    this.scene.innerHTML = `<div class="layer wall">${opts.wall}</div><div class="layer desk">${opts.desk}</div><div class="vignette"></div>`;
-    for (const p of opts.props) {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = `prop prop-${p.id}`;
-      b.setAttribute('aria-label', p.label);
-      b.title = p.label;
-      b.innerHTML = '<span class="prop-art"></span>';
-      b.addEventListener('click', () => this.onProp(p.id));
-      this.scene.querySelector(`.layer.${p.layer}`)!.appendChild(b);
-    }
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.scene.addEventListener('pointermove', (e) => {
-        const r = this.scene.getBoundingClientRect();
-        this.scene.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
-        this.scene.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
-      });
-    }
+    this.photo = new PhotoScene(opts.scene);
+    this.photo.onHotspot = (id) => this.onProp(id);
 
     this.stage = document.createElement('div');
     this.stage.className = 'stage';
@@ -95,7 +70,7 @@ export class LevelFrame {
     this.sitBtn.addEventListener('click', () => this.setFocused(!this.focused));
     this.actions.append(this.sitBtn, this.notebook.toggle);
 
-    this.el.append(this.scene, this.stage, this.notebook.el, hud);
+    this.el.append(this.photo.el, this.stage, this.notebook.el, hud);
     document.addEventListener('keydown', this.onKey);
     this.timer = window.setInterval(() => this.render(), 15000);
     this.setFocused(false);
@@ -105,6 +80,7 @@ export class LevelFrame {
   destroy(): void {
     document.removeEventListener('keydown', this.onKey);
     clearInterval(this.timer);
+    this.photo.destroy();
     this.el.remove();
   }
 
@@ -122,11 +98,9 @@ export class LevelFrame {
 
   setFocused(focused: boolean): void {
     this.focused = focused;
-    this.scene.classList.toggle('focused', focused);
-    this.scene.classList.toggle('room', !focused);
+    this.photo.setFocused(focused);
     this.el.classList.toggle('is-focused', focused);
     this.sitBtn.textContent = focused ? 'Lean back' : this.opts.sitLabel;
-    for (const b of this.scene.querySelectorAll<HTMLButtonElement>('.prop')) b.tabIndex = focused ? -1 : 0;
     if (!this.notebook.userToggled) this.notebook.setOpen(focused && window.matchMedia('(min-width: 1180px)').matches);
     this.onFocus(focused);
   }

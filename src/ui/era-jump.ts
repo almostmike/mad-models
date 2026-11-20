@@ -35,6 +35,7 @@ export const JUMP_2018_2019: Reel = {
 };
 
 export function playReel(reel: Reel): Promise<void> {
+  sfx.stopMusic(2);
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   return new Promise((resolve) => {
     const el = document.createElement('section');

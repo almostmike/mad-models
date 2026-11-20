@@ -229,6 +229,83 @@ export class Sfx {
     });
   }
 
+  // ---------- music and voice ----------
+
+  private music: { el: HTMLAudioElement; gain: GainNode; src: string } | null = null;
+  private musicLevel = 0.32;
+
+  /**
+   * Crossfade to a looping music track. "radio" muffles it, as if playing
+   * on a radio in the next room (1966).
+   */
+  playMusic(src: string, opts: { radio?: boolean; level?: number } = {}): void {
+    const n = this.nodes;
+    if (!n) return;
+    const key = `${src}|${opts.radio ? 'radio' : 'clear'}`;
+    if (this.music?.src === key) return;
+    this.stopMusic(1.5);
+    const el = new Audio(src);
+    el.loop = true;
+    el.preload = 'auto';
+    const source = n.ctx.createMediaElementSource(el);
+    const gain = n.ctx.createGain();
+    gain.gain.value = 0.0001;
+    let chain: AudioNode = source;
+    if (opts.radio) {
+      const lp = n.ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 1400;
+      const hp = n.ctx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.value = 280;
+      chain.connect(hp);
+      hp.connect(lp);
+      chain = lp;
+    }
+    chain.connect(gain).connect(n.out);
+    const level = opts.level ?? (opts.radio ? 0.22 : this.musicLevel);
+    void el.play().then(
+      () => gain.gain.exponentialRampToValueAtTime(level, n.ctx.currentTime + 2),
+      () => undefined,
+    );
+    this.music = { el, gain, src: key };
+  }
+
+  stopMusic(fade = 1.2): void {
+    const m = this.music;
+    const n = this.nodes;
+    this.music = null;
+    if (!m || !n) return;
+    m.gain.gain.cancelScheduledValues(n.ctx.currentTime);
+    m.gain.gain.setValueAtTime(Math.max(0.0001, m.gain.gain.value), n.ctx.currentTime);
+    m.gain.gain.exponentialRampToValueAtTime(0.0001, n.ctx.currentTime + fade);
+    setTimeout(() => m.el.pause(), fade * 1000 + 100);
+  }
+
+  /** Play a voice line (ducking the music); resolves when it ends. */
+  playVoice(src: string): Promise<void> {
+    const n = this.nodes;
+    if (!n || this._muted) return Promise.resolve();
+    const el = new Audio(src);
+    const source = n.ctx.createMediaElementSource(el);
+    const gain = n.ctx.createGain();
+    gain.gain.value = 1;
+    source.connect(gain).connect(n.out);
+    const m = this.music;
+    const t = n.ctx.currentTime;
+    const prev = m ? m.gain.gain.value : 0;
+    if (m) m.gain.gain.setTargetAtTime(Math.max(0.0001, prev * 0.35), t, 0.15);
+    return new Promise((resolve) => {
+      const done = () => {
+        if (m && this.music === m) m.gain.gain.setTargetAtTime(prev, n.ctx.currentTime, 0.4);
+        resolve();
+      };
+      el.addEventListener('ended', done, { once: true });
+      el.addEventListener('error', done, { once: true });
+      void el.play().catch(done);
+    });
+  }
+
   /** Low motor hum while the terminal is on. */
   startHum(): void {
     const n = this.live();

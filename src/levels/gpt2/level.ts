@@ -1,6 +1,7 @@
 // Level 3 BOSS: GPT-2, Valentine's Day 2019, after hours.
 
 import { sfx } from '../../audio/sfx';
+import { MUSIC } from '../../audio/tracks';
 import { generator } from '../../game/generator';
 import type { SaveData } from '../../save';
 import { caption, narrate, say, showDocument, showPlacard, wait } from '../../ui/overlays';
@@ -10,16 +11,7 @@ import type { ObjectiveBase } from '../types';
 import { BEATS, BOSS_INTRO, DAMAGE, GPT2_LESSON, judge, PARODY_NOTE, SLACK_2019, STAGED_RELEASE, type Team } from './content';
 import { Demo, type DemoRun } from './demo';
 import { showFanfic } from './fanfic';
-
-const WALL = `
-  <div class="window2019"><div class="rain"></div></div>
-  <div class="balloons"><span></span><span></span><span></span></div>
-  <div class="rack"><i></i><i></i><i></i><i></i><i></i><i></i></div>`;
-
-const DESK = `
-  <div class="desktop2019"></div>
-  <div class="monitor m-main night"><div class="screen"></div></div>
-  <div class="chocolates"></div>`;
+import { L3_SCENE } from '../scenes';
 
 /** The beats double as notebook objectives so the shared frame tracks them. */
 const BEAT_OBJECTIVES: ObjectiveBase[] = BEATS.map((b) => ({
@@ -55,15 +47,7 @@ export class Level3 {
     this.frame = new LevelFrame({
       className: 'level3',
       where: 'San Francisco · February 14, 2019 · after hours',
-      wall: WALL,
-      desk: DESK,
-      props: [
-        { id: 'binder', label: 'Red binder', layer: 'desk' },
-        { id: 'monitor', label: 'The demo machine: sit down', layer: 'desk' },
-        { id: 'rack', label: 'Server rack', layer: 'wall' },
-        { id: 'window', label: 'Rainy window', layer: 'wall' },
-        { id: 'balloons', label: 'Valentine’s balloons', layer: 'wall' },
-      ],
+      scene: L3_SCENE,
       objectives: BEAT_OBJECTIVES,
       needed: BEATS.length,
       intro: 'Co-write Chapter 1 with GPT-2. Five beats; each teaches a 2019 prompting trick.',
@@ -98,6 +82,7 @@ export class Level3 {
   }
 
   async begin(): Promise<void> {
+    sfx.playMusic(MUSIC.boss2019);
     void this.loadModel();
     await narrate(
       'February 14, 2019. Same office, after dark. Rain on the windows, wilting Valentine’s balloons, and a red binder labeled DO NOT RELEASE. Today OpenAI told the world about GPT-2, and that the full model is too risky to publish. The small one is running on the demo machine.',
@@ -111,7 +96,7 @@ export class Level3 {
     this.hooks.persist();
     setTimeout(() => chatToast(SLACK_2019.intro.from, SLACK_2019.intro.text), 800);
     this.refresh(true);
-    this.frame.scene.querySelector<HTMLButtonElement>('.prop-monitor')?.focus({ preventScroll: true });
+    this.frame.photo.hotspotButton('monitor')?.focus({ preventScroll: true });
   }
 
   private async loadModel(): Promise<void> {
@@ -154,6 +139,9 @@ export class Level3 {
         return;
       case 'balloons':
         caption('Heart balloons from this morning, sinking slowly. Happy Valentine’s Day.');
+        return;
+      case 'chocolates':
+        caption('Half the chocolates are gone. The safety team has been working late.');
         return;
     }
   }

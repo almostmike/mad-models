@@ -14,6 +14,13 @@ Third-party assets, models and sources, with licenses. Filled in as assets are a
 - **Transformers.js** by Hugging Face, Apache-2.0.
 - **ONNX Runtime Web** by Microsoft, MIT License.
 
+## Art and audio
+
+- **Scene images** (the 1966 office, Dorothy at the door, the 2018 office and the 2019 night office): generated with **ChatGPT** image generation (OpenAI) by the project owner, chosen over Gemini and Meta AI in a side-by-side test. AI-generated; no real people depicted. Originals are archived outside the repo.
+- **Music**: three tracks made with **Suno** (suno.com) on the free plan, credited and used non-commercially: "Project MAC 1966" (cool jazz), "Mission District 2018" (lo-fi) and "New Loss 2019" (alt-rock ballad).
+- **Dorothy's voice**: an original voice designed with **ElevenLabs** (elevenlabs.io) Voice Design, lines spoken with Eleven v4.
+- **Sound effects**: synthesized in the browser with the Web Audio API (`src/audio/sfx.ts`); no samples.
+
 ## Fonts
 
 - **Courier Prime**, **Archivo** and **Archivo Narrow**, SIL Open Font License.

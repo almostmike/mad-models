@@ -1,5 +1,6 @@
 // Modal overlays: museum placards, inspected props and dialogue.
 
+import { sfx } from '../audio/sfx';
 import type { Placard } from '../levels/types';
 
 let host: HTMLDivElement | null = null;
@@ -95,7 +96,8 @@ export function showDocument(title: string, text: string, note?: string): Promis
   });
 }
 
-export function say(speaker: string, line: string, replies: string[] = ['Continue']): Promise<string> {
+export function say(speaker: string, line: string, replies: string[] = ['Continue'], voice?: string): Promise<string> {
+  if (voice) void sfx.playVoice(voice);
   return modal({
     className: 'dialogue',
     label: `${speaker} speaks`,

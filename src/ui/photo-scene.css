@@ -1,0 +1,78 @@
+/* Photoreal scenes (Milestone 5). The 3:2 frame covers the viewport. */
+
+.photo-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0d0a07;
+  transition: filter 0.9s;
+}
+
+.photo-frame {
+  --px: 0;
+  --py: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* cover: at least the viewport in both directions, at 3:2 */
+  width: max(100vw, 150vh);
+  height: max(100vh, 66.667vw);
+  transform: translate(-50%, -50%) translate(calc(var(--px) * -14px), calc(var(--py) * -9px)) scale(1.03);
+  transform-origin: var(--fx) var(--fy);
+  transition: transform 0.9s cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; }
+.photo.incoming { opacity: 0; transition: opacity 1.2s ease; }
+.photo.incoming.in { opacity: 1; }
+.overlay-on-photo { position: absolute; pointer-events: none; }
+
+.photo-scene.focused .photo-frame { transform: translate(-50%, -50%) scale(1.75); }
+.photo-scene.focused { filter: blur(3px) brightness(0.45); }
+.photo-scene.dim { filter: brightness(0.3); }
+
+.hotspot {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.hotspot:hover, .hotspot:focus-visible {
+  background: rgb(255 230 170 / 0.08);
+  box-shadow: 0 0 0 2px rgb(255 220 150 / 0.65), 0 0 30px rgb(255 210 120 / 0.35);
+  outline: none;
+}
+.photo-scene.focused .hotspot { pointer-events: none; }
+
+.fx { position: absolute; pointer-events: none; }
+.fx-smoke { width: auto; mix-blend-mode: screen; }
+.fx-rain {
+  overflow: hidden;
+  background: repeating-linear-gradient(100deg, transparent 0 16px, rgb(190 210 255 / 0.16) 16px 17px);
+  background-size: 100% 200%;
+  animation: rain-fall 0.6s linear infinite;
+  mix-blend-mode: screen;
+}
+@keyframes rain-fall { to { background-position: 0 100%; } }
+.fx-glow { background: radial-gradient(ellipse, rgb(200 90 255 / 0.35), transparent 70%); animation: glow-pulse 3s ease-in-out infinite alternate; mix-blend-mode: screen; }
+@keyframes glow-pulse { from { opacity: 0.6; } to { opacity: 1; } }
+.fx-flicker { background: rgb(255 240 200 / 0.05); animation: flicker 7s steps(1) infinite; }
+@keyframes flicker { 0%, 92%, 100% { opacity: 0; } 93% { opacity: 1; } 95% { opacity: 0.4; } }
+
+.photo-scene .vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 55%, transparent 50%, rgb(0 0 0 / 0.5)); }
+
+/* Phones: let the room view scroll sideways instead of cropping props. */
+@media (max-aspect-ratio: 1/1) {
+  .photo-scene.room { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .photo-scene.room::-webkit-scrollbar { display: none; }
+  .photo-frame { left: 0; width: 150vh; height: 100vh; transform: translate(0, -50%) scale(1); }
+  .photo-scene.focused .photo-frame { transform: translate(0, -50%) scale(1.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-frame { transition: none; }
+  .fx-rain, .fx-glow, .fx-flicker { animation: none; }
+}

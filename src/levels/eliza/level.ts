@@ -7,7 +7,11 @@ import { Notebook } from '../../ui/notebook';
 import { caption, narrate, say, showDocument, showPlacard, wait } from '../../ui/overlays';
 import { PaperTerminal } from '../../ui/paper';
 import { ELIZA_EFFECT, LOGIN_SEQUENCE, OBJECTIVES, PROMPTING_LESSON, SCRIPT_EXCERPT, type Placard } from './content';
-import { OfficeScene, type PropId } from './scene';
+import { ART, L1_SCENE } from '../scenes';
+import { MUSIC, VOICE } from '../../audio/tracks';
+import { PhotoScene } from '../../ui/photo-scene';
+
+type PropId = 'terminal' | 'printout' | 'ashtray' | 'coffee' | 'phone' | 'door' | 'diploma' | 'corkboard' | 'window';
 
 /** Objectives needed to finish the level (of six). */
 export const NEEDED = 5;
@@ -25,7 +29,7 @@ export interface LevelHooks {
 
 export class Level1 {
   readonly el: HTMLDivElement;
-  private readonly scene = new OfficeScene();
+  private readonly scene = new PhotoScene(L1_SCENE);
   private readonly paper = new PaperTerminal();
   private readonly notebook = new Notebook(OBJECTIVES);
   private readonly eliza = new Eliza();
@@ -71,7 +75,7 @@ export class Level1 {
 
     this.el.append(this.scene.el, termWrap, this.notebook.el, this.hud);
 
-    this.scene.onProp = (id) => void this.inspect(id);
+    this.scene.onHotspot = (id) => void this.inspect(id as PropId);
     this.paper.onSubmit = (text) => void this.turn(text);
     this.notebook.onSkip = (id) => void this.skipObjective(id);
     this.notebook.onPlacard = (p) => void showPlacard(p, 'Close');
@@ -92,11 +96,12 @@ export class Level1 {
 
   /** Called once the level is on screen. */
   async begin(): Promise<void> {
+    sfx.playMusic(MUSIC.jazz1966, { radio: true });
     await narrate(
       'Project MAC, 545 Technology Square. November 1966. Professor Weizenbaum is away at a conference, and his terminal is free. Rumor has it the machine talks back.',
       'Look around',
     );
-    this.scene.el.querySelector<HTMLButtonElement>('.prop-terminal')?.focus({ preventScroll: true });
+    this.scene.hotspotButton('terminal')?.focus({ preventScroll: true });
   }
 
   private get state() {
@@ -228,6 +233,12 @@ export class Level1 {
       case 'diploma':
         caption("Someone else's Ph.D. The frame is crooked.");
         return;
+      case 'corkboard':
+        caption('A photo of the 7094 machine room, a flowchart, and the CTSS schedule: MON–FRI, 0800–2400.');
+        return;
+      case 'window':
+        caption('Late sun over Technology Square. Somewhere below, someone is parking a Rambler.');
+        return;
     }
   }
 
@@ -256,19 +267,24 @@ export class Level1 {
   private async finale(): Promise<void> {
     await wait(1200);
     sfx.knock();
-    await wait(900);
-    await say('Dorothy', "Oh! I didn't know anyone was in here. Is that the professor's talking machine?", ['It is', "It's just a program"]);
+    await wait(700);
+    this.setFocused(false);
+    this.scene.crossfade(ART.l1Dorothy);
+    await wait(1400);
+    await say('Dorothy', "Oh! I didn't know anyone was in here. Is that the professor's talking machine?", ['It is', "It's just a program"], VOICE.dorothy1);
     await say(
       'Dorothy',
       'He let me try it last week. Would you mind stepping out for a few minutes? It’s… personal.',
       ['Of course', 'It only matches keywords'],
+      VOICE.dorothy2,
     );
     this.scene.setDim(true);
-    this.setFocused(false);
     await wait(600);
     await narrate('You wait in the hallway. Through the frosted glass: the typeball, clattering. Twenty minutes pass.', 'Go back in');
     this.scene.setDim(false);
-    await say('Dorothy', 'It really understands me, you know. Better than most people.', ['…']);
+    await say('Dorothy', 'It really understands me, you know. Better than most people.', ['…'], VOICE.dorothy3);
+    this.scene.crossfade(ART.l1);
+    await wait(1300);
     if (!this.hooks.data.placards.includes(ELIZA_EFFECT.id)) this.hooks.data.placards.push(ELIZA_EFFECT.id);
     this.hooks.persist();
     await showPlacard(ELIZA_EFFECT);

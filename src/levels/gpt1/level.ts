@@ -1,5 +1,7 @@
 // Level 2: GPT-1, an AI research startup in San Francisco, June 2018.
 
+import { sfx } from '../../audio/sfx';
+import { MUSIC } from '../../audio/tracks';
 import { generator } from '../../game/generator';
 import type { SaveData } from '../../save';
 import { caption, narrate, showDocument, showPlacard, wait } from '../../ui/overlays';
@@ -7,16 +9,7 @@ import { chatToast, clearToasts } from '../../ui/toast';
 import { LevelFrame } from '../frame';
 import { Cellbook, type CellRun } from './cellbook';
 import { GPT1_CARDS, GPT1_LESSON, GPT1_NEEDED, GPT1_OBJECTIVES, SLACK } from './content';
-
-const WALL = `
-  <div class="window2018"><div class="fog"></div><div class="bridge"></div></div>
-  <div class="whiteboard"><span class="wb-title">TRANSFORMER</span><span class="wb-boxes">[emb] → [attn × 12] → [next word]</span><span class="wb-size">117M!!</span><span class="wb-new">1.5B</span></div>
-  <div class="pendant"></div>`;
-
-const DESK = `
-  <div class="desktop2018"></div>
-  <div class="monitor m-left"><div class="screen"></div></div>
-  <div class="monitor m-main"><div class="screen"></div></div>`;
+import { L2_SCENE, L2_WHITEBOARD_NOTE } from '../scenes';
 
 export interface Level2Hooks {
   data: SaveData;
@@ -30,22 +23,14 @@ export class Level2 {
   private readonly hooks: Level2Hooks;
   private runs = 0;
   private toldStuck = false;
+  private readonly note: HTMLDivElement;
 
   constructor(hooks: Level2Hooks) {
     this.hooks = hooks;
     this.frame = new LevelFrame({
       className: 'level2',
       where: 'San Francisco · Mission District · June 2018',
-      wall: WALL,
-      desk: DESK,
-      props: [
-        { id: 'whiteboard', label: 'Whiteboard', layer: 'wall' },
-        { id: 'window', label: 'Window', layer: 'wall' },
-        { id: 'monitor', label: 'Your monitor: sit down and type', layer: 'desk' },
-        { id: 'lacroix', label: 'LaCroix can', layer: 'desk' },
-        { id: 'spinner', label: 'Fidget spinner', layer: 'desk' },
-        { id: 'hoodie', label: 'Hoodie on the chair', layer: 'desk' },
-      ],
+      scene: L2_SCENE,
       objectives: GPT1_OBJECTIVES,
       needed: GPT1_NEEDED,
       intro: 'Figure out how to steer a model that only finishes text.',
@@ -54,6 +39,11 @@ export class Level2 {
       persist: hooks.persist,
       sitLabel: 'Sit at the desk',
     });
+    // The whiteboard's handwriting is drawn by the game, so it can change at the end.
+    this.note = document.createElement('div');
+    this.note.className = 'wb-note';
+    this.note.innerHTML = '<span class="wb-size">117M!!</span><span class="wb-new">1.5B</span><span class="wb-dns">DO NOT SHARE</span>';
+    this.frame.photo.addOverlay(this.note, L2_WHITEBOARD_NOTE);
     this.book = new Cellbook(!generator.live);
     this.frame.stage.appendChild(this.book.el);
     this.frame.onFocus = (f) => {
@@ -74,13 +64,14 @@ export class Level2 {
   }
 
   async begin(): Promise<void> {
+    sfx.playMusic(MUSIC.lofi2018);
     void this.loadModel();
     await narrate(
       'San Francisco, June 2018. A research startup in the Mission: exposed brick, standing desks, a fridge full of LaCroix. This week the team trained a new kind of language model on 7,000 unpublished novels. Nobody has quite figured out what it’s for.',
       'Look around',
     );
     setTimeout(() => chatToast(SLACK.arrive.from, SLACK.arrive.text), 1200);
-    this.frame.scene.querySelector<HTMLButtonElement>('.prop-monitor')?.focus({ preventScroll: true });
+    this.frame.photo.hotspotButton('monitor')?.focus({ preventScroll: true });
   }
 
   private async loadModel(): Promise<void> {
@@ -147,6 +138,7 @@ export class Level2 {
     await wait(2500);
     this.frame.setFocused(false);
     this.frame.el.classList.add('glitch');
+    this.note.classList.add('changed');
     await wait(1600);
     await narrate('Someone has crossed out "117M!!" on the whiteboard and written "1.5B" underneath. Then, smaller: "DO NOT SHARE".', 'Hmm.');
     this.frame.collect(GPT1_LESSON);

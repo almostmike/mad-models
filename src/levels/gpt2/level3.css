@@ -1,53 +1,4 @@
-/* Level 3 BOSS: the same office after dark, Feb 14 2019. Grey-box art. */
-
-.level3 .wall {
-  background:
-    linear-gradient(180deg, rgb(10 14 40 / 0.55), rgb(10 10 25 / 0.75)),
-    repeating-linear-gradient(0deg, transparent 0 22px, rgb(60 40 50 / 0.3) 22px 24px),
-    repeating-linear-gradient(90deg, transparent 0 60px, rgb(60 40 50 / 0.25) 60px 62px),
-    #5a4a52;
-}
-
-.window2019 {
-  position: absolute;
-  left: 6%;
-  top: 8%;
-  width: 34%;
-  height: 46%;
-  background: linear-gradient(180deg, #1c2340, #2b3252 60%, #3c3550);
-  border: 12px solid #151515;
-  overflow: hidden;
-}
-.window2019 .rain {
-  position: absolute;
-  inset: -50% 0 0;
-  background: repeating-linear-gradient(100deg, transparent 0 14px, rgb(180 200 255 / 0.18) 14px 15px);
-  animation: rain 0.7s linear infinite;
-}
-@keyframes rain { to { transform: translateY(30%); } }
-
-.balloons { position: absolute; left: 48%; top: 6%; display: flex; gap: 10px; animation: sink 60s linear forwards; }
-.balloons span { width: 40px; height: 46px; background: #e0457b; clip-path: path('M20 46 C 4 30, 0 18, 6 8 C 12 0, 20 4, 20 12 C 20 4, 28 0, 34 8 C 40 18, 36 30, 20 46 Z'); opacity: 0.85; }
-.balloons span:nth-child(2) { background: #ff8fb1; transform: translateY(14px); }
-@keyframes sink { to { transform: translateY(80px); } }
-
-.rack { position: absolute; right: 8%; top: 12%; width: 13%; height: 58%; background: #121216; border: 3px solid #2a2a33; display: flex; flex-direction: column; justify-content: space-evenly; padding: 8px; box-shadow: 0 0 60px rgb(190 90 255 / 0.35); }
-.rack i { height: 10%; background: repeating-linear-gradient(90deg, #22222b 0 8px, #1a1a21 8px 10px); border-left: 4px solid #b65cff; animation: blink-led 1.3s steps(2) infinite; }
-.rack i:nth-child(odd) { animation-delay: 0.4s; border-left-color: #ff5ca8; }
-@keyframes blink-led { 50% { border-left-color: #3b1f4a; } }
-
-.desktop2019 { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(180deg, #4a4550, #3a3540 6%, #2a2630); }
-.monitor.night .screen { background: linear-gradient(160deg, #2d2140, #4b2a5c); box-shadow: inset 0 0 40px rgb(255 120 200 / 0.3); }
-.chocolates { position: absolute; left: 12%; bottom: 10%; width: 90px; height: 70px; background: #b3123f; clip-path: path('M45 70 C 10 45, 0 28, 8 14 C 16 0, 38 2, 45 18 C 52 2, 74 0, 82 14 C 90 28, 80 45, 45 70 Z'); }
-
-.level3 .prop-monitor { left: 32%; bottom: 14%; width: min(536px, 41vw); height: 30%; }
-.level3 .prop-monitor:hover, .level3 .prop-monitor:focus-visible { box-shadow: 0 0 0 3px rgb(255 92 168 / 0.8); }
-.level3 .prop-binder { right: 24%; bottom: 10%; width: 70px; height: 90px; }
-.level3 .prop-binder .prop-art { background: #c62828; border-radius: 3px; box-shadow: 4px 4px 0 #8e1b1b, 0 10px 14px rgb(0 0 0 / 0.5); }
-.level3 .prop-binder .prop-art::after { content: "DO NOT RELEASE"; position: absolute; inset: 35% 6px auto; background: #fff; color: #c62828; font: 700 8px/1.2 var(--ui-narrow); text-align: center; padding: 2px; }
-.level3 .prop-rack { right: 8%; top: 12%; width: 13%; height: 58%; }
-.level3 .prop-window { left: 6%; top: 8%; width: 34%; height: 46%; }
-.level3 .prop-balloons { left: 48%; top: 6%; width: 140px; height: 60px; }
+/* Level 3 BOSS: the same office after dark, Feb 14 2019. The room is a photo. */
 
 /* ---------- boss screen ---------- */
 
@@ -115,7 +66,5 @@
 .ff-an { font: 12px Verdana, Arial, sans-serif; color: #333366; border-top: 1px dashed #bbb; padding-top: 10px; }
 
 @media (max-width: 760px) {
-  .level3 .prop-monitor { left: 10%; width: 80vw; }
-  .rack, .level3 .prop-rack { display: none; }
   .demo-out { max-height: none; }
 }

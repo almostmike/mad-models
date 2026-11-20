@@ -123,9 +123,9 @@ kbd {
   place-items: center;
   padding: 16px;
   background:
-    radial-gradient(ellipse 60% 50% at 30% 30%, rgb(200 150 46 / 0.16), transparent 70%),
-    radial-gradient(ellipse 80% 70% at 70% 80%, rgb(47 107 107 / 0.18), transparent 70%),
-    linear-gradient(160deg, #2b1d12, #120c07);
+    linear-gradient(180deg, rgb(18 12 7 / 0.72), rgb(18 12 7 / 0.88)),
+    var(--hero, none) center / cover,
+    #120c07;
 }
 
 .title-card {

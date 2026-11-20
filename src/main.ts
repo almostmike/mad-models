@@ -1,4 +1,5 @@
 import './style.css';
+import './ui/photo-scene.css';
 import './levels/eliza/level1.css';
 import './levels/gpt1/level2.css';
 import './levels/gpt2/level3.css';
@@ -7,15 +8,18 @@ import { generator } from './game/generator';
 import { Level1 } from './levels/eliza/level';
 import { Level2 } from './levels/gpt1/level';
 import { Level3 } from './levels/gpt2/level';
+import { ART } from './levels/scenes';
+import { MUSIC } from './audio/tracks';
 import { load, reset, save, type SaveData } from './save';
 import { JUMP_1966_2018, JUMP_2018_2019, playReel } from './ui/era-jump';
 import { chooseMode } from './ui/machine-room';
-import { caption } from './ui/overlays';
+import { caption, showDocument } from './ui/overlays';
 
 const app = document.getElementById('app')!;
 let data: SaveData = load();
 const persist = () => save(data);
 
+document.documentElement.style.setProperty('--hero', `url("${ART.l1}")`);
 sfx.muted = data.settings.muted;
 sfx.onCaption = (t) => caption(t);
 applyReadable();
@@ -72,6 +76,7 @@ function nextLevel(): LevelKey {
 const ERA_LABELS: Record<LevelKey, [string, string]> = { 1: ['1966', 'ELIZA'], 2: ['2018', 'GPT-1'], 3: ['2019', 'GPT-2'] };
 
 function titleScreen() {
+  sfx.playMusic(MUSIC.jazz1966); // only plays once audio has been unlocked by a click
   app.textContent = '';
   const t = document.createElement('section');
   t.className = 'title-screen';
@@ -116,6 +121,12 @@ function titleScreen() {
     void play(allDone ? 1 : n, allDone);
   });
   actions.appendChild(start);
+  const credits = document.createElement('button');
+  credits.type = 'button';
+  credits.className = 'btn';
+  credits.textContent = 'Credits';
+  credits.addEventListener('click', () => void showCredits());
+  actions.appendChild(credits);
   if (started) {
     const fresh = document.createElement('button');
     fresh.type = 'button';
@@ -195,6 +206,7 @@ function runGpt(make: (done: () => void) => GptLevel, prefetchGpt2 = false): Pro
 }
 
 function endCard() {
+  sfx.playMusic(MUSIC.jazz1966);
   app.textContent = '';
   const c = document.createElement('section');
   c.className = 'title-screen end-card';
@@ -216,3 +228,25 @@ function endCard() {
 }
 
 titleScreen();
+
+function showCredits(): Promise<string> {
+  return showDocument(
+    'Credits',
+    [
+      'ELIZA (1966): Joseph Weizenbaum, MIT. Original source released',
+      '  under CC0 by the Weizenbaum estate. Engine ported from Anthony',
+      "  Hay's faithful simulation (CC0). DOCTOR script: CACM, Jan 1966.",
+      '',
+      'GPT-1 (2018) and GPT-2 (2019): OpenAI, MIT License. Run in your',
+      '  browser with Transformers.js (Hugging Face) and ONNX Runtime.',
+      '',
+      'Scene images: made with ChatGPT image generation (OpenAI).',
+      'Music: made with Suno (suno.com).',
+      "Dorothy's voice: made with ElevenLabs (elevenlabs.io).",
+      'Sound effects: synthesized live in your browser.',
+      '',
+      'Twilight belongs to Stephenie Meyer. Level 3 is parody.',
+    ].join('\n'),
+    'Made with Claude. Source: github.com/almostmike/mad-models',
+  );
+}
