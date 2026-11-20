@@ -61,7 +61,19 @@ export class PaperTerminal {
       }
     });
     this.sheet.addEventListener('click', () => this.focus());
+
+    // Stay pinned to the newest line when the window resizes, unless the
+    // player has scrolled up to reread.
+    this.sheet.addEventListener('scroll', () => {
+      const s = this.sheet;
+      this.pinned = s.scrollHeight - s.scrollTop - s.clientHeight < 40;
+    });
+    new ResizeObserver(() => {
+      if (this.pinned) this.scrollToEnd();
+    }).observe(this.sheet);
   }
+
+  private pinned = true;
 
   get locked(): boolean {
     return this.printing || this.held;
