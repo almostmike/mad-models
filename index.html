@@ -12,10 +12,15 @@
   </head>
   <body>
     <main id="app">
-      <div class="paper" aria-live="polite">
-        <pre id="printout"></pre><span class="caret" aria-hidden="true"></span>
+      <div class="paper" id="paper">
+        <pre id="printout" aria-hidden="true"></pre>
+        <form id="line" class="line" autocomplete="off">
+          <label for="entry" class="sr-only">Type to ELIZA, then press Enter</label>
+          <input id="entry" name="entry" type="text" spellcheck="false" maxlength="200" disabled />
+        </form>
       </div>
-      <p class="note">Mad Models is under construction. Milestone 0.</p>
+      <p id="spoken" class="sr-only" aria-live="polite"></p>
+      <p class="note">Mad Models is under construction. This is the real 1966 ELIZA running the DOCTOR script. Type and press Enter.</p>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

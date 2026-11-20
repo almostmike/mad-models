@@ -110,7 +110,7 @@ A **faithful JavaScript port of the 1966 algorithm** running the **original DOCT
 - **Sources:**
   - Weizenbaum, J. (1966), "ELIZA — A Computer Program for the Study of Natural Language Communication Between Man and Machine," *CACM* 9(1). It includes the DOCTOR script and a sample conversation.
   - The original MAD-SLIP source recovered from the MIT archives (ELIZAGEN project). Released under CC0 by the Weizenbaum estate.
-  - Anthony Hay's faithful C++ reimplementation (`anthay/ELIZA`, CC0), used as the behavior reference.
+  - Anthony Hay's faithful simulation (`anthay/ELIZA`, CC0). Our engine is a TypeScript port of his JavaScript version, with a reply report added for the game's objectives.
   - The default script is the **1966 CACM** version of DOCTOR. The recovered listing differs slightly, and our acceptance test is the paper's conversation.
   - The "ELIZA Reanimated" project (2025), which ran the original on an emulated IBM 7094 CTSS.
 - **Must implement:**
@@ -503,7 +503,7 @@ mad-models/
 | # | Milestone | Done when |
 |---|---|---|
 | **M0** | **Foundations and verification** | Public repo created; Pages deploys a "hello" build. Every ⚠️ item checked (model conversions, sizes, licenses, 2741 details, Suno terms). |
-| **M1** | **ELIZA engine** | Port complete. Reproduces the 1966 sample conversation exactly in CI. |
+| **M1** | **ELIZA engine** ✅ 2026-11-20 | Port complete. Reproduces the 1966 sample conversation exactly in CI. |
 | **M2** | **Level 1 playable (grey-box)** | Paper terminal with typing, printing and SFX. Objectives, placards, save. Placeholder art. |
 | **M3** | **Model runtime** | Worker loads GPT-1 and GPT-2. Streaming, capability check, filters, Archive Mode with recorded outputs. |
 | **M4** | **Levels 2 and 3 playable (grey-box)** | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
