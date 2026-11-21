@@ -147,12 +147,14 @@ kbd {
 
 .title-card h1 {
   font-weight: 800;
-  font-size: clamp(48px, 12vw, 92px);
-  line-height: 0.95;
+  font-size: clamp(30px, 9vw, 64px);
+  line-height: 0.98;
   letter-spacing: -0.02em;
   margin: 0 0 28px;
   color: var(--cream-ui);
 }
+
+.title-card h1 .amp { color: var(--mustard); font-weight: 600; }
 
 .lede { color: #e2d6bf; line-height: 1.55; margin: 0 auto 28px; max-width: 42ch; }
 

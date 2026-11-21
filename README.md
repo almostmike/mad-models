@@ -1,10 +1,10 @@
-# Mad Models
+# Prompt & Circumstance
 
-**A short history of prompting, in three machines.** A free browser game, about 20 minutes long.
+**A short history of prompting, in three machines.** A free browser game, about 20 minutes long. (Working title: Mad Models, which is why the repo and web address still use it.)
 
 ### ▶ [Play it](https://almostmike.github.io/mad-models/)
 
-[![Mad Models: a 1966 office with an IBM typewriter terminal](public/og.jpg)](https://almostmike.github.io/mad-models/)
+[![Prompt & Circumstance: a 1966 office with an IBM typewriter terminal](public/og.jpg)](https://almostmike.github.io/mad-models/)
 
 You sit down at three real machines from three eras of AI and learn to get something out of each one:
 
@@ -72,4 +72,4 @@ npm test
 
 ## License
 
-The code is MIT (see [LICENSE](LICENSE)). The scene images, music and voice clips are not covered by it. They were made with AI tools under those tools' terms; see [docs/CREDITS.md](docs/CREDITS.md). Mad Models is non-commercial.
+The code is MIT (see [LICENSE](LICENSE)). The scene images, music and voice clips are not covered by it. They were made with AI tools under those tools' terms; see [docs/CREDITS.md](docs/CREDITS.md). Prompt & Circumstance is non-commercial.

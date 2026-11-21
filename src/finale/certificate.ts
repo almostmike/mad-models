@@ -161,7 +161,7 @@ export function drawCertificate(canvas: HTMLCanvasElement, info: CertInfo): void
   ink(`TIME: ${formatTime(info.playMs)}`, L + 20, foot, 28, { bold: true });
   ink('SEE YOU IN 2022.', R - 20, foot, 28, { bold: true, align: 'right' });
   ink('-'.repeat(52), C, CERT_H - 190, 24, { align: 'center' });
-  ink('MAD MODELS · A SHORT HISTORY OF PROMPTING', C, CERT_H - 140, 24, { align: 'center' });
+  ink('PROMPT & CIRCUMSTANCE · A HISTORY OF PROMPTING', C, CERT_H - 140, 24, { align: 'center' });
   ink(SITE.toUpperCase(), C, CERT_H - 100, 22, { align: 'center', color: '#5b4f40' });
 }
 
@@ -228,7 +228,7 @@ export async function showCertificate(app: HTMLElement, data: SaveData, persist:
   });
 
   const toBlob = () => new Promise<Blob>((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('no image'))), 'image/png'));
-  const filename = 'mad-models-certificate.png';
+  const filename = 'prompt-and-circumstance-certificate.png';
   el.querySelector('.cert-dl')!.addEventListener('click', async () => {
     const url = URL.createObjectURL(await toBlob());
     const a = document.createElement('a');
@@ -236,7 +236,7 @@ export async function showCertificate(app: HTMLElement, data: SaveData, persist:
     a.download = filename;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
-    status.textContent = 'Saved as mad-models-certificate.png.';
+    status.textContent = `Saved as ${filename}.`;
   });
   const probe = new File([new Blob()], filename, { type: 'image/png' });
   if (navigator.canShare?.({ files: [probe] })) {
@@ -244,7 +244,7 @@ export async function showCertificate(app: HTMLElement, data: SaveData, persist:
     share.addEventListener('click', async () => {
       try {
         const file = new File([await toBlob()], filename, { type: 'image/png' });
-        await navigator.share({ files: [file], title: 'Mad Models', text: 'I prompted ELIZA, GPT-1 and GPT-2.' });
+        await navigator.share({ files: [file], title: 'Prompt & Circumstance', text: 'I prompted ELIZA, GPT-1 and GPT-2.' });
       } catch {
         // cancelled
       }

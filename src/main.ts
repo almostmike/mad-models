@@ -119,7 +119,7 @@ function titleScreen() {
   t.innerHTML = `
     <div class="title-card">
       <p class="eyebrow">A short history of prompting, in three machines</p>
-      <h1>Mad Models</h1>
+      <h1>Prompt <span class="amp">&amp;</span> Circumstance</h1>
       <ol class="eras"></ol>
       <div class="title-actions"></div>
       <p class="fine">Best with sound. Desktop recommended. Ages 13+.</p>

@@ -1,4 +1,4 @@
-# Mad Models — Product Requirements Document
+# Prompt & Circumstance (formerly Mad Models) — Product Requirements Document
 
 *Working title. Version 1.0, drafted 2026-11-20.*
 
@@ -535,7 +535,7 @@ Grey-box first means the game is fun before it's pretty. The art pass then drops
 
 ## 20. Open items
 
-1. **Title.** Launched as "Mad Models". Alternatives if it ever changes: *Prompt & Circumstance*, *Before the Chat*, *Ghost in the Teletype*.
+1. ~~**Title.**~~ Decided 2026-11-20: **Prompt & Circumstance**. "Mad Models" was the working title; the repo, folder and web address keep it.
 2. ~~**GitHub account/org and repo name** for the public repo.~~ Decided: github.com/almostmike/mad-models.
 3. ~~**Player name** on the certificate: optional free-text field, or skip it?~~ Decided in M6: optional free-text field, kept only in this browser.
 4. **Sandbox mode** after completion: later. The finale's free-text prompt and the unlisted Model Lab (`/lab.html`) cover it for now.
