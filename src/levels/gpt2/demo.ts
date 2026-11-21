@@ -5,7 +5,8 @@ import type { ArchiveEntry } from '../../engine/models/archive';
 import type { Generation } from '../../engine/models/client';
 import { redact } from '../../engine/models/safety';
 import { generator } from '../../game/generator';
-import type { Example } from '../types';
+import type { Example, Placard } from '../types';
+import { showPlacard } from '../../ui/overlays';
 import { BEATS, fillHint, type Beat, type Team } from './content';
 
 export interface DemoRun {
@@ -91,6 +92,8 @@ export class Demo {
     this.prompt.hidden = archive;
     this.card.hidden = !archive;
     this.temp.addEventListener('input', () => (this.tempOut.value = Number(this.temp.value).toFixed(1)));
+    this.prompt.addEventListener('input', () => (this.genBtn.textContent = 'Generate'));
+    this.temp.addEventListener('input', () => (this.genBtn.textContent = 'Generate'));
     this.prompt.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -123,12 +126,12 @@ export class Demo {
 
   /** Show a beat: its card, starter text, temperature and (archive) prompt cards. */
   showBeat(beat: Beat, team: Team, hintLevel: number, canSkip: boolean, index: number): void {
-    const level = Math.max(1, Math.min(2, hintLevel));
+    const level = Math.max(0, Math.min(2, hintLevel));
     this.beatBox.innerHTML = `
       <p class="beat-title">${esc(beat.title)}</p>
       <p class="beat-setup">${esc(beat.setup)} <strong>${esc(beat.goal)}</strong></p>
       <p class="beat-tech">${esc(beat.hints[0])}</p>
-      <p class="beat-hint"><span aria-hidden="true">💡</span> ${esc(fillHint(beat.hints[level], team))}</p>
+      ${level > 0 ? `<p class="beat-hint"><span aria-hidden="true">💡</span> ${esc(fillHint(beat.hints[level], team))}</p>` : ''}
       <div class="beat-actions">
         ${level < 2 ? '<button type="button" class="beat-reveal">Show me</button>' : '<button type="button" class="beat-try">Try it</button>'}
         ${canSkip ? '<button type="button" class="beat-skip">Skip this beat</button>' : ''}
@@ -148,6 +151,7 @@ export class Demo {
 
   /** Reset the editor for a new beat. */
   startBeat(beat: Beat, team: Team): void {
+    this.genBtn.textContent = 'Generate';
     this.prompt.value = fillHint(beat.starter(team), team);
     this.temp.value = String(beat.startTemp);
     this.tempOut.value = beat.startTemp.toFixed(1);
@@ -176,6 +180,31 @@ export class Demo {
 
   focus(): void {
     (this.archive ? this.card : this.prompt).focus({ preventScroll: true });
+  }
+
+  /** After a passed beat: keep GPT-2's text on screen until the player moves on. */
+  afterPass(placard: Placard, nextLabel: string): Promise<void> {
+    let read = false;
+    const row = document.createElement('div');
+    row.className = 'pass-actions';
+    row.innerHTML = `<button type="button" class="pa-what">✦ What happened?</button><button type="button" class="pa-next"></button>`;
+    row.querySelector('.pa-next')!.textContent = nextLabel;
+    this.verdict.after(row);
+    this.genBtn.disabled = true;
+    row.querySelector('.pa-what')!.addEventListener('click', async () => {
+      read = true;
+      await showPlacard(placard, 'Close');
+    });
+    const next = row.querySelector<HTMLButtonElement>('.pa-next')!;
+    next.focus({ preventScroll: true });
+    return new Promise((resolve) => {
+      next.addEventListener('click', async () => {
+        if (!read) await showPlacard(placard);
+        row.remove();
+        this.genBtn.disabled = !this.ready;
+        resolve();
+      });
+    });
   }
 
   /** Fill in a worked example, ready to generate. */
@@ -211,6 +240,8 @@ export class Demo {
   private async generate(): Promise<void> {
     if (!this.ready || this.stop) return;
     const card = this.archive ? this.cardsById.get(this.card.value) : undefined;
+    // GPT-2 saw mostly straight quotes on the web; curly ones (from autocorrect) throw it off.
+    if (!card) this.prompt.value = straightQuotes(this.prompt.value);
     const prompt = card ? card.prompt : this.prompt.value;
     if (!prompt.trim()) return;
     const temperature = Number(this.temp.value);
@@ -245,6 +276,12 @@ export class Demo {
     this.el.querySelector('.demo-said')!.textContent = `GPT-2 continued: ${text}`;
     this.genBtn.disabled = false;
     this.stopBtn.disabled = true;
+    this.genBtn.textContent = 'Generate again';
     this.onRun({ prompt, output: text, temperature, redacted, gen });
   }
+}
+
+/** Curly quotes to straight ones, as the 2019 web mostly had them. */
+export function straightQuotes(text: string): string {
+  return text.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
 }

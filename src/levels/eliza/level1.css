@@ -144,7 +144,8 @@
 .notebook header { display: flex; justify-content: space-between; align-items: baseline; padding-left: 22px; }
 .notebook h2 { font-size: 17px; margin: 0; font-weight: 800; letter-spacing: 0.02em; }
 .notebook .count { font-family: var(--ui-narrow); font-size: 13px; color: var(--teal); }
-.nb-intro { margin: 4px 0 12px 22px; font-size: 13px; color: #6b5e4c; }
+.nb-intro { margin: 4px 0 4px 22px; font-size: 13px; color: #6b5e4c; }
+.nb-rule { margin: 0 0 12px 22px; font-size: 13px; font-weight: 700; color: var(--teal); }
 .notebook h3 { font-family: var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin: 18px 0 6px 22px; color: #6b5e4c; }
 
 .objectives { list-style: none; margin: 0; padding: 0; }

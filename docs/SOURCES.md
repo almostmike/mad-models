@@ -62,6 +62,7 @@ Checked on 2026-11-20.
 | Claim | Source |
 |---|---|
 | GPT-1 was pre-trained to predict the next word of books | GPT-1 paper |
+| The plan was to fine-tune it for language tasks; the notebook is the raw pretrained model | GPT-1 paper and blog |
 | 40,478 tokens in its vocabulary | Hugging Face config for openai-gpt |
 | "the sea" vs. a primed opening; GPT-1's "portugal" and the 2.0-temperature babble sample | In our tests (VERIFICATION.md, Archive Mode recordings) |
 | BookCorpus: about 7,000 books, heavy on adventure, fantasy and romance; lowercased and split at punctuation before training | GPT-1 paper; BookCorpus; openai-gpt tokenizer |
@@ -85,6 +86,8 @@ Checked on 2026-11-20.
 | The unicorn news story | GPT-2 blog |
 | Top-k sampling with k = 40 in OpenAI's own samples | gpt-2-output-dataset; gpt-2 README |
 | Summaries by appending "TL;DR:" were OpenAI's own method in the paper | GPT-2 paper, section 3.6 |
+| Those summaries only just beat picking three random sentences on the paper's scores, and often mixed up details | GPT-2 paper, section 3.6 |
+| The unicorn story was a showcase sample; the full model was held back over misuse concerns (fake news, spam, impersonation) | GPT-2 blog |
 | Staged release dates and sizes; 124M is the size you play; "no strong evidence of misuse" | GPT-2 1.5B release post; Release Strategies report |
 | Weak vs. strong prompt success rates; GPT-2's babble and "share the story through Facebook" samples | In our tests (VERIFICATION.md) |
 

@@ -11,6 +11,7 @@ import type { ObjectiveBase } from '../types';
 import { BEATS, BOSS_INTRO, DAMAGE, GPT2_LESSON, judge, PARODY_NOTE, SLACK_2019, STAGED_RELEASE, type Team } from './content';
 import { Demo, type DemoRun } from './demo';
 import { showFanfic } from './fanfic';
+import { factCheck } from './factcheck';
 import { L3_SCENE } from '../scenes';
 
 /** The beats double as notebook objectives so the shared frame tracks them. */
@@ -102,6 +103,11 @@ export class Level3 {
     this.hooks.data.level3.team = this.team;
     this.hooks.persist();
     setTimeout(() => chatToast(SLACK_2019.intro.from, SLACK_2019.intro.text), 800);
+    // Every beat already cleared (e.g. a reload just before the chapter): finish up.
+    if (this.beatIndex < 0) {
+      await this.finale();
+      return;
+    }
     this.refresh(true);
     this.frame.photo.hotspotButton('monitor')?.focus({ preventScroll: true });
   }
@@ -122,7 +128,7 @@ export class Level3 {
     if (i < 0) return;
     const beat = BEATS[i];
     if (newBeat) this.demo.startBeat(beat, this.team);
-    this.demo.showBeat(beat, this.team, this.revealed ? 2 : 1 + this.fails, this.fails >= SKIP_AFTER_FAILS, i);
+    this.demo.showBeat(beat, this.team, this.revealed ? 2 : Math.min(2, this.fails), this.fails >= SKIP_AFTER_FAILS, i);
     this.demo.updateHud(this.coherence, this.sparkle, SPARKLE_MAX);
   }
 
@@ -167,8 +173,12 @@ export class Level3 {
       this.hooks.data.level3.chapter[i] = beat.id === 'tldr' ? `TL;DR: ${firstSentences(r.output, 2)}` : passage(r.prompt, r.output);
       this.fails = 0;
       this.demo.updateHud(this.coherence, this.sparkle, SPARKLE_MAX);
-      await wait(1400);
-      await this.frame.award(beat.id);
+      await this.frame.award(beat.id, 'done', true);
+      if (beat.id === 'tldr') {
+        await wait(900);
+        await factCheck(r.prompt, r.output);
+      }
+      await this.demo.afterPass(beat.placard, i === BEATS.length - 1 ? 'Finish the chapter →' : 'Next beat →');
       await this.advance();
       return;
     }

@@ -51,6 +51,7 @@ export class Level2 {
     };
     this.frame.onProp = (id) => void this.prop(id);
     this.frame.onSkipped = () => void this.maybeFinish();
+    this.frame.onMoveOn = () => void this.maybeFinish(true);
     this.frame.onTry = (o) => {
       if (o.example) this.book.suggest(o.example);
     };
@@ -70,7 +71,7 @@ export class Level2 {
     sfx.playMusic(MUSIC.lofi2018);
     void this.loadModel();
     await narrate(
-      'San Francisco, June 2018. A research startup in the Mission: exposed brick, standing desks, a fridge full of LaCroix. This week the team trained a new kind of language model on 7,000 self-published novels. Nobody has quite figured out what it’s for.',
+      'San Francisco, June 2018. A research startup in the Mission: exposed brick, standing desks, a fridge full of LaCroix. This week the team trained a new kind of language model on 7,000 self-published novels. The plan is to fine-tune it for tasks like answering questions. Today you get the raw model, before any of that.',
       'Look around',
     );
     setTimeout(() => chatToast(SLACK.arrive.from, SLACK.arrive.text), 1200);
@@ -132,8 +133,10 @@ export class Level2 {
     if (!(await this.maybeFinish())) this.book.focus();
   }
 
-  private async maybeFinish(): Promise<boolean> {
+  private async maybeFinish(force = false): Promise<boolean> {
     if (this.frame.ending || !this.frame.done) return false;
+    if (!force && !(await this.frame.readyToMoveOn())) return false;
+    await this.frame.wrapUp();
     this.frame.ending = true;
     this.frame.render();
     await wait(1200);

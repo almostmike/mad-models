@@ -209,8 +209,16 @@ export class Level1 {
     this.renderNotebook();
     this.notebook.flash();
     caption(how === 'done' ? `Notebook: “${o.title}” ✓` : `Notebook: “${o.title}” skipped`);
-    if (how === 'skipped') await narrate(o.explain, 'Show me how it works');
-    await showPlacard(o.placard);
+    if (how === 'skipped') {
+      await narrate(o.explain, 'Show me how it works');
+      await showPlacard(o.placard);
+    } else if (id === 'script') {
+      // The script was just read in full; its card follows straight on.
+      await showPlacard(o.placard);
+    } else {
+      // Let the player read ELIZA's reply first: the card waits behind "What happened?".
+      this.hintBar.discover(o.placard);
+    }
   }
 
   private async skipObjective(id: string): Promise<void> {
@@ -285,7 +293,7 @@ export class Level1 {
     const hintLevel = hintTier(this.turnsSinceProgress, since);
     const canSkip = !this.ending && (this.turnsSinceProgress >= SKIP_AFTER_TURNS || since >= SKIP_AFTER_MS);
     const placards = ALL_PLACARDS.filter((p) => this.hooks.data.placards.includes(p.id));
-    this.hintBar.render({ objectives: this.state.objectives, level: hintLevel, canSkip });
+    this.hintBar.render({ objectives: this.state.objectives, level: hintLevel, canSkip, needed: NEEDED });
     if (this.ending) this.hintBar.el.hidden = true;
     this.notebook.render({
       objectives: this.state.objectives,
@@ -296,8 +304,34 @@ export class Level1 {
     });
   }
 
-  private async maybeFinish(): Promise<boolean> {
+  private keepGoing = false;
+  private moveOnBtn: HTMLButtonElement | null = null;
+
+  private async maybeFinish(force = false): Promise<boolean> {
     if (this.ending || this.cleared() < NEEDED) return false;
+    const left = OBJECTIVES.length - this.cleared();
+    if (!force && left > 0) {
+      if (this.keepGoing) return false;
+      await this.hintBar.flush();
+      const pick = await say(
+        'Lab Notebook',
+        `That’s enough to move on. There ${left === 1 ? 'is 1 more trick' : `are ${left} more tricks`} to discover here, if you want to keep experimenting.`,
+        ['Move on', 'Keep experimenting'],
+      );
+      if (pick !== 'Move on') {
+        this.keepGoing = true;
+        this.moveOnBtn = document.createElement('button');
+        this.moveOnBtn.type = 'button';
+        this.moveOnBtn.className = 'hud-btn move-on';
+        this.moveOnBtn.textContent = 'Move on →';
+        this.moveOnBtn.addEventListener('click', () => void this.maybeFinish(true));
+        this.hud.querySelector('.hud-actions')!.prepend(this.moveOnBtn);
+        this.paper.focus();
+        return false;
+      }
+    }
+    this.moveOnBtn?.remove();
+    await this.hintBar.flush();
     this.ending = true;
     this.paper.hold(true);
     this.renderNotebook();

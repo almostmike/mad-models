@@ -186,3 +186,16 @@ Feedback: "a little difficult". Changes:
 - **Sideways scroll:** focusing the typing line could scroll the whole level sideways, because the closed notebook sits off-screen. Fixed with `overflow: clip`.
 - **Archive Mode text box:** the free-text box showed beside the prompt-card picker, because a `display` rule beat `hidden`.
 - **Replaying a level** re-locked later eras on the title screen. Finished eras now stay playable.
+
+# Post-launch tweaks from an outside play-test (2026-11-20)
+
+Another model played the whole game in live mode and reported back. The changes:
+
+- **Hints start lighter.** The hint strip and the boss beat card open with the goal and a teaser. A clearer hint comes after one miss and the explicit one after two. "Show me" works from the start. The summary beat no longer names "TL;DR" in its title.
+- **Output first, placard second.** New discoveries wait behind "What happened?", so placards no longer cover the reply being read. Unread placards are shown before the story moves on. In the boss, GPT-2's passage stays on screen until "Next beat". In the finale, the explanation waits behind a button.
+- **Progress is explicit.** The hint strip and notebook say "any 4 of 6". At the threshold, players can keep experimenting, and a "Move on" button stays in the HUD.
+- **The player judges the model once.** After the summary beat, a fact-check asks which words GPT-2 made up, then underlines every word that isn't in the player's story. The placard now cites the paper's finding that these summaries barely beat three random sentences.
+- **Curly quotes:** the report holds up. The check accepted them, but GPT-2 rarely saw them, so the demo now straightens quotes before generating. The failure message now says whether the format was wrong or GPT-2 wandered.
+- **History:** the boss intro no longer implies the unicorn story caused the held-back release. The 2018 narration says the plan was fine-tuning and you're using the raw pretrained model.
+- **Rerunning:** the run buttons switch to "Run again" / "Generate again" when nothing has changed, and the notebook suggests comparing two runs.
+- **Fix found on the way:** reloading after the last boss beat but before the chapter left an empty beat card. It now goes straight to the chapter.

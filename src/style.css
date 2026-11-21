@@ -347,6 +347,9 @@ kbd {
 .hb-btn:hover, .hb-open:hover { border-color: rgb(246 240 226 / 0.7); }
 .hb-primary { background: var(--mustard); border-color: var(--mustard); color: #1e160e; }
 .hb-primary:hover { background: #dcaa40; }
+.hb-news { background: #f3d79a; border-color: #f3d79a; color: #1e160e; animation: news-pulse 1.4s ease-in-out 3; }
+@keyframes news-pulse { 50% { box-shadow: 0 0 0 4px rgb(243 215 154 / 0.35); } }
+.hb-progress { display: block; font: 600 11px var(--ui-narrow); letter-spacing: 0.1em; text-transform: uppercase; color: rgb(246 240 226 / 0.6); }
 .hb-close { padding: 7px 8px; border-color: transparent; font-size: 15px; }
 .hb-open { background: rgb(18 13 8 / 0.88); border-color: rgb(200 150 46 / 0.55); }
 body:has(.hintbar:not([hidden]):not(.collapsed)) .captions { bottom: 84px; }

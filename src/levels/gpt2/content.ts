@@ -124,9 +124,13 @@ export const BEATS: Beat[] = [
     starter: () => 'Edward talked to Bella about how she smelled.',
     startTemp: 0.9,
     test: (a) =>
-      /["“]/.test(a.prompt) && quoteCount(a.output) >= 2
-        ? { pass: true, why: 'Dialogue! GPT-2 kept the conversation going.' }
-        : { pass: false, why: 'No dialogue. Show GPT-2 a conversation and leave a quote open.' },
+      !/["“]/.test(a.prompt)
+        ? { pass: false, why: 'Your prompt has no dialogue in it yet. Show GPT-2 a conversation in quotes.' }
+        : quoteCount(a.output) >= 2
+          ? { pass: true, why: 'Dialogue! GPT-2 kept the conversation going.' }
+          : /["“]\s*$/.test(a.prompt)
+            ? { pass: false, why: 'Your format is right, but GPT-2 wandered off this time. Generate again.' }
+            : { pass: false, why: 'Close. End on an open quote mark, so somebody has to speak next.' },
     placard: {
       id: 'gpt2-formatting',
       kicker: 'How GPT-2 works · 2 of 5',
@@ -222,7 +226,7 @@ export const BEATS: Beat[] = [
       temperature: 0.7,
       card: 'tldr-strong',
     }),
-    title: 'Beat 5 · Finishing blow: TL;DR',
+    title: 'Beat 5 · Finishing blow: the summary',
     setup: 'Four books of brooding. Make GPT-2 sum it up.',
     goal: 'Get a summary without asking for one.',
     hints: [
@@ -233,9 +237,9 @@ export const BEATS: Beat[] = [
     starter: () => 'Summarize the story.',
     startTemp: 0.7,
     test: (a) => {
-      if (!/TL;?DR\s*:?\s*$/i.test(a.prompt.trim())) return { pass: false, why: 'GPT-2 can’t follow "summarize". End your prompt with "TL;DR:".' };
+      if (!/TL;?DR\s*:?\s*$/i.test(a.prompt.trim())) return { pass: false, why: 'GPT-2 can’t follow "summarize". What do people online write right before a summary?' };
       return lexiconHits(a.output, STORY).length >= 1 && words(a.output).length <= 80
-        ? { pass: true, why: 'A summary! The internet taught it that.' }
+        ? { pass: true, why: 'A summary, of sorts! The internet taught it that. Now check its work.' }
         : { pass: false, why: 'That\u2019s not about the story. Generate again: it often takes a couple of tries.' };
     },
     placard: {
@@ -244,7 +248,7 @@ export const BEATS: Beat[] = [
       title: 'TL;DR: the internet’s summary button',
       body: [
         'Nobody trained GPT-2 to summarize. But on Reddit, people end long posts with "TL;DR:" and a summary. So writing "TL;DR:" makes GPT-2 summarize.',
-        'This was real: OpenAI’s GPT-2 paper got its summaries exactly this way, by adding "TL;DR:" after an article.',
+        'This was real: OpenAI’s GPT-2 paper got its summaries exactly this way, by adding "TL;DR:" after an article. They weren’t good: on the paper’s scores they only just beat picking three random sentences, and they often mixed up details. A model can sound sure and still make things up.',
       ],
       thenNow: 'Then: magic phrases. Now: you just ask, but magic phrases still work surprisingly often.',
     },
@@ -268,7 +272,7 @@ export const BOSS_INTRO: Placard = {
   kicker: 'February 14, 2019 · Boss',
   title: 'GPT-2: NEW LOSS',
   body: [
-    'OpenAI has a new model. It wrote a news story about unicorns in the Andes so convincing that they announced they won’t release the full version.',
+    'OpenAI has a new model. Its showcase sample, a fake news story about unicorns in the Andes, is all over the internet. Worried about misuse like fake news and spam, OpenAI is releasing only the smallest version for now.',
     'There’s another problem. Somewhere in its 8 million web pages it found 2008-era vampire fanfiction, and now it can’t stop. Co-write Chapter 1 with it before it wanders off into the internet.',
   ],
 };

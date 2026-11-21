@@ -33,6 +33,7 @@ export class Notebook {
     this.el.innerHTML = `
       <header><h2>Lab Notebook</h2><span class="count"></span></header>
       <p class="nb-intro"></p>
+      <p class="nb-rule"></p>
       <ol class="objectives"></ol>
       <h3>Collected</h3>
       <ul class="museum"></ul>`;
@@ -71,6 +72,9 @@ export class Notebook {
   render(s: NotebookState): void {
     const done = this.objectives.filter((o) => !o.hidden && s.objectives[o.id]).length;
     this.count.textContent = `${Math.min(done, s.needed)} of ${s.needed}`;
+    const visible = this.objectives.filter((o) => !o.hidden).length;
+    this.el.querySelector('.nb-rule')!.textContent =
+      s.needed >= visible ? `Find all ${visible} to move on.` : `Find any ${s.needed} of these ${visible} to move on.`;
     this.list.textContent = '';
     for (const o of this.objectives) {
       const state = s.objectives[o.id];

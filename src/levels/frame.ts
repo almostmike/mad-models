@@ -5,7 +5,7 @@
 import type { LevelState, SaveData } from '../save';
 import { HintBar } from '../ui/hintbar';
 import { Notebook } from '../ui/notebook';
-import { caption, narrate, showPlacard } from '../ui/overlays';
+import { caption, narrate, say, showPlacard } from '../ui/overlays';
 import { PhotoScene, type PhotoSceneConfig } from '../ui/photo-scene';
 import type { ObjectiveBase, Placard } from './types';
 
@@ -25,14 +25,14 @@ export interface FrameOptions {
   hintBar?: boolean;
 }
 
-export const TURNS_PER_HINT = 2;
+export const TURNS_PER_HINT = 1;
 export const SKIP_AFTER_TURNS = 5;
 export const SKIP_AFTER_MS = 2 * 60 * 1000;
 const MS_PER_HINT = 45 * 1000;
 
-/** Hint tier for the notebook and hint strip: starts clear, turns explicit when stuck. */
+/** Hint tier: 0 a teaser, 1 clear, 2 explicit. Rises with each miss ("Show me" skips ahead). */
 export function hintTier(turnsSinceProgress: number, msSinceProgress: number): number {
-  return 1 + Math.max(Math.floor(turnsSinceProgress / TURNS_PER_HINT), Math.floor(msSinceProgress / MS_PER_HINT));
+  return Math.max(Math.floor(turnsSinceProgress / TURNS_PER_HINT), Math.floor(msSinceProgress / MS_PER_HINT));
 }
 
 export class LevelFrame {
@@ -142,8 +142,12 @@ export class LevelFrame {
     return this.turnsSinceProgress;
   }
 
-  /** Mark an objective and show its placard. */
-  async award(id: string, how: 'done' | 'skipped' = 'done'): Promise<void> {
+  /**
+   * Mark an objective. A discovery's placard waits behind "What happened?"
+   * so the player can read the output first; a skip explains itself at once.
+   * With `quiet`, the level shows the placard itself.
+   */
+  async award(id: string, how: 'done' | 'skipped' = 'done', quiet = false): Promise<void> {
     const o = this.opts.objectives.find((x) => x.id === id);
     if (!o || this.state.objectives[id]) return;
     this.state.objectives[id] = how;
@@ -151,8 +155,48 @@ export class LevelFrame {
     this.attempt(true);
     this.notebook.flash();
     caption(how === 'done' ? `Notebook: “${o.title}” ✓` : `Notebook: “${o.title}” skipped`);
-    if (how === 'skipped') await narrate(o.explain, 'Show me how it works');
-    await showPlacard(o.placard);
+    if (how === 'skipped') {
+      await narrate(o.explain, 'Show me how it works');
+      await showPlacard(o.placard);
+    } else if (this.hintBar) this.hintBar.discover(o.placard);
+    else if (!quiet) await showPlacard(o.placard);
+  }
+
+  private keepGoing = false;
+  private moveOnBtn: HTMLButtonElement | null = null;
+  /** Called when the player chooses to move on after experimenting. */
+  onMoveOn: () => void = () => {};
+
+  /**
+   * Enough found? Finish at once if everything's found; otherwise offer to
+   * keep experimenting (once), leaving a "Move on" button in the HUD.
+   */
+  async readyToMoveOn(): Promise<boolean> {
+    if (this.ending || !this.done) return false;
+    const left = this.opts.objectives.filter((o) => !o.hidden && !this.state.objectives[o.id]).length;
+    if (left === 0) return true;
+    if (this.keepGoing) return false;
+    await this.hintBar?.flush();
+    const pick = await say(
+      'Lab Notebook',
+      `That’s enough to move on. There ${left === 1 ? 'is 1 more trick' : `are ${left} more tricks`} to discover here, if you want to keep experimenting.`,
+      ['Move on', 'Keep experimenting'],
+    );
+    if (pick === 'Move on') return true;
+    this.keepGoing = true;
+    this.moveOnBtn = document.createElement('button');
+    this.moveOnBtn.type = 'button';
+    this.moveOnBtn.className = 'hud-btn move-on';
+    this.moveOnBtn.textContent = 'Move on →';
+    this.moveOnBtn.addEventListener('click', () => this.onMoveOn());
+    this.actions.prepend(this.moveOnBtn);
+    return false;
+  }
+
+  /** Before the story moves on: read anything unread, drop the Move on button. */
+  async wrapUp(): Promise<void> {
+    this.moveOnBtn?.remove();
+    await this.hintBar?.flush();
   }
 
   /** Add a placard to the museum and save. */
@@ -171,7 +215,7 @@ export class LevelFrame {
     const since = performance.now() - this.lastProgress;
     const hintLevel = hintTier(this.turnsSinceProgress, since);
     const canSkip = !this.ending && (this.turnsSinceProgress >= SKIP_AFTER_TURNS || since >= SKIP_AFTER_MS);
-    this.hintBar?.render({ objectives: this.state.objectives, level: this.ending ? 1 : hintLevel, canSkip });
+    this.hintBar?.render({ objectives: this.state.objectives, level: hintLevel, canSkip, needed: this.opts.needed });
     if (this.hintBar && this.ending) this.hintBar.el.hidden = true;
     this.notebook.render({
       objectives: this.state.objectives,

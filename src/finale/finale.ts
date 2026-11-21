@@ -70,6 +70,7 @@ export async function runFinale(app: HTMLElement, data: SaveData, persist: () =>
     </div>
     <p class="sr-only fin-live" aria-live="polite"></p>
     <footer class="fin-foot" hidden>
+      <button type="button" class="btn fin-what">✦ What does this show?</button>
       <button type="button" class="btn fin-again">Try another prompt</button>
       <button type="button" class="btn primary fin-next">What happened next →</button>
     </footer>`;
@@ -190,13 +191,10 @@ export async function runFinale(app: HTMLElement, data: SaveData, persist: () =>
     chips.forEach((c) => (c.disabled = false));
     foot.hidden = false;
     reveal(foot);
-    if (rounds === 1) {
-      await wait(900);
-      if (!data.placards.includes(SAME_PROMPT.id)) data.placards.push(SAME_PROMPT.id);
-      persist();
-      await showPlacard(SAME_PROMPT);
-    }
-    el.querySelector<HTMLButtonElement>('.fin-next')!.focus({ preventScroll: true });
+    if (!data.placards.includes(SAME_PROMPT.id)) data.placards.push(SAME_PROMPT.id);
+    persist();
+    // Let the three answers breathe: the explanation waits behind a button.
+    el.querySelector<HTMLButtonElement>('.fin-what')!.focus({ preventScroll: true });
   }
 
   return new Promise((resolve) => {
@@ -207,7 +205,13 @@ export async function runFinale(app: HTMLElement, data: SaveData, persist: () =>
       chips.forEach((x) => x.setAttribute('aria-pressed', 'false'));
       (live ? input : chips[0]).focus();
     });
-    el.querySelector('.fin-next')!.addEventListener('click', () => {
+    let read = false;
+    el.querySelector('.fin-what')!.addEventListener('click', async () => {
+      read = true;
+      await showPlacard(SAME_PROMPT, 'Close');
+    });
+    el.querySelector('.fin-next')!.addEventListener('click', async () => {
+      if (!read) await showPlacard(SAME_PROMPT);
       el.remove();
       resolve();
     });

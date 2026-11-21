@@ -72,3 +72,18 @@
 @media (max-width: 760px) {
   .demo-out { max-height: none; }
 }
+
+/* ---------- after a passed beat ---------- */
+.pass-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: -4px 0 10px; }
+.pass-actions button { font: 600 12px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 3px; cursor: pointer; border: 1px solid #8e3d6b; background: #fff; color: #8e3d6b; }
+.pass-actions .pa-next { background: #8e3d6b; color: #fff; }
+
+/* ---------- fact-check ---------- */
+.factcheck { width: min(620px, 100%); }
+.fc-summary { font: 17px/2 Georgia, "Times New Roman", serif; background: #fff7fb; border-left: 4px solid #8e3d6b; padding: 10px 14px; }
+.fc-word { all: unset; cursor: pointer; padding: 0 2px; border-radius: 3px; }
+.fc-word:hover { background: rgb(142 61 107 / 0.12); }
+.fc-word:focus-visible { outline: 2px solid #8e3d6b; }
+.fc-word[aria-pressed="true"] { background: #f3d79a; }
+.fc-word.invented { text-decoration: underline wavy #c0392b 2px; text-underline-offset: 4px; }
+.fc-result { min-height: 1.4em; line-height: 1.5; }

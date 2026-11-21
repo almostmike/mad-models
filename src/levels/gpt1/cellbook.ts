@@ -46,7 +46,7 @@ export class Cellbook {
     this.el.innerHTML = `
       <div class="nb-bar"><span class="nb-logo">◉ notebook</span><span class="nb-file">gpt_117M_sampling.ipynb</span><span class="nb-kernel">Python 3 <i class="dot"></i></span></div>
       <div class="nb-scroll">
-        <div class="nb-md"><h3>GPT-1 (117M) · sampling</h3><p>Write the start of some text. The model writes what comes next. Context window: 512 tokens.${archive ? ' <strong>Archive Mode:</strong> pick a prompt card; outputs are real recordings from this model.' : ''}</p></div>
+        <div class="nb-md"><h3>GPT-1 (117M) · sampling</h3><p>The pretrained model, before any fine-tuning: it has only learned to continue text. Write the start of some text and it writes what comes next. Context window: 512 tokens. <em>Tip: run the same prompt twice, or at two temperatures, and compare.</em>${archive ? ' <strong>Archive Mode:</strong> pick a prompt card; outputs are real recordings from this model.' : ''}</p></div>
         <div class="cells"></div>
         <div class="cell active">
           <div class="in">In [ ]:</div>
@@ -82,16 +82,25 @@ export class Cellbook {
 
     this.prompt.hidden = archive;
     this.card.hidden = !archive;
-    this.temp.addEventListener('input', () => (this.tempOut.value = Number(this.temp.value).toFixed(1)));
+    this.temp.addEventListener('input', () => {
+      this.tempOut.value = Number(this.temp.value).toFixed(1);
+      this.syncRunLabel();
+    });
     this.len.addEventListener('input', () => (this.lenOut.value = this.len.value));
-    this.prompt.addEventListener('input', () => this.updateContext());
+    this.prompt.addEventListener('input', () => {
+      this.updateContext();
+      this.syncRunLabel();
+    });
     this.prompt.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && e.shiftKey) {
         e.preventDefault();
         void this.run();
       } else if (e.key.length === 1) sfx.tap();
     });
-    this.card.addEventListener('change', () => this.applyCard());
+    this.card.addEventListener('change', () => {
+      this.applyCard();
+      this.syncRunLabel();
+    });
     this.runBtn.addEventListener('click', () => void this.run());
     this.stopBtn.addEventListener('click', () => this.stop?.());
     this.setReady(false);
@@ -215,7 +224,17 @@ export class Cellbook {
     this.runBtn.disabled = false;
     this.stopBtn.disabled = true;
     this.scrollToEnd();
+    this.lastRun = `${prompt}|${temperature}`;
+    this.syncRunLabel();
     this.onRun({ prompt, output: text, temperature, maxTokens, redacted, gen });
+  }
+
+  private lastRun = '';
+
+  /** "Run again" when nothing changed since the last run: same prompt, new dice. */
+  private syncRunLabel(): void {
+    const current = `${this.archive ? (this.cardsById.get(this.card.value)?.prompt ?? '') : this.prompt.value.trim()}|${Number(this.temp.value)}`;
+    this.runBtn.innerHTML = current === this.lastRun ? '↻ Run again <kbd>Shift+Enter</kbd>' : '▶ Run <kbd>Shift+Enter</kbd>';
   }
 
   private scrollToEnd(): void {
