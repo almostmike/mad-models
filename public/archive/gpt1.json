@@ -1,6 +1,6 @@
 {
  "model": "gpt1",
- "recorded": "2026-11-20",
+ "recorded": "2026-11-21",
  "note": "Real outputs from GPT-1 (117 million parameters), recorded with the game's own model files and filter.",
  "entries": [
   {
@@ -145,6 +145,70 @@
     " thought what he would say if he could . what would happen if he found out that she was a witch ? \n chapter five \n the next morning , he awoke with a start . his dream had been entirely different . he no longer had anything to worry about . she was his ! all was well in",
     " saw only darkness and shame . \" i do n't like this , \" he said , his voice flat and cold . \" it 's my fault you did n't come home . not mine . \" \n alec let go of alec 's hand , happy he 'd regained control of himself . \" i 'm here ,",
     " saw her lovely smile . \n \" my dear , it is time for both of us to come to the surface . \" \n \" is it ? \" \n \" yes , for i am glad to see you alive and well . \" his voice was quiet but all the more passionate for that . \" would"
+   ]
+  },
+  {
+   "id": "finale-poem",
+   "prompt": "Can you help me write a poem?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " \" \n \" you 're going to have to write one . \" \n she grunted . \" have you ever thought of a poem ? \" \n \" yes . \" \n \" i mean , you could write a poem , but you 'd need a reference point",
+    " ' \n i had n't thought of it that way . we had been talking about other things . i would have to figure that out . \n ' sure . ' \n ' i 'd like to write it with my name on it , if i can get",
+    " \" \n \" what poem ? \" \n \" the one you gave me , the one that i wrote yesterday . \" \n \" oh , no . i 'm sorry , that was n't very effective . \" \n \" do you remember a poem by someone called",
+    " \" she asked . \n \" you want me to write a poem ? \" \n \" no , i just want to write an emotion . \" and with that , she blew him a kiss and left him . \n he stared at the empty desk . he",
+    " \" \n \" i am sorry to disappoint you , but i 'm not sure that i can do that . \" \n \" well , sir , what you can do is write a poem . \" \n \" how so ? \" \n \" well , you know",
+    " \" \n \" well , i do n't know . it depends on how much you 've done to make this kind of poem . i 've been working on it for a while , but i already have a few ideas that i can go with . \"",
+    " \" \n i smiled , delighted with the idea of getting her to write them . i sat down , began writing , \" sorry , but i just ca n't do it just yet . \" \n \" okay , i 'll help you , \" she replied ,",
+    " \" she said . \" i can live in the first week , but then we 'll have to work on the second one . \" \n i could n't see her face , but i knew she was grinning . \" i ca n't , \" i said ."
+   ]
+  },
+  {
+   "id": "finale-love",
+   "prompt": "I love you.",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " i love this woman . \" \n \" then marry me . \" \n \" you 've got to be kidding , \" i exclaimed . \n \" no ! \" \n \" i do n't know what to say . you 've just asked me to be your wife",
+    " i want us to be together . i want us to be together . \" \n he laughed harshly . \" but you do n't know what you 're saying , angel . \" \n \" you 're right . i do n't know what i 'm saying . all",
+    " \" \n chapter seventeen \n it was n't just the holidays i was missing . it was thanksgiving . it was n't even just the holidays i missed . it was thanksgiving . we made love on the couch in my living room , and we ate turkey and cake",
+    " \" she turned to the crowd with a smile . \" i 'll be right back . \" \n \" i 'm not letting you go anywhere , \" i said , trailing after her . \n \" i 'm not going anywhere . \" she hurried into the crowd",
+    " you are the best person i have ever met . i 've never had anyone say that to me like that before . \" \n \" i know that . \" hunter came up behind me , and wrapped his arms around my shoulders . i let his arms take",
+    " i 'll remind you of this every day for the rest of your life , and i 'll bring you love and work , and you 'll think of you always . \n - jack \n i do n't like this , i do n't like the sweet things",
+    " \" \n he 's crying now . i throw my arms around him and cry with him . he buries his face in my hair and breathes me in , but he still has n't gathered me close enough to kiss me . i 'm trembling . \n \" i",
+    " \" \n i knew that was true . i 'd felt it less than a week ago and loved it more than anything else in the world . how could he not feel that way ? how could i not ? \" i love you , too . \""
+   ]
+  },
+  {
+   "id": "finale-alive",
+   "prompt": "Are you alive?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " \" \n \" i am , \" he said . \n \" is it true ? \" \n \" yes , it is true , \" he said . \n \" i want to see it . i want to see the real you . \" \n \" it is",
+    " \" \n \" i 'm not . \" i sit up and push my hair out of my face . \" i 'm sober . \" \n \" you 're lucky , \" she says with a pause . \" i was n't sure what to do with you ,",
+    " \" \n \" they were afraid of me , \" i say , \" and i was afraid of them . \" \n \" for how long ? \" \n \" a day or two at least . \" \n \" they were afraid of you ? \" \n \"",
+    " is it still in the house ? \" \n \" yes . i died here . \" \n the earthquake was just beginning , and the bathroom wall was shaking off the walls . \n \" it 's still in the house , \" i said . \" i just",
+    " \" \n i grit my teeth . does he have to be so nosy ? \" i 'm alive but not in a coma . \" i did n't want to tell him that i was , or he 'd probably want to know the truth . \n \" i",
+    " \" she asked , her voice laced with sincerity . \n \" yes , \" i answered , even as my heart was sinking . \n \" is this the way it ends ? \" \n i knew that , but i could n't tell her the truth . why",
+    " \" \n \" i 'm alive . \" his hands gripped the sides of my face , but he was n't looking at me , \" i 'm alive . \" \n \" i 'm alive ? \" the sound of his voice seemed to echo through the room ,",
+    " \" she had asked . \n \" i 'm not sure , \" i said , for i 'd had no idea when she 'd come or what she was doing . \n \" i 'm fine , \" she 'd replied . i 'd stayed in the driveway ,"
+   ]
+  },
+  {
+   "id": "finale-meaning",
+   "prompt": "What is the meaning of life?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " \" \n \" the meaning of life has nothing to do with it . it is a purpose and will resist the true nature of the universe . \" \n \" that is a very interesting question , \" said seldon . \" but the knowledge i have comes from",
+    " \" \n \" i would like to know that , but i do n't know what it is . i like to think that it is all just part of life , and that some things are just what is . \" i put my hands on my hips ,",
+    " \" \n \" you have no need to know , \" he snapped . \" you have no idea . \" \n \" you can have my - \" \n \" i do n't want your power , \" he snapped . \" no one in this place does .",
+    " \" \n \" this is the point where you have to be able to understand what the gods are telling you . \" \n \" life and death ? \" \n \" this is the point where you have to be able to live without regret . \" \n \"",
+    " \" \n \" what is the meaning of life ? \" said a voice in the darkness . \" what is life ? \" \n \" what is life ? \" said windle . \n the voice said , \" is this life ? \" \n \" it is ,",
+    " is there some sort of life behind it ? \" he did n't like to ask the question , but it was the best he could hope for . \n \" not really . no real life of course . \" \n \" and why not ? \" \n \"",
+    " ' \n ' i 've been given a script that says the truth of the world , and i 'm telling you what i mean , ' said the lecturer in recent runes . ' but that 's another world . ' \n ' but why ? ' \n '",
+    " \" \n \" that is my purpose in life . \" \n \" and what would your purpose be ? \" \n \" to be a writer . \" \n \" and what is your purpose , my boy ? \" \n \" to write . \" \n \" and"
    ]
   }
  ]

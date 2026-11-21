@@ -4,6 +4,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  overflow: clip;
   background: #0d0a07;
   transition: filter 0.9s;
 }
@@ -46,6 +47,8 @@
   outline: none;
 }
 .photo-scene.focused .hotspot { pointer-events: none; }
+/* Blurred behind the screen: freeze the effects so the blur isn't redrawn every frame. */
+.photo-scene.focused .fx { animation-play-state: paused; }
 
 .fx { position: absolute; pointer-events: none; }
 .fx-smoke { width: auto; mix-blend-mode: screen; }

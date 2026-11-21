@@ -1,6 +1,6 @@
 /* Level 1: Project MAC, 1966. The room is a photo (ui/photo-scene). */
 
-.level { position: absolute; inset: 0; overflow: hidden; }
+.level { position: absolute; inset: 0; overflow: hidden; overflow: clip; }
 
 /* ---------- HUD ---------- */
 
@@ -63,7 +63,8 @@
     var(--paper);
   color: rgb(var(--ink));
   font-family: var(--type);
-  font-size: clamp(14px, 2.1vw, 18px);
+  font-size: calc(clamp(14px, 2.1vw, 18px) * var(--ts, 1));
+  --line: calc(28px * var(--ts, 1));
   line-height: var(--line);
   box-shadow: 0 30px 60px rgb(0 0 0 / 0.6);
   cursor: text;

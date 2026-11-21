@@ -13,6 +13,7 @@ export interface Objective extends ObjectiveBase {
 export const OBJECTIVES: Objective[] = [
   {
     id: 'family',
+    example: { steps: ['My mother never listens to me.'] },
     title: 'Mention the family.',
     hints: [
       'Every analyst gets around to Mother eventually.',
@@ -34,6 +35,7 @@ export const OBJECTIVES: Objective[] = [
   },
   {
     id: 'reflect',
+    example: { steps: ['I am tired of my job.'] },
     title: 'Make it talk back to you.',
     hints: [
       'A good listener repeats your words back to you, slightly rearranged.',
@@ -55,6 +57,7 @@ export const OBJECTIVES: Objective[] = [
   },
   {
     id: 'memory',
+    example: { steps: ['My dog ran away.', 'Hmm.'] },
     title: 'Make it remember.',
     hints: [
       'It files away things that belong to you. Run out of things to say, and it may bring one back.',
@@ -76,6 +79,7 @@ export const OBJECTIVES: Objective[] = [
   },
   {
     id: 'stump',
+    example: { steps: ['Bananas.'] },
     title: 'Stump the doctor.',
     hints: [
       'Say something it has no rule for.',
@@ -97,6 +101,7 @@ export const OBJECTIVES: Objective[] = [
   },
   {
     id: 'machine',
+    example: { steps: ['Are you a computer?'] },
     title: 'Ask if it is a machine.',
     hints: [
       'Ask the doctor about its credentials.',
@@ -118,6 +123,7 @@ export const OBJECTIVES: Objective[] = [
   },
   {
     id: 'script',
+    tryLabel: 'Point it out',
     title: 'Read the script.',
     hints: [
       'The professor left his notes somewhere.',

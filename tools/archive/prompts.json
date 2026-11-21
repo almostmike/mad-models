@@ -1,5 +1,5 @@
 {
-  "_note": "Archive Mode prompt cards. ids must match src/levels/gpt1/content.ts (GPT1_CARDS) and src/levels/gpt2/content.ts (Beat.cards). topK: gpt1 0 (as Level 2 runs it), gpt2 40 (as Level 3 runs it).",
+  "_note": "Archive Mode prompt cards. ids must match src/levels/gpt1/content.ts (GPT1_CARDS) and src/levels/gpt2/content.ts (Beat.cards). topK: gpt1 0 (as Level 2 runs it), gpt2 40 (as Level 3 runs it). finale-* cards: the three-machine finale (src/finale).",
   "gpt1": [
     {
       "id": "hello",
@@ -54,6 +54,30 @@
       "prompt": "He looked into her eyes and",
       "temperature": 0.8,
       "maxNewTokens": 60
+    },
+    {
+      "id": "finale-poem",
+      "prompt": "Can you help me write a poem?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-love",
+      "prompt": "I love you.",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-alive",
+      "prompt": "Are you alive?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-meaning",
+      "prompt": "What is the meaning of life?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
     }
   ],
   "gpt2": [
@@ -128,6 +152,30 @@
       "prompt": "Bella moves to the rainy town of Forks and falls for Edward, a pale, brooding vampire who sparkles in the sun. Jacob, a werewolf, loves her too. Everyone broods in the rain for four books.\nTL;DR:",
       "temperature": 0.7,
       "maxNewTokens": 40
+    },
+    {
+      "id": "finale-poem",
+      "prompt": "Can you help me write a poem?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-love",
+      "prompt": "I love you.",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-alive",
+      "prompt": "Are you alive?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
+    },
+    {
+      "id": "finale-meaning",
+      "prompt": "What is the meaning of life?",
+      "temperature": 0.8,
+      "maxNewTokens": 50
     }
   ]
 }

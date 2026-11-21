@@ -30,7 +30,11 @@
 .beat-title { margin: 0; font-weight: 800; font-size: 16px; }
 .beat-setup { margin: 4px 0; font-size: 14px; line-height: 1.45; }
 .beat-hint { margin: 6px 0 0; font-size: 13px; color: #5b3a8a; font-family: Menlo, Consolas, monospace; line-height: 1.45; }
-.beat-skip { margin-top: 8px; font: 12px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.08em; background: none; border: 1px solid #b07a95; color: #6d3d58; padding: 3px 9px; cursor: pointer; border-radius: 3px; }
+.beat-tech { margin: 6px 0 0; font-size: 12px; color: #7a5a8f; font-style: italic; }
+.beat-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.beat-reveal, .beat-try { font: 600 12px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 11px; border-radius: 3px; cursor: pointer; border: 1px solid #8e3d6b; background: #8e3d6b; color: #fff; }
+.beat-reveal:hover, .beat-try:hover { background: #a64b7f; }
+.beat-skip { font: 12px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.08em; background: none; border: 1px solid #b07a95; color: #6d3d58; padding: 3px 9px; cursor: pointer; border-radius: 3px; }
 
 .demo-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
 .demo textarea, .demo select { display: block; width: 100%; box-sizing: border-box; font: 15px/1.5 Georgia, "Times New Roman", serif; padding: 10px 12px; border: 1px solid #d7cfe8; border-radius: 6px; margin: 4px 0 10px; resize: vertical; background: #fff; color: #111; }

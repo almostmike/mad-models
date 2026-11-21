@@ -24,7 +24,7 @@ const BEAT_OBJECTIVES: ObjectiveBase[] = BEATS.map((b) => ({
 }));
 
 const SPARKLE_MAX = 30;
-const SKIP_AFTER_FAILS = 3;
+const SKIP_AFTER_FAILS = 2;
 
 export interface Level3Hooks {
   data: SaveData;
@@ -39,6 +39,8 @@ export class Level3 {
   private coherence = 100;
   private sparkle = 0;
   private fails = 0;
+  /** The player asked for the explicit hint on this beat. */
+  private revealed = false;
   private team: Team = 'edward';
   private toldDerail = false;
 
@@ -55,6 +57,7 @@ export class Level3 {
       data: hooks.data,
       persist: hooks.persist,
       sitLabel: 'Sit at the demo machine',
+      hintBar: false,
     });
     this.demo = new Demo(!generator.live);
     this.frame.stage.appendChild(this.demo.el);
@@ -66,6 +69,10 @@ export class Level3 {
     this.frame.onSkipped = () => void this.advance();
     this.demo.onRun = (r) => void this.afterRun(r);
     this.demo.onSkip = () => void this.skipBeat();
+    this.demo.onReveal = () => {
+      this.revealed = true;
+      this.refresh(false);
+    };
   }
 
   get el(): HTMLDivElement {
@@ -115,7 +122,7 @@ export class Level3 {
     if (i < 0) return;
     const beat = BEATS[i];
     if (newBeat) this.demo.startBeat(beat, this.team);
-    this.demo.showBeat(beat, this.team, Math.floor(this.fails / 1.5), this.fails >= SKIP_AFTER_FAILS, i);
+    this.demo.showBeat(beat, this.team, this.revealed ? 2 : 1 + this.fails, this.fails >= SKIP_AFTER_FAILS, i);
     this.demo.updateHud(this.coherence, this.sparkle, SPARKLE_MAX);
   }
 
@@ -197,6 +204,7 @@ export class Level3 {
 
   private async advance(): Promise<void> {
     this.fails = 0;
+    this.revealed = false;
     if (this.beatIndex >= 0) {
       this.refresh(true);
       this.demo.focus();

@@ -6,6 +6,7 @@ import { redact } from '../../engine/models/safety';
 import type { Generation } from '../../engine/models/client';
 import type { ArchiveEntry } from '../../engine/models/archive';
 import { generator } from '../../game/generator';
+import type { Example } from '../types';
 
 export interface CellRun {
   prompt: string;
@@ -65,7 +66,8 @@ export class Cellbook {
           </div>
         </div>
         <div class="nb-loading" role="status"><p>Loading model weights…</p><progress max="1" value="0"></progress></div>
-      </div>`;
+      </div>
+      <p class="sr-only nb-said" aria-live="polite"></p>`;
     this.cells = this.el.querySelector('.cells')!;
     this.prompt = this.el.querySelector('#nb-prompt')!;
     this.card = this.el.querySelector('#nb-card')!;
@@ -121,6 +123,29 @@ export class Cellbook {
 
   focus(): void {
     (this.archive ? this.card : this.prompt).focus({ preventScroll: true });
+  }
+
+  /** Fill in a worked example (the hint strip's "Try it"), ready to run. */
+  suggest(ex: Example): void {
+    if (this.archive) {
+      if (ex.card && this.cardsById.has(ex.card)) {
+        this.card.value = ex.card;
+        this.applyCard();
+      }
+      this.card.focus({ preventScroll: true });
+    } else {
+      this.prompt.value = ex.steps[0];
+      if (ex.temperature !== undefined) {
+        this.temp.value = String(ex.temperature);
+        this.tempOut.value = ex.temperature.toFixed(1);
+      }
+      this.updateContext();
+      this.prompt.focus({ preventScroll: true });
+      this.prompt.setSelectionRange(this.prompt.value.length, this.prompt.value.length);
+    }
+    this.runBtn.classList.remove('nudge');
+    void this.runBtn.offsetWidth;
+    this.runBtn.classList.add('nudge');
   }
 
   private applyCard(): void {
@@ -186,6 +211,7 @@ export class Cellbook {
     const { text, redacted } = redact(gen.text, 'plain');
     g.textContent = text;
     if (redacted) cell.classList.add('redacted');
+    this.el.querySelector('.nb-said')!.textContent = `GPT-1 continued: ${text}`;
     this.runBtn.disabled = false;
     this.stopBtn.disabled = true;
     this.scrollToEnd();

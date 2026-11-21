@@ -10,14 +10,14 @@ import { ELIZA_EFFECT, LOGIN_SEQUENCE, OBJECTIVES, PROMPTING_LESSON, SCRIPT_EXCE
 import { ART, L1_SCENE } from '../scenes';
 import { MUSIC, VOICE } from '../../audio/tracks';
 import { PhotoScene } from '../../ui/photo-scene';
+import { HintBar } from '../../ui/hintbar';
+import { hintTier, SKIP_AFTER_MS, SKIP_AFTER_TURNS } from '../frame';
+import type { ObjectiveBase } from '../types';
 
 type PropId = 'terminal' | 'printout' | 'ashtray' | 'coffee' | 'phone' | 'door' | 'diploma' | 'corkboard' | 'window';
 
 /** Objectives needed to finish the level (of six). */
-export const NEEDED = 5;
-const TURNS_PER_HINT = 4;
-const SKIP_AFTER_TURNS = 10;
-const SKIP_AFTER_MS = 3 * 60 * 1000;
+export const NEEDED = 4;
 
 const ALL_PLACARDS: Placard[] = [...OBJECTIVES.map((o) => o.placard), ELIZA_EFFECT, PROMPTING_LESSON];
 
@@ -32,6 +32,9 @@ export class Level1 {
   private readonly scene = new PhotoScene(L1_SCENE);
   private readonly paper = new PaperTerminal();
   private readonly notebook = new Notebook(OBJECTIVES);
+  private readonly hintBar = new HintBar(OBJECTIVES);
+  /** Which step of each example "Try it" fills in next. */
+  private readonly trySteps = new Map<string, number>();
   private readonly eliza = new Eliza();
   private readonly hooks: LevelHooks;
   private focused = false;
@@ -73,7 +76,9 @@ export class Level1 {
     termWrap.className = 'terminal-wrap';
     termWrap.appendChild(this.paper.el);
 
-    this.el.append(this.scene.el, termWrap, this.notebook.el, this.hud);
+    this.el.append(this.scene.el, termWrap, this.notebook.el, this.hud, this.hintBar.el);
+    this.hintBar.onTry = (o) => this.tryExample(o);
+    this.hintBar.onSkip = (id) => void this.skipObjective(id);
 
     this.scene.onHotspot = (id) => void this.inspect(id as PropId);
     this.paper.onSubmit = (text) => void this.turn(text);
@@ -202,6 +207,27 @@ export class Level1 {
     await this.maybeFinish();
   }
 
+  /** The hint strip's "Try it": type the example for the player, or point at the prop. */
+  private tryExample(o: ObjectiveBase): void {
+    if (!o.example) {
+      // "Read the script": lean back and make the printout glow.
+      this.setFocused(false);
+      const b = this.scene.hotspotButton('printout');
+      if (b) {
+        b.classList.remove('beckon');
+        void b.offsetWidth;
+        b.classList.add('beckon');
+        b.focus({ preventScroll: true });
+      }
+      return;
+    }
+    const i = this.trySteps.get(o.id) ?? 0;
+    const steps = o.example.steps;
+    this.trySteps.set(o.id, Math.min(i + 1, steps.length - 1));
+    if (!this.focused) this.setFocused(true);
+    this.paper.suggest(steps[Math.min(i, steps.length - 1)]);
+  }
+
   private async inspect(id: PropId): Promise<void> {
     switch (id) {
       case 'terminal':
@@ -244,12 +270,15 @@ export class Level1 {
 
   private renderNotebook(): void {
     const since = performance.now() - this.lastProgress;
-    const hintLevel = Math.max(Math.floor(this.turnsSinceProgress / TURNS_PER_HINT), Math.floor(since / 60000));
+    const hintLevel = hintTier(this.turnsSinceProgress, since);
+    const canSkip = !this.ending && (this.turnsSinceProgress >= SKIP_AFTER_TURNS || since >= SKIP_AFTER_MS);
     const placards = ALL_PLACARDS.filter((p) => this.hooks.data.placards.includes(p.id));
+    this.hintBar.render({ objectives: this.state.objectives, level: hintLevel, canSkip });
+    if (this.ending) this.hintBar.el.hidden = true;
     this.notebook.render({
       objectives: this.state.objectives,
       hintLevel,
-      canSkip: !this.ending && (this.turnsSinceProgress >= SKIP_AFTER_TURNS || since >= SKIP_AFTER_MS),
+      canSkip,
       needed: NEEDED,
       placards,
     });

@@ -5,6 +5,7 @@ import type { ArchiveEntry } from '../../engine/models/archive';
 import type { Generation } from '../../engine/models/client';
 import { redact } from '../../engine/models/safety';
 import { generator } from '../../game/generator';
+import type { Example } from '../types';
 import { BEATS, fillHint, type Beat, type Team } from './content';
 
 export interface DemoRun {
@@ -21,6 +22,8 @@ export class Demo {
   readonly el: HTMLDivElement;
   onRun: (r: DemoRun) => void = () => {};
   onSkip: () => void = () => {};
+  /** "Show me": reveal the explicit hint for this beat. */
+  onReveal: () => void = () => {};
   private readonly prompt: HTMLTextAreaElement;
   private readonly card: HTMLSelectElement;
   private readonly temp: HTMLInputElement;
@@ -65,6 +68,7 @@ export class Demo {
           </div>
           <p class="verdict" aria-live="polite"></p>
           <div class="demo-out" aria-live="off"></div>
+          <p class="sr-only demo-said" aria-live="polite"></p>
           <div class="demo-loading" role="status"><p>Loading GPT-2…</p><progress max="1" value="0"></progress></div>
         </div>
       </div>`;
@@ -119,12 +123,19 @@ export class Demo {
 
   /** Show a beat: its card, starter text, temperature and (archive) prompt cards. */
   showBeat(beat: Beat, team: Team, hintLevel: number, canSkip: boolean, index: number): void {
+    const level = Math.max(1, Math.min(2, hintLevel));
     this.beatBox.innerHTML = `
       <p class="beat-title">${esc(beat.title)}</p>
       <p class="beat-setup">${esc(beat.setup)} <strong>${esc(beat.goal)}</strong></p>
-      <p class="beat-hint">${esc(fillHint(beat.hints[Math.min(2, hintLevel)], team))}</p>
-      ${canSkip ? '<button type="button" class="beat-skip">Skip this beat</button>' : ''}`;
+      <p class="beat-tech">${esc(beat.hints[0])}</p>
+      <p class="beat-hint"><span aria-hidden="true">💡</span> ${esc(fillHint(beat.hints[level], team))}</p>
+      <div class="beat-actions">
+        ${level < 2 ? '<button type="button" class="beat-reveal">Show me</button>' : '<button type="button" class="beat-try">Try it</button>'}
+        ${canSkip ? '<button type="button" class="beat-skip">Skip this beat</button>' : ''}
+      </div>`;
     this.beatBox.querySelector('.beat-skip')?.addEventListener('click', () => this.onSkip());
+    this.beatBox.querySelector('.beat-reveal')?.addEventListener('click', () => this.onReveal());
+    this.beatBox.querySelector('.beat-try')?.addEventListener('click', () => this.suggest(beat.example(team)));
     for (const [i, li] of [...this.pips.children].entries()) {
       li.className = i < index ? 'done' : i === index ? 'now' : '';
     }
@@ -165,6 +176,28 @@ export class Demo {
 
   focus(): void {
     (this.archive ? this.card : this.prompt).focus({ preventScroll: true });
+  }
+
+  /** Fill in a worked example, ready to generate. */
+  suggest(ex: Example): void {
+    if (this.archive) {
+      if (ex.card && this.cardsById.has(ex.card)) {
+        this.card.value = ex.card;
+        this.applyCard();
+      }
+      this.card.focus({ preventScroll: true });
+    } else {
+      this.prompt.value = ex.steps[0];
+      if (ex.temperature !== undefined) {
+        this.temp.value = String(ex.temperature);
+        this.tempOut.value = ex.temperature.toFixed(1);
+      }
+      this.prompt.focus({ preventScroll: true });
+      this.prompt.setSelectionRange(this.prompt.value.length, this.prompt.value.length);
+    }
+    this.genBtn.classList.remove('nudge');
+    void this.genBtn.offsetWidth;
+    this.genBtn.classList.add('nudge');
   }
 
   private applyCard(): void {
@@ -209,6 +242,7 @@ export class Demo {
     this.stop = null;
     const { text, redacted } = redact(gen.text, 'sticker');
     g.textContent = text;
+    this.el.querySelector('.demo-said')!.textContent = `GPT-2 continued: ${text}`;
     this.genBtn.disabled = false;
     this.stopBtn.disabled = true;
     this.onRun({ prompt, output: text, temperature, redacted, gen });

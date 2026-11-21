@@ -299,3 +299,80 @@ kbd {
 .era.open, .era.done { transition: background 0.15s; }
 .era.open:hover, .era.done:hover { background: rgb(200 150 46 / 0.15); }
 .era.open { border-color: rgb(246 240 226 / 0.6); }
+
+/* An explicit display rule must never beat the hidden attribute. */
+[hidden] { display: none !important; }
+
+/* ---------- hint strip (always on screen in a level) ---------- */
+
+.hintbar {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 18;
+  width: min(760px, calc(100vw - 32px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 12px;
+  background: rgb(18 13 8 / 0.88);
+  color: var(--cream-ui);
+  border: 1px solid rgb(200 150 46 / 0.55);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.45);
+  font-size: 14px;
+  line-height: 1.35;
+  backdrop-filter: blur(4px);
+}
+.hintbar[hidden] { display: none; }
+.hintbar.collapsed { width: auto; padding: 0; border: 0; background: none; box-shadow: none; }
+.hb-bulb { flex: none; font-size: 18px; }
+.hb-text { flex: 1; margin: 0; min-width: 0; }
+.hb-goal { color: #f3d79a; font-weight: 700; }
+.hb-hint { color: var(--cream-ui); }
+.hb-actions { flex: none; display: flex; gap: 6px; align-items: center; }
+.hb-btn, .hb-open {
+  font: 600 12px/1 var(--ui-narrow);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(246 240 226 / 0.3);
+  background: transparent;
+  color: var(--cream-ui);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.hb-btn:hover, .hb-open:hover { border-color: rgb(246 240 226 / 0.7); }
+.hb-primary { background: var(--mustard); border-color: var(--mustard); color: #1e160e; }
+.hb-primary:hover { background: #dcaa40; }
+.hb-close { padding: 7px 8px; border-color: transparent; font-size: 15px; }
+.hb-open { background: rgb(18 13 8 / 0.88); border-color: rgb(200 150 46 / 0.55); }
+body:has(.hintbar:not([hidden]):not(.collapsed)) .captions { bottom: 84px; }
+body:has(.hintbar:not([hidden]):not(.collapsed)) .toasts { bottom: 84px; }
+.hotspot.beckon { animation: beckon 1s ease-in-out 4; }
+@keyframes beckon {
+  50% { background: rgb(255 230 170 / 0.18); box-shadow: 0 0 0 3px rgb(255 220 150 / 0.9), 0 0 40px rgb(255 210 120 / 0.6); }
+}
+
+/* Leave room for the settings buttons at the bottom left. */
+@media (max-width: 1339px) {
+  .hintbar { left: 300px; right: 16px; transform: none; width: auto; max-width: 760px; margin-inline: auto; }
+}
+@media (max-width: 900px) {
+  .hintbar { left: 8px; right: 8px; bottom: 58px; flex-wrap: wrap; font-size: 13px; }
+  .hb-actions { width: 100%; justify-content: flex-end; }
+  body:has(.hintbar:not([hidden]):not(.collapsed)) .captions,
+  body:has(.hintbar:not([hidden]):not(.collapsed)) .toasts { bottom: 150px; }
+}
+.level:has(.hintbar:not([hidden]):not(.collapsed)) .terminal-wrap,
+.level:has(.hintbar:not([hidden]):not(.collapsed)) .stage { bottom: 80px; }
+@media (max-width: 900px) {
+  .level:has(.hintbar:not([hidden]):not(.collapsed)) .terminal-wrap,
+  .level:has(.hintbar:not([hidden]):not(.collapsed)) .stage { bottom: 150px; }
+}
+
+/* ---------- text size (settings) ---------- */
+/* The paper scales its own font (level1.css); the screens zoom their content. */
+.nb-scroll, .demo-body, .fin-out, .notebook .objectives, .hb-text { zoom: var(--ts, 1); }

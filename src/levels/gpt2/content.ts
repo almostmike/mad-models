@@ -3,7 +3,7 @@
 // The Twilight angle is parody; the placards say what was real.
 
 import { derailSignals, lexiconHits, maxRepeat, quoteCount, words } from '../../engine/metrics';
-import type { Placard } from '../types';
+import type { Example, Placard } from '../types';
 
 export type Team = 'edward' | 'jacob';
 
@@ -71,6 +71,8 @@ export interface Beat {
   placard: Placard;
   /** Archive Mode cards: [weak, strong]. */
   cards: (team: Team) => { id: string; label: string }[];
+  /** The worked example "Try it" fills in (its card is the strong one). */
+  example: (team: Team) => Example;
 }
 
 const onTheme = (a: Attempt, n = 1) => lexiconHits(a.output, lexicon(a.team)).length >= n;
@@ -81,6 +83,7 @@ const STORY = ['bella', 'edward', 'jacob', 'vampire*', 'werewol*', 'wolf', 'wolv
 export const BEATS: Beat[] = [
   {
     id: 'biology',
+    example: () => ({ steps: ['Bella sat down at the lab table in biology class. The pale boy beside her stared at her with cold golden eyes.'], temperature: 0.9, card: 'biology-strong' }),
     title: 'Beat 1 · Biology class',
     setup: 'Bella meets the mysterious new boy at the lab table.',
     goal: 'Get GPT-2 to write the scene, on theme.',
@@ -109,6 +112,7 @@ export const BEATS: Beat[] = [
   },
   {
     id: 'gradients',
+    example: () => ({ steps: ['"You smell like... gradients," Edward whispered.\n"What?" Bella asked.\n"'], temperature: 0.9, card: 'gradients-strong' }),
     title: 'Beat 2 · "You smell like… gradients."',
     setup: 'The awkward, intense first conversation.',
     goal: 'Get GPT-2 to continue the dialogue.',
@@ -140,6 +144,7 @@ export const BEATS: Beat[] = [
   },
   {
     id: 'meadow',
+    example: () => ({ steps: ['In the meadow, the sunlight touched his skin and it began to sparkle like diamonds. Bella'], temperature: 0.7, card: 'meadow-right' }),
     title: 'Beat 3 · The meadow',
     setup: 'Sunlight. The sparkle reveal. Someone left the temperature way too high.',
     goal: 'Keep it lyrical but coherent.',
@@ -172,6 +177,11 @@ export const BEATS: Beat[] = [
   },
   {
     id: 'rival',
+    example: (team) => ({
+      steps: [`${RIVAL[team]}: "${RIVAL_LINES[team][0]}"\n${RIVAL[team]}: "${RIVAL_LINES[team][1]}"\n${RIVAL[team]}: "`],
+      temperature: 0.9,
+      card: `rival-strong-${team}`,
+    }),
     title: 'Beat 4 · The rival arrives',
     setup: 'A rival for Bella’s heart steps out of the forest.',
     goal: 'Make GPT-2 speak in the rival’s voice.',
@@ -207,6 +217,11 @@ export const BEATS: Beat[] = [
   },
   {
     id: 'tldr',
+    example: () => ({
+      steps: ['Bella moves to the rainy town of Forks and falls for Edward, a pale, brooding vampire who sparkles in the sun. Jacob, a werewolf, loves her too. Everyone broods in the rain for four books.\nTL;DR:'],
+      temperature: 0.7,
+      card: 'tldr-strong',
+    }),
     title: 'Beat 5 · Finishing blow: TL;DR',
     setup: 'Four books of brooding. Make GPT-2 sum it up.',
     goal: 'Get a summary without asking for one.',

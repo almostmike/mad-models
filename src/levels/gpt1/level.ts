@@ -51,6 +51,9 @@ export class Level2 {
     };
     this.frame.onProp = (id) => void this.prop(id);
     this.frame.onSkipped = () => void this.maybeFinish();
+    this.frame.onTry = (o) => {
+      if (o.example) this.book.suggest(o.example);
+    };
     this.book.onRun = (r) => void this.afterRun(r);
   }
 

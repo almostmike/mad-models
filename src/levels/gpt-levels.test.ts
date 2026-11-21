@@ -26,6 +26,16 @@ describe('Level 2 (GPT-1) in Archive Mode', () => {
     });
   }
 
+  for (const o of GPT1_OBJECTIVES.filter((x) => !x.hidden)) {
+    it(`"${o.title}": the Try it example matches its card and can clear it`, () => {
+      const ex = o.example!;
+      const e = entry(ex.card!);
+      expect(e.prompt).toBe(ex.steps[0]);
+      expect(e.temperature).toBeCloseTo(ex.temperature!);
+      expect(e.outputs.some((output, i) => o.detect({ prompt: e.prompt, output, temperature: e.temperature, index: i + 1 }))).toBe(true);
+    });
+  }
+
   it('the naive sea prompt fails more often than the primed one', () => {
     const sea = GPT1_OBJECTIVES.find((o) => o.id === 'sea')!;
     const rate = (id: string) =>
@@ -46,6 +56,13 @@ describe('Level 3 (GPT-2 boss) in Archive Mode', () => {
           e.outputs.filter((output) => judge(beat, { prompt: e.prompt, output, temperature: e.temperature, team }).pass).length;
         expect(passes(strong)).toBeGreaterThan(0);
         expect(passes(strong)).toBeGreaterThan(passes(weak));
+      });
+      it(`${beat.id} (${team}): Try it fills in the strong card's prompt`, () => {
+        const ex = beat.example(team);
+        const strong = file.entries.find((e) => e.id === ex.card)!;
+        expect(ex.card).toBe(beat.cards(team)[1].id);
+        expect(strong.prompt).toBe(ex.steps[0]);
+        expect(strong.temperature).toBeCloseTo(ex.temperature!);
       });
     }
   }

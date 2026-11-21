@@ -10,13 +10,17 @@ export interface LevelState {
 
 export interface SaveData {
   version: 1;
-  settings: { muted: boolean; readable: boolean };
+  settings: { muted: boolean; readable: boolean; textScale: number };
   /** How the GPT levels run: live on this device, or Archive Mode. */
   playMode: 'webgpu' | 'wasm' | 'archive' | null;
   level1: LevelState & { seenLogin: boolean };
   level2: LevelState;
   level3: LevelState & { team: 'edward' | 'jacob' | null; chapter: string[] };
   placards: string[];
+  /** Time spent playing (tab visible), for the certificate. */
+  stats: { playMs: number };
+  /** The three-machine finale and the certificate. */
+  finale: { prompt: string | null; name: string; complete: boolean };
 }
 
 const KEY = 'mad-models/save';
@@ -24,12 +28,14 @@ const KEY = 'mad-models/save';
 function fresh(): SaveData {
   return {
     version: 1,
-    settings: { muted: false, readable: false },
+    settings: { muted: false, readable: false, textScale: 1 },
     playMode: null,
     level1: { objectives: {}, seenLogin: false, complete: false },
     level2: { objectives: {}, complete: false },
     level3: { objectives: {}, complete: false, team: null, chapter: [] },
     placards: [],
+    stats: { playMs: 0 },
+    finale: { prompt: null, name: '', complete: false },
   };
 }
 
@@ -48,6 +54,8 @@ export function load(): SaveData {
       level2: { ...base.level2, ...data.level2 },
       level3: { ...base.level3, ...data.level3 },
       placards: data.placards ?? [],
+      stats: { ...base.stats, ...data.stats },
+      finale: { ...base.finale, ...data.finale },
     } as SaveData;
   } catch {
     return fresh();

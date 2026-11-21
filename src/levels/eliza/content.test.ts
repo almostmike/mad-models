@@ -9,6 +9,16 @@ function typedLines(hint: string): string[] {
 
 describe('Level 1 objectives', () => {
   for (const o of OBJECTIVES.filter((x) => x.detect)) {
+    it(`"${o.title}" is cleared by its "Try it" example`, () => {
+      const eliza = new Eliza();
+      const lines = o.example!.steps;
+      // "Try it" repeats the last step
+      const script = [...lines, ...Array(3).fill(lines[lines.length - 1])];
+      expect(script.some((line) => o.detect!(eliza.respond(line)))).toBe(true);
+      // and the explicit hint names the same lines
+      expect(typedLines(o.hints[2])).toEqual(lines);
+    });
+
     it(`"${o.title}" is cleared by following its explicit hint`, () => {
       const eliza = new Eliza();
       const lines = typedLines(o.hints[2]);

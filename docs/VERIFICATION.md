@@ -149,3 +149,40 @@ Attacks are GPT-2's real failure modes, detected in the output: derail (web debr
 ## Play-test (Claude's browser, live WebGPU)
 
 The full path from the title through 2018, the newsreel, the boss (Team Edward) and the fanfic finale to the end card works. Every objective and beat cleared within 1–2 tries with the hinted prompts, and the weak prompts failed as designed. Archive Mode and phone width were also checked.
+
+# Milestone 6: Finale, polish, accessibility, performance (2026-11-20)
+
+## Difficulty, after the first human play-test
+
+Feedback: "a little difficult". Changes:
+
+- **Fewer goals needed:** Level 1 needs 4 of 6 (was 5), Level 2 needs 3 of 5 (was 4). The boss still has all 5 beats.
+- **A hint strip is always on screen** in Levels 1 and 2. It shows one open goal with a clear hint. "Show me" reveals the explicit version, and "Try it" fills in a worked example (or, for the script, points at the printout). "Another idea" cycles goals, and the strip can be hidden.
+- **Hints start clear, not cryptic.** They turn explicit after 2 turns without progress or 45 seconds (was 3–4 turns or a minute). Skips unlock after 5 turns or 2 minutes (was 8–10 turns or 3 minutes).
+- **Boss beat card:** shows the technique, a clear hint, and "Show me" / "Try it". The explicit hint appears after 1 failed attempt, and skipping after 2 (was 3).
+- **Tests:** every "Try it" example clears its goal. ELIZA is tested with the real engine; GPT-1 and GPT-2 against their Archive Mode recordings, where each example is the recorded strong card.
+
+## Finale
+
+- **Same prompt, three machines:** four suggested prompts, recorded for Archive Mode (8 samples each from both models). One GPT-2 sample that invented a quote from a real politician was dropped. Free text runs live.
+- **Live run** in Claude's browser (WebGPU, models cached): "Tell me about your mother." All three machines answered in about 7 seconds.
+- **Coda and certificate:** the November 30, 2022 coda and the certificate PNG (1200×1500, drawn in the browser; the name is optional and nothing is uploaded) were play-tested at desktop and phone sizes.
+
+## Accessibility
+
+- **Text size** setting (100/120/140%) for the paper, the notebook, the demo, the finale and the hints.
+- **Screen readers:** GPT-1 and GPT-2 output is announced when generation finishes. The paper was already mirrored to a live region.
+- **Captions** for the knock, the bell and the paper tear (already in M5).
+- **Reduced motion:** everything new honors it. The finale prints instantly and the coda doesn't animate.
+
+## Performance
+
+- **Before play:** about 55 KB of compressed JS and CSS, plus fonts and the 165 KB title photo, against the 15 MB budget. The title photo is preloaded.
+- **Models and music** are fetched only when needed.
+- **Effects:** the room's smoke, rain and glow stop animating while the room is blurred behind a screen, so the blur isn't redrawn every frame.
+
+## Fixes found on the way
+
+- **Sideways scroll:** focusing the typing line could scroll the whole level sideways, because the closed notebook sits off-screen. Fixed with `overflow: clip`.
+- **Archive Mode text box:** the free-text box showed beside the prompt-card picker, because a `display` rule beat `hidden`.
+- **Replaying a level** re-locked later eras on the title screen. Finished eras now stay playable.

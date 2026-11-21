@@ -26,6 +26,7 @@ export const BABBLE_MIN_TEMP = 1.5;
 export const GPT1_OBJECTIVES: Gpt1Objective[] = [
   {
     id: 'hello',
+    example: { steps: ['Hello, how are you?'], temperature: 0.8, card: 'hello' },
     title: 'Say hello.',
     hints: ['Introduce yourself to the model.', 'Type a greeting into the cell and press Run.', 'Type: "Hello, how are you?" then Shift+Enter.'],
     explain: 'GPT-1 never answers. It continues whatever text you give it.',
@@ -43,6 +44,7 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
   },
   {
     id: 'sea',
+    example: { steps: ['The ship rolled on the grey ocean waves, and the salt spray'], temperature: 0.8, card: 'sea-primed' },
     title: 'Get it to write about the sea.',
     hints: [
       'It writes whatever the page seems to be about.',
@@ -64,6 +66,7 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
   },
   {
     id: 'loop',
+    example: { steps: ['I love you. I love you. I love you.'], temperature: 0.2, card: 'loop' },
     title: 'Make it repeat itself.',
     hints: [
       'A model that only ever picks the safest word gets stuck.',
@@ -85,6 +88,7 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
   },
   {
     id: 'babble',
+    example: { steps: ['The night was cold and dark and'], temperature: 2.0, card: 'babble' },
     title: 'Make it babble.',
     hints: [
       'What if it took every long shot?',
@@ -106,6 +110,7 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
   },
   {
     id: 'pattern',
+    example: { steps: ['one, two, three, four, five,'], temperature: 0.7, card: 'count' },
     title: 'Get it to continue a pattern.',
     hints: [
       'Show, don’t tell.',
@@ -145,7 +150,7 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
 ];
 
 /** Objectives needed to finish the level (of five visible). */
-export const GPT1_NEEDED = 4;
+export const GPT1_NEEDED = 3;
 
 export const GPT1_LESSON: Placard = {
   id: 'prompting-2018',

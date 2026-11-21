@@ -94,6 +94,8 @@
 .run-row button { font: 13px -apple-system, Arial, sans-serif; padding: 5px 12px; border: 1px solid #bbb; border-radius: 2px; background: #f0f0f0; cursor: pointer; color: #111; }
 .run-row .nb-run:not(:disabled) { background: #e8f5e9; border-color: #66bb6a; }
 .run-row button:disabled { opacity: 0.5; cursor: default; }
+.nudge { animation: nudge 0.9s ease-in-out 3; }
+@keyframes nudge { 50% { box-shadow: 0 0 0 4px rgb(200 150 46 / 0.7); } }
 .run-row kbd { opacity: 0.6; }
 .ctx { margin-left: auto; font-family: Menlo, Consolas, monospace; font-size: 11px; color: #777; }
 

@@ -89,6 +89,13 @@ export class PaperTerminal {
     this.entry.focus({ preventScroll: true });
   }
 
+  /** Put suggested text on the entry line, ready for Return. */
+  suggest(text: string): void {
+    this.entry.value = text;
+    this.focus();
+    this.entry.setSelectionRange(text.length, text.length);
+  }
+
   /** Print text at 2741 speed. Calls are queued; resolves when this text is done. */
   print(text: string, announce = true): Promise<void> {
     this.queue = this.queue.then(() => this.printNow(text, announce));

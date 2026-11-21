@@ -30,7 +30,7 @@ export class PhotoScene {
   private readonly frame: HTMLDivElement;
   private readonly cfg: PhotoSceneConfig;
   private readonly reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  private smokeStops: (() => void)[] = [];
+  private smokes: Smoke[] = [];
   onHotspot: (id: string) => void = () => {};
 
   constructor(cfg: PhotoSceneConfig) {
@@ -49,7 +49,7 @@ export class PhotoScene {
       place(fx, e.box);
       fx.setAttribute('aria-hidden', 'true');
       this.frame.appendChild(fx);
-      if (e.kind === 'smoke' && !this.reduced) this.smokeStops.push(smoke(fx as HTMLCanvasElement));
+      if (e.kind === 'smoke' && !this.reduced) this.smokes.push(new Smoke(fx as HTMLCanvasElement));
     }
     for (const h of cfg.hotspots) {
       const b = document.createElement('button');
@@ -81,6 +81,7 @@ export class PhotoScene {
   private readonly onResize = () => this.centerOnFocus();
 
   private centerOnFocus(): void {
+    if (getComputedStyle(this.el).overflowX !== 'auto') return;
     const max = this.el.scrollWidth - this.el.clientWidth;
     if (max > 0) this.el.scrollLeft = Math.round(max * (this.cfg.focus[0] / 100));
   }
@@ -88,6 +89,11 @@ export class PhotoScene {
   setFocused(focused: boolean): void {
     this.el.classList.toggle('focused', focused);
     this.el.classList.toggle('room', !focused);
+    // The room is blurred behind the screen: stop animating what nobody can see.
+    for (const s of this.smokes) {
+      if (focused) s.stop();
+      else s.start();
+    }
     for (const b of this.el.querySelectorAll<HTMLButtonElement>('.hotspot')) b.tabIndex = focused ? -1 : 0;
   }
 
@@ -128,7 +134,7 @@ export class PhotoScene {
   }
 
   destroy(): void {
-    this.smokeStops.forEach((s) => s());
+    this.smokes.forEach((s) => s.stop());
     window.removeEventListener('resize', this.onResize);
   }
 }
@@ -141,13 +147,31 @@ function place(el: HTMLElement, [l, t, w, h]: [number, number, number, number]):
 }
 
 /** A thin curl of cigarette smoke rising through the canvas. */
-function smoke(canvas: HTMLCanvasElement): () => void {
-  canvas.width = 120;
-  canvas.height = 300;
-  const ctx = canvas.getContext('2d')!;
-  const parts: { x: number; y: number; r: number; a: number; vx: number; vy: number; age: number }[] = [];
-  let raf = 0;
-  const step = (t: number) => {
+class Smoke {
+  private readonly canvas: HTMLCanvasElement;
+  private readonly ctx: CanvasRenderingContext2D;
+  private readonly parts: { x: number; y: number; r: number; a: number; vx: number; vy: number; age: number }[] = [];
+  private raf = 0;
+
+  constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
+    canvas.width = 120;
+    canvas.height = 300;
+    this.ctx = canvas.getContext('2d')!;
+    this.start();
+  }
+
+  start(): void {
+    if (!this.raf) this.raf = requestAnimationFrame(this.step);
+  }
+
+  stop(): void {
+    cancelAnimationFrame(this.raf);
+    this.raf = 0;
+  }
+
+  private readonly step = (t: number) => {
+    const { canvas, ctx, parts } = this;
     if (parts.length < 50 && Math.random() < 0.4) {
       parts.push({ x: canvas.width / 2, y: canvas.height - 4, r: 2, a: 0.2, vx: 0, vy: -0.5 - Math.random() * 0.3, age: 0 });
     }
@@ -172,8 +196,6 @@ function smoke(canvas: HTMLCanvasElement): () => void {
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
     }
-    raf = requestAnimationFrame(step);
+    this.raf = requestAnimationFrame(this.step);
   };
-  raf = requestAnimationFrame(step);
-  return () => cancelAnimationFrame(raf);
 }

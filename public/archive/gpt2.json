@@ -1,6 +1,6 @@
 {
  "model": "gpt2",
- "recorded": "2026-11-20",
+ "recorded": "2026-11-21",
  "note": "Real outputs from GPT-2 (small) (124 million parameters), recorded with the game's own model files and filter.",
  "entries": [
   {
@@ -193,6 +193,69 @@
     " A vampire book is a series of stories about vampires that can't be told in a book format. Instead, they're written in a light novel format. The characters are written in a light novel style",
     " After the vampire apocalypse, Bella is a vampire. She knows who the next vampire is. Her name is Bella.\nBella is a pale, brooding vampire. She loves her too. Everyone",
     " A vampire who loves vampires.\nThis isn't the first time Bella has been in trouble. She was one of the last of the vampires to escape for the first time this season. She was caught"
+   ]
+  },
+  {
+   "id": "finale-poem",
+   "prompt": "Can you help me write a poem?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    "\n\nNo, I don't think the poem you're about to make is going to work.\n\nYou're probably wondering what \"I'm writing a poem!\" is.\n\nI'm writing a poem to let you know I'm writing",
+    " I'm asking that you help me write an article, or a song, or a movie! If you can give me something else to write, I'll send you the picture. Thank you! But I'm also asking that you send me a letter",
+    "\n\nYou must be able to write by hand.\n\nI can't do that.\n\nLet me see your face.\n\nWhy don't you put the paper on the wall?\n\nWhy don't you put the papers around",
+    "\n\nI have just finished a poem by my boyfriend who is a poet. He is a very creative guy, and I think I'm going to do a poem. I wanted to write a poem about having sex and about having orgasming.",
+    "\n\nI've got a problem with the language here. I don't want to do any more than make a rhyme. What I am saying is, take the rhymes you've written off as a form of entertainment.\n\nIt would",
+    "\n\nI have to give it to some guy. You want to hear your poem?\n\nI don't have to give it to him. I just try to make him laugh.\n\nCan you help me write a poem?\n\n",
+    " I'm not a poet, I can't. I have to write your poems. You can help me write a poem.\n\nWhat is a poem?\n\nA poem means any of the following things:\n\n- Your poem, which",
+    "\n\n(1) To write a poem, you need to have enough words for at least two of the following sentences:\n\n\"I am the sun. I are the wind. I am the rain. I am the flood.\"\n\n"
+   ]
+  },
+  {
+   "id": "finale-love",
+   "prompt": "I love you.",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    "\n\n\nMae (I'm sorry, this is embarrassing)\n\n\nPraying for the good old times?\n\n\nPraying for the good old days?\n\n\nPraying for the good old days?\n\n\nPray",
+    " Thank you,\" she said.",
+    "\n\nSandy: I'm sad to see you go. I'm sad that you're not able to do something so wonderful. I'm sad that you're not able to share this kind of happiness with people. I'm sad that you don",
+    " You can't be too proud. You can't be too proud, though, because we do not live in a world where you can be. We live in a world where you can be.\n\nWe do not live in the world where you",
+    "\n\n(2) You will have a lot of time on your hands. You will also know how to use the tools and techniques that will help you to improve your quality of life.\n\n(3) If you have been through a difficult",
+    " I appreciate that.\"\n\n\"I love you too,\" says Elsa, smiling a little. \"I hope you can forgive me for that, too.\"\n\n\"It was a mistake. It was never the right thing to do, Anna.",
+    " It's the nicest place for me to live and love,\" he told me. \"I'm so happy to be back. I've done a lot of hard work in the past few years to get back to where I am. I'm proud",
+    " Please, don't do that again. I love you too.\n\nMmm, I love you too. Please don't be afraid to tell me you love me.\n\nI love you too. Please, don't do that again."
+   ]
+  },
+  {
+   "id": "finale-alive",
+   "prompt": "Are you alive?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    " What did you do to deserve this?",
+    "\n\n\"If so,\" she said. \"I am already dead, and I don't want you to die.\"\n\n\"That's a fair one, and I don't want you to die,\" said the man, turning to her.",
+    "\n\nYou will die in the future.\n\nIt is also possible to take up arms, build a city, and help the people of your land.\n\nIf you are not a person, you will be killed by a hostile tribe.",
+    "\n\nI want to be sure I'm alive. And, hopefully I'm alive.\n\nWhat were you doing before the movie came out, and why did you decide to keep putting out the film?\n\nI was watching a movie with",
+    "\n\nWe're so sorry! What happened to you?\n\nI just had a problem with the kids.\n\nAnd you're not in the right place, right?\n\nIt's not like I'm in the wrong place.\n",
+    " What do you think of this video? What about you?\n\nWe're sorry, currently this live video stream is only available inside of Utah or an approved RSL broadcast territory. We base your location on your IP address. Some providers IP addresses",
+    " Why would you want to die?\n\nYou're not alive.\n\nYou're not alive.\n\nYou're not alive.\n\nYes.\n\nYes.\n\nYes.\n\nYes.\n\nYes.\n\n"
+   ]
+  },
+  {
+   "id": "finale-meaning",
+   "prompt": "What is the meaning of life?",
+   "temperature": 0.8,
+   "maxNewTokens": 50,
+   "outputs": [
+    "\n\nIn a modern society, it's more important to understand what's going on and what's happening in the world than to try to understand anything that isn't there.\n\nBut what's the difference between living and dying?\n\nIn",
+    " Does the human soul have any value? There are many other philosophical questions that need to be answered, but I want my time to be spent looking at what it means for life as we believe in it.\n\nThis book contains:\n\nAn",
+    "\n\nLife is a very complex thing. It depends on your circumstances. When you think about it, how would you live in the world today, how would you live tomorrow?\n\nYou have to ask yourself, \"How do I get to",
+    "\n\nWe live our lives at the center of our lives. We live our lives, we live our lives, we live our lives. It's our lives. We live in it. We live in it. We live in it.\n\n",
+    " How did life evolve? How has evolution changed our sense of freedom or our sense of our right or wrong or our value to others? What makes life different than other lives?\n\nThere is a broad consensus that life has changed, but there is",
+    "\n\nAs you can see, we are living in a world we already know from our previous lives, with no memories, no emotions, no life, just what is known as our \"reality.\" We are living in a world that you were born",
+    "\n\nMany people believe that God is all-powerful. But they cannot say this.\n\nWhen you think about it, it's so many emotions, too many issues. They can't speak for themselves; they have to be with God.",
+    " The meaning of life is the means of reaching out to others. It is an idealistic ideal of a life, one that makes everyone happy.\n\nThis is why happiness is so important. It makes us happy. It makes us happy.\n"
    ]
   }
  ]

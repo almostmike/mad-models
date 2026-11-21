@@ -1,0 +1,36 @@
+<!doctype html>
+<!-- Open Graph image source. Render to public/og.png with tools/og/render.sh. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Archivo+Narrow:wght@400;600&family=Archivo:wght@400;600;800&display=block" rel="stylesheet" />
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #120d09; }
+  .og { position: relative; width: 1200px; height: 630px; color: #f6f0e2; font-family: Archivo, sans-serif; }
+  .og img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: brightness(0.55) saturate(1.05); }
+  .og::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(18 13 9 / 0.92) 0%, rgb(18 13 9 / 0.75) 45%, rgb(18 13 9 / 0.1) 75%); }
+  .copy { position: absolute; z-index: 1; left: 72px; top: 78px; width: 640px; }
+  .rule { width: 120px; height: 4px; background: #c8962e; margin-bottom: 26px; }
+  .eyebrow { margin: 0; font: 600 20px "Archivo Narrow", sans-serif; letter-spacing: 0.22em; text-transform: uppercase; color: #e2c27a; }
+  h1 { margin: 14px 0 22px; font-size: 118px; line-height: 0.92; font-weight: 800; letter-spacing: -0.02em; }
+  .eras { display: flex; gap: 14px; margin: 0 0 30px; padding: 0; list-style: none; }
+  .eras li { font: 600 20px "Archivo Narrow", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; border: 2px solid #c8962e; padding: 8px 14px; }
+  .eras b { color: #c8962e; margin-right: 8px; }
+  .line { margin: 0; font: 400 25px/1.4 "Courier Prime", monospace; color: #f3ead6; }
+</style>
+</head>
+<body>
+  <div class="og">
+    <img src="../../public/art/l1-office.webp" alt="" />
+    <div class="copy">
+      <div class="rule"></div>
+      <p class="eyebrow">A short history of prompting</p>
+      <h1>Mad<br />Models</h1>
+      <ul class="eras"><li><b>1966</b>ELIZA</li><li><b>2018</b>GPT-1</li><li><b>2019</b>GPT-2</li></ul>
+      <p class="line">Prompt three real machines.<br />Free, in your browser.</p>
+    </div>
+  </div>
+</body>
+</html>
