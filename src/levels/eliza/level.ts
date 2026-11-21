@@ -68,7 +68,7 @@ export class Level1 {
     this.skipPrintBtn.className = 'hud-btn skip-print';
     this.skipPrintBtn.innerHTML = 'Skip <kbd>Esc</kbd>';
     this.skipPrintBtn.hidden = true;
-    this.skipPrintBtn.addEventListener('click', () => this.paper.skip());
+    this.skipPrintBtn.addEventListener('click', () => this.skipPrint());
 
     actions.append(this.skipPrintBtn, this.leanBtn, this.notebook.toggle);
 
@@ -121,7 +121,7 @@ export class Level1 {
     if (document.querySelector('.backdrop')) return;
     const typing = (e.target as HTMLElement)?.tagName === 'INPUT';
     if (e.key === 'Escape') {
-      if (this.paper.locked && this.focused) this.paper.skip();
+      if (this.paper.locked && this.focused) this.skipPrint();
       else if (this.focused && !typing) this.setFocused(false);
     } else if (!typing && (e.key === 'n' || e.key === 'N')) {
       this.notebook.userToggled = true;
@@ -144,10 +144,20 @@ export class Level1 {
     }
   }
 
+  /** Skip the current printout; during the login, skip the whole login. */
+  private skipPrint(): void {
+    if (this.loggingIn) this.paper.instant = true;
+    this.paper.skip();
+  }
+
+  private loggingIn = false;
+
   private async startSession(): Promise<void> {
     this.started = true;
     this.paper.hold(true);
     this.skipPrintBtn.hidden = false;
+    this.loggingIn = true;
+    const instant = this.paper.instant;
     if (!this.state.seenLogin) {
       for (const step of LOGIN_SEQUENCE) {
         if (step.machine) await this.paper.print(step.machine, false);
@@ -161,6 +171,8 @@ export class Level1 {
     } else {
       await this.paper.print('R ELIZA\nEXECUTION.\n\n', false);
     }
+    this.paper.instant = instant;
+    this.loggingIn = false;
     await this.paper.print(this.eliza.hello + '\n');
     this.skipPrintBtn.hidden = true;
     this.paper.hold(false);
@@ -260,7 +272,7 @@ export class Level1 {
         caption("Someone else's Ph.D. The frame is crooked.");
         return;
       case 'corkboard':
-        caption('A photo of the 7094 machine room, a flowchart, and the CTSS schedule: MON–FRI, 0800–2400.');
+        caption('A photo of the IBM 7094 that runs CTSS, a flowchart, and a terminal sign-up sheet.');
         return;
       case 'window':
         caption('Late sun over Technology Square. Somewhere below, someone is parking a Rambler.');

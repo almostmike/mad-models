@@ -516,7 +516,7 @@ mad-models/
 | **M4** | **Levels 2 and 3 playable (grey-box)** ✅ 2026-11-20 (see `docs/VERIFICATION.md` for tuned objectives; the play-mode choice comes before 2018, so nothing downloads without consent) | Notebook UI, web-demo and boss HUD. All objectives and beats detectable. Skips work. |
 | **M5** | **Art and audio pass** ✅ 2026-11-20 (images: ChatGPT, won a 3-way test; music: Suno free, credited, since Udio downloads are disabled; Dorothy: ElevenLabs; SFX stay synthesized) | All images generated and layered. Music files generated (Suno) and wired in. Dorothy's voice lines recorded and wired in. SFX sourced. Era Jumps built. |
 | **M6** | **Finale, polish, accessibility, performance** ✅ 2026-11-20 (also: easier levels after the first play-test, with an always-visible hint strip and "Try it" examples; OG image done early; SFX stay synthesized) | Side-by-side finale, certificate, accessibility features, perf budgets met, mobile pass. |
-| **M7** | **Launch** | README, credits, sources, OG image. Public link shared by the user. |
+| **M7** | **Launch** ✅ 2026-11-20 (Museum page with sources; `docs/SOURCES.md` checked claim by claim, which corrected three lines; deploy actions updated) | README, credits, sources, OG image. Public link shared by the user. |
 
 Grey-box first means the game is fun before it's pretty. The art pass then drops into finished layouts.
 
@@ -535,12 +535,12 @@ Grey-box first means the game is fun before it's pretty. The art pass then drops
 
 ## 20. Open items
 
-1. **Title.** "Mad Models" is a working title. Alternatives: *Prompt & Circumstance*, *Before the Chat*, *Ghost in the Teletype*.
-2. **GitHub account/org and repo name** for the public repo.
+1. **Title.** Launched as "Mad Models". Alternatives if it ever changes: *Prompt & Circumstance*, *Before the Chat*, *Ghost in the Teletype*.
+2. ~~**GitHub account/org and repo name** for the public repo.~~ Decided: github.com/almostmike/mad-models.
 3. ~~**Player name** on the certificate: optional free-text field, or skip it?~~ Decided in M6: optional free-text field, kept only in this browser.
-4. **Sandbox mode** after completion: in v1 or later?
-5. **Who presses "publish"** for asset generation sessions. Claude drives the browser, but each download batch is confirmed by the user.
-6. **Music rights.** Is the Suno account on a paid plan? If not, pay for one month of Pro during M5, or use CC0/CC-BY music?
+4. **Sandbox mode** after completion: later. The finale's free-text prompt and the unlisted Model Lab (`/lab.html`) cover it for now.
+5. ~~**Who presses "publish"** for asset generation sessions.~~ Decided: Claude drove the browser, and the user approved each download batch (M5).
+6. **Music rights.** Decided in M5: Suno free plan, credited, non-commercial. Free-plan output belongs to Suno, so a paid month (or CC0 music) is still the safer choice if the game ever goes commercial.
 
 ## 21. Out of scope (v1)
 

@@ -3,6 +3,7 @@
 
 import { sfx } from '../audio/sfx';
 import type { SaveData } from '../save';
+import { showMuseum } from '../museum/museum';
 
 export interface CertInfo {
   name: string;
@@ -202,7 +203,10 @@ export async function showCertificate(app: HTMLElement, data: SaveData, persist:
         <button type="button" class="btn cert-share" hidden>Share…</button>
       </div>
       <p class="cert-status" role="status"></p>
-      <button type="button" class="btn cert-done">Back to the title</button>
+      <div class="cert-actions">
+        <button type="button" class="btn cert-museum">Visit the museum</button>
+        <button type="button" class="btn cert-done">Back to the title</button>
+      </div>
     </div>`;
   app.appendChild(el);
   const canvas = el.querySelector('canvas')!;
@@ -246,6 +250,9 @@ export async function showCertificate(app: HTMLElement, data: SaveData, persist:
       }
     });
   }
+  el.querySelector('.cert-museum')!.addEventListener('click', () => {
+    void showMuseum(app, data.placards).then(() => el.querySelector<HTMLButtonElement>('.cert-museum')!.focus({ preventScroll: true }));
+  });
   el.querySelector<HTMLButtonElement>('.cert-dl')!.focus({ preventScroll: true });
   return new Promise((resolve) => {
     el.querySelector('.cert-done')!.addEventListener('click', () => {

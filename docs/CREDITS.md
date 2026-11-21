@@ -1,6 +1,6 @@
 # Credits
 
-Third-party assets, models and sources, with licenses. Filled in as assets are added.
+Third-party assets, models and tools, with licenses. Factual sources are in [SOURCES.md](SOURCES.md).
 
 ## ELIZA
 
@@ -20,7 +20,17 @@ Third-party assets, models and sources, with licenses. Filled in as assets are a
 - **Music**: three tracks made with **Suno** (suno.com) on the free plan, credited and used non-commercially: "Project MAC 1966" (cool jazz), "Mission District 2018" (lo-fi) and "New Loss 2019" (alt-rock ballad).
 - **Dorothy's voice**: an original voice designed with **ElevenLabs** (elevenlabs.io) Voice Design, lines spoken with Eleven v4.
 - **Sound effects**: synthesized in the browser with the Web Audio API (`src/audio/sfx.ts`); no samples.
+- **Link-preview image** (`public/og.jpg`): the 1966 scene image with the game's own type, rendered by `tools/og/render.sh`.
+- **Certificate**: drawn in the player's browser on a canvas; nothing is uploaded.
+
+## Recorded model outputs
+
+- `public/archive/*.json` holds real GPT-1 and GPT-2 outputs, recorded with `tools/archive/record.ts` from the same model files and word filter the game uses. One finale sample that invented a quote from a real politician was removed by hand.
 
 ## Fonts
 
 - **Courier Prime**, **Archivo** and **Archivo Narrow**, SIL Open Font License.
+
+## Made with
+
+- Designed and built with **Claude** (Anthropic) in Claude Code, working with the project owner.

@@ -4,6 +4,7 @@ import './levels/eliza/level1.css';
 import './levels/gpt1/level2.css';
 import './levels/gpt2/level3.css';
 import './finale/finale.css';
+import './museum/museum.css';
 import { sfx } from './audio/sfx';
 import { generator } from './game/generator';
 import { Level1 } from './levels/eliza/level';
@@ -18,6 +19,7 @@ import { caption, showDocument } from './ui/overlays';
 import { runFinale } from './finale/finale';
 import { runCoda } from './finale/coda';
 import { showCertificate } from './finale/certificate';
+import { showMuseum } from './museum/museum';
 import { OBJECTIVES as L1_OBJECTIVES } from './levels/eliza/content';
 import { GPT1_OBJECTIVES } from './levels/gpt1/content';
 import { BEATS } from './levels/gpt2/content';
@@ -174,7 +176,16 @@ function titleScreen() {
   credits.className = 'btn';
   credits.textContent = 'Credits';
   credits.addEventListener('click', () => void showCredits());
-  actions.appendChild(credits);
+  const museum = document.createElement('button');
+  museum.type = 'button';
+  museum.className = 'btn';
+  museum.textContent = 'Museum';
+  museum.addEventListener('click', () => {
+    app.textContent = '';
+    app.append(settingsBar());
+    void showMuseum(app, data.placards).then(titleScreen);
+  });
+  actions.append(museum, credits);
   if (started) {
     const fresh = document.createElement('button');
     fresh.type = 'button';
@@ -299,6 +310,8 @@ function showCredits(): Promise<string> {
       'Sound effects: synthesized live in your browser.',
       '',
       'Twilight belongs to Stephenie Meyer. Level 3 is parody.',
+      '',
+      'Facts on the placards are sourced: see the Museum.',
     ].join('\n'),
     'Made with Claude. Source: github.com/almostmike/mad-models',
   );

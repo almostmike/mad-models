@@ -1,0 +1,50 @@
+/* The museum: placards and sources. */
+
+.museum-screen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 32px clamp(16px, 5vw, 64px) 96px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(200 150 46 / 0.12), transparent 60%),
+    #120d09;
+  color: var(--cream-ui);
+}
+.mus-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; max-width: 1100px; margin: 0 auto 8px; }
+.mus-head .eyebrow { margin: 0; }
+.mus-head h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; margin: 6px 0 6px; }
+.mus-lede { margin: 0; color: rgb(246 240 226 / 0.75); }
+.mus-wing, .mus-sources { max-width: 1100px; margin: 28px auto 0; }
+.mus-wing h2, .mus-sources h2 { font: 600 14px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.16em; color: var(--mustard); margin: 0 0 12px; padding-bottom: 6px; border-bottom: 1px solid rgb(200 150 46 / 0.35); }
+.mus-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.mus-card {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  min-height: 96px;
+  padding: 14px 16px;
+  background: var(--paper);
+  color: #1d1a16;
+  border-left: 5px solid var(--mustard);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.4);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+button.mus-card:hover { transform: translateY(-2px); }
+button.mus-card:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; }
+.mus-card.locked { background: rgb(246 240 226 / 0.06); color: rgb(246 240 226 / 0.45); border-left-color: rgb(246 240 226 / 0.2); box-shadow: none; cursor: default; }
+.mus-kicker { font: 600 11px var(--ui-narrow); text-transform: uppercase; letter-spacing: 0.12em; color: #8a6a28; }
+.mus-card.locked .mus-kicker { color: inherit; }
+.mus-title { font-weight: 700; font-size: 16px; line-height: 1.3; }
+.mus-card.locked .mus-title { font-weight: 400; font-style: italic; }
+.mus-note { margin: 0 0 14px; color: rgb(246 240 226 / 0.75); line-height: 1.5; }
+.mus-note a, .mus-src-cols a { color: #f3d79a; }
+.mus-src-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
+.mus-src-cols h3 { margin: 0 0 6px; font: 800 18px var(--ui); color: var(--cream-ui); }
+.mus-src-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.mus-src-cols li { display: grid; gap: 2px; font-size: 14px; line-height: 1.4; }
+.mus-src-cols li span { color: rgb(246 240 226 / 0.6); font-size: 13px; }

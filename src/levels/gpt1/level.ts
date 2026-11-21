@@ -70,7 +70,7 @@ export class Level2 {
     sfx.playMusic(MUSIC.lofi2018);
     void this.loadModel();
     await narrate(
-      'San Francisco, June 2018. A research startup in the Mission: exposed brick, standing desks, a fridge full of LaCroix. This week the team trained a new kind of language model on 7,000 unpublished novels. Nobody has quite figured out what it’s for.',
+      'San Francisco, June 2018. A research startup in the Mission: exposed brick, standing desks, a fridge full of LaCroix. This week the team trained a new kind of language model on 7,000 self-published novels. Nobody has quite figured out what it’s for.',
       'Look around',
     );
     setTimeout(() => chatToast(SLACK.arrive.from, SLACK.arrive.text), 1200);

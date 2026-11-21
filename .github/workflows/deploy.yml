@@ -36,7 +36,7 @@ jobs:
           mv release/gpt2.model_quantized.onnx dist/models/gpt2/onnx/model_quantized.onnx
           echo "f26269d2ccf16e3a5581cb859e7ab2cd6c3c2e44c35b456abfb82a801854e1f2  dist/models/openai-gpt/onnx/model_quantized.onnx" | sha256sum -c
           echo "29540a2d09b2bd562ca263745716bec4dccdf7a000012d236ed43d01577d7771  dist/models/gpt2/onnx/model_quantized.onnx" | sha256sum -c
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -48,4 +48,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

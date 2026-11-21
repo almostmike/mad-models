@@ -140,9 +140,9 @@ export const GPT1_OBJECTIVES: Gpt1Objective[] = [
     placard: {
       id: 'gpt1-bookcorpus',
       kicker: 'Bonus discovery',
-      title: 'It read 7,000 unpublished novels',
+      title: 'It read 7,000 self-published novels',
       body: [
-        'GPT-1 learned English from BookCorpus: about 7,000 self-published books, heavy on adventure, fantasy and romance. That’s why it lowercases everything, puts spaces around punctuation, and keeps drifting into "he whispered" territory.',
+        'GPT-1 learned English from BookCorpus: about 7,000 self-published books, heavy on adventure, fantasy and romance. The text was lowercased and split at punctuation before training, which is why GPT-1 writes that way. The romance is why it keeps drifting into "he whispered" territory.',
         'What a model reads is what it becomes. Keep that in mind for 2019.',
       ],
     },

@@ -20,7 +20,7 @@ export const JUMP_1966_2018: Reel = {
     { year: '1997', headline: 'IBM’s Deep Blue beats world chess champion Garry Kasparov.' },
     { year: '2012', headline: 'A neural network called AlexNet wins the ImageNet contest by a landslide. Deep learning arrives.' },
     { year: '2017', headline: 'Eight researchers, mostly at Google, publish "Attention Is All You Need". It describes the Transformer.' },
-    { year: '2018', headline: 'June. A San Francisco lab trains a Transformer on 7,000 unpublished books.' },
+    { year: '2018', headline: 'June. A San Francisco lab trains a Transformer on 7,000 self-published novels.' },
   ],
 };
 

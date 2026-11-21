@@ -166,7 +166,7 @@ export const BEATS: Beat[] = [
       title: 'Temperature, and the top-k trick',
       body: [
         'Above about 1.0, GPT-2 picks so many long shots that it produces things like "Lafhellabella eagerly worked that mainly shiny magic five giant vines" (a real sample from our tests at 1.5).',
-        'OpenAI’s own 2019 samples also used "top-k" sampling: choose only among the 40 likeliest next words. This level does the same.',
+        'Many of OpenAI’s own 2019 GPT-2 samples used "top-k" sampling: choose only among the 40 likeliest next words. This level does the same.',
       ],
       thenNow: 'Then: you tuned the dials. Now: products tune them for you.',
     },

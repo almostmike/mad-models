@@ -28,7 +28,7 @@ export const MODELS: Record<ModelId, ModelInfo> = {
     bytes: 117_347_683,
     context: 512,
     lowercase: true,
-    trainedOn: 'BookCorpus: about 7,000 unpublished books',
+    trainedOn: 'BookCorpus: about 7,000 self-published books',
   },
   gpt2: {
     id: 'gpt2',
